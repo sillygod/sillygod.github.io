@@ -1,0 +1,935 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="sillygod, jing blog, jing github" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="初嘗 React Native學習動機有鑑於最近公司比較沒事，所以就心血來潮來玩一下，其實這還算是玩具性質的專案，有著效率上的問題，而且應該會有不少地雷存在，雖然他說得很漂亮，什麼write once, run anywhere? 當然我覺得這不是不可能，只是大概需要很常的時間，才能做到，不過呢，反正時間多出來了，就來玩玩看也不吃虧。 環境設置這邊是以Linux(ubuntu 14.04)為例，官">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初嘗react native">
+<meta property="og:url" content="http://sillygod.github.io/2016/08/29/the-first-react-native/index.html">
+<meta property="og:site_name" content="My Travel in Programming">
+<meta property="og:description" content="初嘗 React Native學習動機有鑑於最近公司比較沒事，所以就心血來潮來玩一下，其實這還算是玩具性質的專案，有著效率上的問題，而且應該會有不少地雷存在，雖然他說得很漂亮，什麼write once, run anywhere? 當然我覺得這不是不可能，只是大概需要很常的時間，才能做到，不過呢，反正時間多出來了，就來玩玩看也不吃虧。 環境設置這邊是以Linux(ubuntu 14.04)為例，官">
+<meta property="og:image" content="http://i.imgur.com/oaTJs2U.png">
+<meta property="og:updated_time" content="2017-04-11T12:41:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初嘗react native">
+<meta name="twitter:description" content="初嘗 React Native學習動機有鑑於最近公司比較沒事，所以就心血來潮來玩一下，其實這還算是玩具性質的專案，有著效率上的問題，而且應該會有不少地雷存在，雖然他說得很漂亮，什麼write once, run anywhere? 當然我覺得這不是不可能，只是大概需要很常的時間，才能做到，不過呢，反正時間多出來了，就來玩玩看也不吃虧。 環境設置這邊是以Linux(ubuntu 14.04)為例，官">
+<meta name="twitter:image" content="http://i.imgur.com/oaTJs2U.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://sillygod.github.io/2016/08/29/the-first-react-native/"/>
+
+
+
+
+
+  <title> 初嘗react native | My Travel in Programming </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My Travel in Programming</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">hh</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2016/08/29/the-first-react-native/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5311569?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Travel in Programming">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                初嘗react native
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-29T14:39:00+08:00">
+                2016-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/29/the-first-react-native/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/08/29/the-first-react-native/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="初嘗-React-Native"><a href="#初嘗-React-Native" class="headerlink" title="初嘗 React Native"></a>初嘗 React Native</h1><h3 id="學習動機"><a href="#學習動機" class="headerlink" title="學習動機"></a>學習動機</h3><p>有鑑於最近公司比較沒事，所以就心血來潮來玩一下，其實這還算是玩具性質的專案，有著效率上的問題，而且應該會有不少地雷存在，雖然他說得很漂亮，什麼write once, run anywhere? 當然我覺得這不是不可能，只是大概需要很常的時間，才能做到，不過呢，反正時間多出來了，就來玩玩看也不吃虧。</p>
+<h3 id="環境設置"><a href="#環境設置" class="headerlink" title="環境設置"></a>環境設置</h3><p>這邊是以Linux(ubuntu 14.04)為例，<a href="https://facebook.github.io/react-native/releases/next/docs/getting-started.html" target="_blank" rel="external">官網</a>其實都有教學，只是在ubuntu上面通常安裝相對於,mac和windows來講都會比較麻煩點.. 我也不知道為什麼，linux的東西，一直以來懶人包好像都比較少，不像其他平台都是點一點就安裝好啦～～ </p>
+<p>安裝node環境那邊很簡單就不多說， react native command line 安裝方法也滿簡單的如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g react-native-cli</div></pre></td></tr></table></figure>
+<p>主要是 Android Studio這邊，首先呢！ 你必須先安裝一下java環境，最好是oracle的java， ubuntu還有個open java，我想畢竟android是用oracle java開發的，所以最好還是用oracle吧，當然有人想試試open jdk的，試玩再告訴我心得 :)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository ppa:webupd8team/java</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install oracle-java8-installer</div><div class="line">sudo apt-get install oracle-java8-set-default</div></pre></td></tr></table></figure>
+<p>至於安裝jre環境這邊我是用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install default-jre</div></pre></td></tr></table></figure>
+<p>java環境這邊告一段落， 再來去<a href="https://developer.android.com/studio/index.html" target="_blank" rel="external">android studio</a>官網下載安裝檔，接著根據官方說明文件～ 請先做一個步驟</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6</div></pre></td></tr></table></figure>
+<p>這個是你系統是64bit ubuntu的話，再安裝這些，看起來他是需要32bit的library，所以才安裝這些，接著剛剛下載完的檔案，沒意外應該要是一個zip檔，就把他解壓到你要的地方吧，一般而言會是放在 /opt/下面，你爽就好 :p</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo unzip android-studio.zip -d /opt</div></pre></td></tr></table></figure>
+<p>這樣就算是安裝完成。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/opt/android-studio/bin/studio.sh</div></pre></td></tr></table></figure>
+<p>上面就是啟動方式， 不過啟動程式這樣很麻煩對吧， 你想要的話，其實可以把 /opt/android-studio/bin/ 加入系統路徑， 這樣就可以簡短指令， 你只要 sutdio.sh 這樣就可以啟動了。</p>
+<p>不過我個人會比較想要建立一個 Desktop file 來啟動，就是像是桌面捷徑的感覺，點兩下就啟動程式，以下是Desktop file的內容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[Desktop Entry]</div><div class="line">Version=1.0</div><div class="line">Type=Application</div><div class="line">Name=Android Studio</div><div class="line">Exec=&quot;/opt/android-studio/bin/studio.sh&quot; %f</div><div class="line">Icon=/opt/android-studio/bin/studio.png</div><div class="line">Categories=Development;IDE;</div><div class="line">Terminal=false</div><div class="line">StartupNotify=true</div><div class="line">StartupWMClass=android-studio</div></pre></td></tr></table></figure>
+<p>把檔案存在 ~/.local/share/applications/ 下面，這樣就可以建立捷徑了～</p>
+<p><strong>Watchman</strong>這個他是沒說一定要裝啦，只是看起來裝了這個，開發上效率似乎會比較好，所以就都安裝啦， 哈哈哈哈阿， 這裡我選擇直接<a href="https://facebook.github.io/watchman/docs/install.html#installing-from-source" target="_blank" rel="external">install from source</a> 的方式，最簡單明瞭 :)</p>
+<p>再來差不多可以往下進行啦～</p>
+<h3 id="Reactive-Hello-World"><a href="#Reactive-Hello-World" class="headerlink" title="Reactive Hello World"></a>Reactive Hello World</h3><p>雖然官網就給個幾行指令，說這樣就可以啟動example了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">react-native init AwesomeProject </div><div class="line">cd AwesomeProject </div><div class="line">react-native run-android</div></pre></td></tr></table></figure>
+<p>但是～～～ 事實果然就是沒那麼簡單喔～ 人生總是期待越高，失望越大。 疑！ 突然好像有點悲觀（題外話</p>
+<p>這邊要注意的是，請記得先啟動你的Android Studio，他會安裝android-sdk相關的東西，這邊需要注意版本， example 使用的是 23 版， 但是啟動時，我的是先安裝 24版的，所以記得安裝一下，安裝完後， 記得設置 <code>ANDROID_HOME</code>這個環境變數，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export ANDROID_HOME=$HOME/Android/Sdk</div><div class="line">export PATH=&quot;$HOME/Android/Sdk/platform-tools:$HOME/Android/Sdk/tools:$PATH&quot;</div></pre></td></tr></table></figure>
+<p>我的配置如上， 這樣一來大致上就沒問題了~~ 大概…吧</p>
+<p>可是！ 我錯了， 哈 第一次用關於android的東西，看了錯誤訊息，似乎是他需要先運行一個模擬器呢～ 所以我選擇是<code>Genymotion</code>公司的android員工說是用這個，說效率比較好，所以就先採取他們的意見啦 :)</p>
+<p>哈～ 不過呢！ 後來先換成用google的模擬器吧， Genymotion在ubuntu 15 以下版本，安裝有點步驟，頗麻煩… 首先先看看你的模擬器有哪些裝置，當然這邊你也可以自己建立一個模擬器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">android list targets</div><div class="line">android create avd -n react -t 1 --abi default/x86_64</div><div class="line">emulator -avd react  # 啟動模擬器</div></pre></td></tr></table></figure>
+<p>值得注意的是有許多地方都需要依靠 android sdk manager，來安裝一些tool～</p>
+<p>啟動完模擬器後，雖然官網說執行 <code>react-native run-android</code> 這行就可以了，但是沒意外你應該會出現<strong>紅色錯誤</strong>，官方自己下面也補充了，請額外執行 <code>react-native start</code> 這行，這樣一來就可以看到成功畫面了，如下</p>
+<p><img src="http://i.imgur.com/oaTJs2U.png" alt="screenshot"></p>
+<p>但是有個問題，你會發現這個模擬器並沒有和我們的鍵盤連線，也就是你按了鍵盤毫無反應，也就無法享受到他給你的double tap R，更新的效果，所以接著我們要解決這個問題， 嘖嘖在linux上問題總是許多，我是不知道其他平台也是不是會遇到這些問題啦～～</p>
+<p>重點在，要先啟動 avd manager， 這邊我找超久… 原來不是在android studio裡面，直接在command line裡面輸入<code>android avd</code>就可以打開了..我都快要翻桌了！！ 接著設置允許keyboard，之後就可以享用按兩下R就更新的快感啦！ 哈哈哈哈哈哈</p>
+<p>好啦，起手式就到這邊為止，再來我要先來繼續看基本教學，有了一定心得後，再來po一篇文章。</p>
+<h6 id="tags-react-native"><a href="#tags-react-native" class="headerlink" title="tags: react-native"></a>tags: <code>react-native</code></h6>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/16/1212573/" rel="next" title="Spacemacs 使用心得">
+                <i class="fa fa-chevron-left"></i> Spacemacs 使用心得
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/18/understanding-rest-framework-serializer/" rel="prev" title="rest framework serializer 深入理解">
+                rest framework serializer 深入理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars3.githubusercontent.com/u/5311569?v=3&s=460"
+               alt="jing" />
+          <p class="site-author-name" itemprop="name">jing</p>
+           
+              <p class="site-description motion-element" itemprop="description">I am a web developer. love python, know js, css, html and learn haskell in spare time.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sillygod" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/disciple.starry" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#初嘗-React-Native"><span class="nav-number">1.</span> <span class="nav-text">初嘗 React Native</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#學習動機"><span class="nav-number">1.0.1.</span> <span class="nav-text">學習動機</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#環境設置"><span class="nav-number">1.0.2.</span> <span class="nav-text">環境設置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reactive-Hello-World"><span class="nav-number">1.0.3.</span> <span class="nav-text">Reactive Hello World</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-react-native"><span class="nav-number">1.0.3.0.0.1.</span> <span class="nav-text">tags: react-native</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jing</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://mytravelinprogramming.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://sillygod.github.io/2016/08/29/the-first-react-native/';
+          this.page.identifier = '2016/08/29/the-first-react-native/';
+          this.page.title = '初嘗react native';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://mytravelinprogramming.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

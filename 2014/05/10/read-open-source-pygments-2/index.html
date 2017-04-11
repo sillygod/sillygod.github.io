@@ -1,0 +1,1034 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="sillygod, jing blog, jing github" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="這篇就來，繼續上次的進度 :)   上次code貼上來的結果不甚理想，所以我在想是不是要自己來寫一個format會比較方便，當然在動手之前，我想重新理解code的流程是必須的，因為要讓自己對這份open source掌握更加清楚，所以我決定利用debug的step into，來進行trace code :p   這邊就來介紹一下我用的工具，關於debug，我還是選擇用IDE，因為比較直覺化又容易使">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="read open source pygments 2">
+<meta property="og:url" content="http://sillygod.github.io/2014/05/10/read-open-source-pygments-2/index.html">
+<meta property="og:site_name" content="My Travel in Programming">
+<meta property="og:description" content="這篇就來，繼續上次的進度 :)   上次code貼上來的結果不甚理想，所以我在想是不是要自己來寫一個format會比較方便，當然在動手之前，我想重新理解code的流程是必須的，因為要讓自己對這份open source掌握更加清楚，所以我決定利用debug的step into，來進行trace code :p   這邊就來介紹一下我用的工具，關於debug，我還是選擇用IDE，因為比較直覺化又容易使">
+<meta property="og:image" content="http://i.imgur.com/gxPLPNv.png">
+<meta property="og:image" content="http://i.imgur.com/nhja3Fq.png">
+<meta property="og:image" content="http://i.imgur.com/b57Jy6r.png">
+<meta property="og:image" content="http://i.imgur.com/J9gGWbC.png">
+<meta property="og:updated_time" content="2017-04-11T15:12:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="read open source pygments 2">
+<meta name="twitter:description" content="這篇就來，繼續上次的進度 :)   上次code貼上來的結果不甚理想，所以我在想是不是要自己來寫一個format會比較方便，當然在動手之前，我想重新理解code的流程是必須的，因為要讓自己對這份open source掌握更加清楚，所以我決定利用debug的step into，來進行trace code :p   這邊就來介紹一下我用的工具，關於debug，我還是選擇用IDE，因為比較直覺化又容易使">
+<meta name="twitter:image" content="http://i.imgur.com/gxPLPNv.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://sillygod.github.io/2014/05/10/read-open-source-pygments-2/"/>
+
+
+
+
+
+  <title> read open source pygments 2 | My Travel in Programming </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My Travel in Programming</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">hh</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2014/05/10/read-open-source-pygments-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5311569?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Travel in Programming">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                read open source pygments 2
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-05-10T14:14:00+08:00">
+                2014-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/05/10/read-open-source-pygments-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/05/10/read-open-source-pygments-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>這篇就來，繼續上次的進度 :)  </p>
+<p>上次code貼上來的結果不甚理想，所以我在想是不是要自己來寫一個format會比較方便，當然在動手之前，我想重新理解code的流程是必須的，因為要讓自己對這份open source掌握更加清楚，所以我決定利用debug的step into，來進行trace code :p  </p>
+<p>這邊就來介紹一下我用的工具，關於debug，我還是選擇用IDE，因為比較直覺化又容易使用，我是覺得沒必要去聽信那些說用gdb才是王道，畢竟那要打一些指令，實在是有點麻煩，個人是認為有興趣的話再去用那種方式 :p  </p>
+<p>說要介紹我是用哪款IDE都差點忘了 :) 這邊我是用<a href="http://www.jetbrains.com/pycharm/" target="_blank" rel="external">pycharm</a> ，這一直以來都算很有名氣，雖然是要錢的，但是網路上總有…咳咳，不過那僅限以前!!，現在可好了呢，它有提供open source版，而且功能很夠用，有興趣的人可以去載來用看看 :)  </p>
+<p><img src="http://i.imgur.com/gxPLPNv.png" alt="pic"></p>
+<p>pycharm的介面如上，它提供了算是不錯的code intellisense，加上trace code也是方便，像是find definition，加上它的plugin也是挺多的，要說讓我說嘴的地方就是記憶體吃的有點多:(<br>另外以介面來講，我還是喜歡sublime就是了，好啦，該來講講怎麼trace code的部分了，一般來講都要先下個所謂的break point，就是讓程式執行到該行時，停下來，接著就有如下幾個操作  </p>
+<ul>
+<li>next line(step over)  </li>
+<li>step into  </li>
+<li>step out<br>… 等等  </li>
+</ul>
+<p>就先來看看這張圖吧<br><img src="http://i.imgur.com/nhja3Fq.png" alt="pic"><br>我在40行的地方下了中斷點，所以程式執行到這邊就會停下來，之後呢，我特別在watch中加入一些我想看的變數，上面這張圖是我step over後，可以看出它是一個class，有興趣要看它是怎麼一步一步產生的話，就必須用step into，就像接下來的HtmlFormatter，我用了step into就會如下面這張圖<br><img src="http://i.imgur.com/b57Jy6r.png" alt="pic"><br>程式碼頁面會跳到HtmlFormatter所在的檔案html.py，接著你更想的話，你當然可以繼續用step into，就看你想要鑽到的地方有多深，就跳多深吧 :)  </p>
+<p>另外我覺得用pycharm來debug真的是頗爽 :) 老實講真的太方便了，看前面幾張圖就知道，它其實會自己監看一些變數，起初我用sublime text閱讀源碼時，其實有點卡卡的，當時我認為是我理解力不夠，因為有很多地方看過去，我會有種不知道這樣的code會產生什麼效果，但是用了pycharm就方便多了，因為你會看到這些變數，就知道他們是否如你所想像的一樣，這樣一來多了一些證實，自然就會多了信心，閱讀起來更加順遂，就舉個例子好了，請看下面這張<br><img src="http://i.imgur.com/J9gGWbC.png" alt="pci"><br>我當初一眼看沒有懂的地方就是這裡<br><code>arg = (&#39;cssclass&#39; in self.options and &#39;.&#39;+self.cssclass or &#39;&#39;)</code><br>從圖中可以看到arg的值是.highlight其實就是’.’+self.cssfile<br>很好!! 這樣的寫法到底是怎麼運作呢? 詳細可以看看 <a href="http://www.diveintopython.net/power_of_introspection/and_or.html" target="_blank" rel="external">這個</a>這樣的寫法不是每個programming language都可以寫的呢 :) 看看這個<a href="http://en.wikipedia.org/wiki/Short-circuit_evaluation" target="_blank" rel="external">wiki</a> 就知道囉~  </p>
+<p>回到正題，那行的意思是 ‘cssclass’有沒有在self.options裡，有的話就會回傳’.’+selfclass，沒有的話，就會繼續evaluate下去，那就是變成回傳’’，這其實是用到short circuit的技術 :p<br>其實個人認為這邊根本不需要用到這種寫法，只是徒增不可讀性就是了，用if else還親民多了，不過這不代表這樣的寫法沒用處，我想大概可以用在 lambda這地方吧 :)  </p>
+<p>經過這次的閱讀，目前我想到一個，不用自己繼承一個HtmlFormatter的寫法了，我是用了擷取部分code，之後再自行增加一些必須的html的方式。  </p>
+<p>目前我粗略地寫了個簡單測試腳本，效果如下  </p>
+
+
+<style>
+.lineno {
+    color: #505050;
+    margin-right: 5px;
+}
+.highlight .hll { background-color: #404040 }
+.highlight  { background: #202020; color: #d0d0d0 }
+.highlight .c { color: #999999; font-style: italic } /* Comment */
+.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.highlight .g { color: #d0d0d0 } /* Generic */
+.highlight .k { color: #6ab825; font-weight: bold } /* Keyword */
+.highlight .l { color: #d0d0d0 } /* Literal */
+.highlight .n { color: #d0d0d0 } /* Name */
+.highlight .o { color: #d0d0d0 } /* Operator */
+.highlight .x { color: #d0d0d0 } /* Other */
+.highlight .p { color: #d0d0d0 } /* Punctuation */
+.highlight .cm { color: #999999; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #cd2828; font-weight: bold } /* Comment.Preproc */
+.highlight .c1 { color: #999999; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #e50808; font-weight: bold; background-color: #520000 } /* Comment.Special */
+.highlight .gd { color: #d22323 } /* Generic.Deleted */
+.highlight .ge { color: #d0d0d0; font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #d22323 } /* Generic.Error */
+.highlight .gh { color: #ffffff; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #589819 } /* Generic.Inserted */
+.highlight .go { color: #cccccc } /* Generic.Output */
+.highlight .gp { color: #aaaaaa } /* Generic.Prompt */
+.highlight .gs { color: #d0d0d0; font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #ffffff; text-decoration: underline } /* Generic.Subheading */
+.highlight .gt { color: #d22323 } /* Generic.Traceback */
+.highlight .kc { color: #6ab825; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #6ab825; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #6ab825; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #6ab825 } /* Keyword.Pseudo */
+.highlight .kr { color: #6ab825; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #6ab825; font-weight: bold } /* Keyword.Type */
+.highlight .ld { color: #d0d0d0 } /* Literal.Date */
+.highlight .m { color: #3677a9 } /* Literal.Number */
+.highlight .s { color: #ed9d13 } /* Literal.String */
+.highlight .na { color: #bbbbbb } /* Name.Attribute */
+.highlight .nb { color: #24909d } /* Name.Builtin */
+.highlight .nc { color: #447fcf; text-decoration: underline } /* Name.Class */
+.highlight .no { color: #40ffff } /* Name.Constant */
+.highlight .nd { color: #ffa500 } /* Name.Decorator */
+.highlight .ni { color: #d0d0d0 } /* Name.Entity */
+.highlight .ne { color: #bbbbbb } /* Name.Exception */
+.highlight .nf { color: #447fcf } /* Name.Function */
+.highlight .nl { color: #d0d0d0 } /* Name.Label */
+.highlight .nn { color: #447fcf; text-decoration: underline } /* Name.Namespace */
+.highlight .nx { color: #d0d0d0 } /* Name.Other */
+.highlight .py { color: #d0d0d0 } /* Name.Property */
+.highlight .nt { color: #6ab825; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #40ffff } /* Name.Variable */
+.highlight .ow { color: #6ab825; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #666666 } /* Text.Whitespace */
+.highlight .mf { color: #3677a9 } /* Literal.Number.Float */
+.highlight .mh { color: #3677a9 } /* Literal.Number.Hex */
+.highlight .mi { color: #3677a9 } /* Literal.Number.Integer */
+.highlight .mo { color: #3677a9 } /* Literal.Number.Oct */
+.highlight .sb { color: #ed9d13 } /* Literal.String.Backtick */
+.highlight .sc { color: #ed9d13 } /* Literal.String.Char */
+.highlight .sd { color: #ed9d13 } /* Literal.String.Doc */
+.highlight .s2 { color: #ed9d13 } /* Literal.String.Double */
+.highlight .se { color: #ed9d13 } /* Literal.String.Escape */
+.highlight .sh { color: #ed9d13 } /* Literal.String.Heredoc */
+.highlight .si { color: #ed9d13 } /* Literal.String.Interpol */
+.highlight .sx { color: #ffa500 } /* Literal.String.Other */
+.highlight .sr { color: #ed9d13 } /* Literal.String.Regex */
+.highlight .s1 { color: #ed9d13 } /* Literal.String.Single */
+.highlight .ss { color: #ed9d13 } /* Literal.String.Symbol */
+.highlight .bp { color: #24909d } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #40ffff } /* Name.Variable.Class */
+.highlight .vg { color: #40ffff } /* Name.Variable.Global */
+.highlight .vi { color: #40ffff } /* Name.Variable.Instance */
+.highlight .il { color: #3677a9 } /* Literal.Number.Integer.Long */</style>
+<div class="highlight">
+<pre><span class="lineno"> 1</span> <span class="sd">'''</span>
+<span class="lineno"> 2</span> <span class="sd">a script for python code highlighting is expected to partial html output.</span>
+<span class="lineno"> 3</span> <span class="sd">That's output content without the whole html tags.</span>
+<span class="lineno"> 4</span> 
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span> <span class="sd">ex.</span>
+<span class="lineno"> 7</span> <span class="sd">&lt;style&gt;</span>
+<span class="lineno"> 8</span> <span class="sd">xxx</span>
+<span class="lineno"> 9</span> <span class="sd">xxx</span>
+<span class="lineno">10</span> <span class="sd">xx</span>
+<span class="lineno">11</span> <span class="sd">&lt;/style&gt;</span>
+<span class="lineno">12</span> <span class="sd">&lt;table&gt;</span>
+<span class="lineno">13</span> <span class="sd">&lt;div&gt;</span>
+<span class="lineno">14</span> <span class="sd">xx</span>
+<span class="lineno">15</span> <span class="sd">xx</span>
+<span class="lineno">16</span> <span class="sd">&lt;/div&gt;</span>
+<span class="lineno">17</span> <span class="sd">&lt;/table&gt;</span>
+<span class="lineno">18</span> 
+<span class="lineno">19</span> <span class="sd">usage: test.py inputfile outputfile</span>
+<span class="lineno">20</span> 
+<span class="lineno">21</span> <span class="sd">'''</span>
+<span class="lineno">22</span> 
+<span class="lineno">23</span> 
+<span class="lineno">24</span> <span class="kn">from</span> <span class="nn">pygments.formatters</span> <span class="kn">import</span> <span class="n">HtmlFormatter</span>
+<span class="lineno">25</span> <span class="kn">from</span> <span class="nn">pygments</span> <span class="kn">import</span> <span class="n">highlight</span>
+<span class="lineno">26</span> <span class="kn">from</span> <span class="nn">pygments.lexers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="lineno">27</span> <span class="kn">from</span> <span class="nn">pygments.styles</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="lineno">28</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="lineno">29</span> 
+<span class="lineno">30</span> <span class="k">try</span><span class="p">:</span>
+<span class="lineno">31</span>     <span class="n">readfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">'r'</span><span class="p">)</span>
+<span class="lineno">32</span> <span class="k">except</span><span class="p">:</span>
+<span class="lineno">33</span>     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+<span class="lineno">34</span> 
+<span class="lineno">35</span> <span class="n">code</span> <span class="o">=</span> <span class="n">readfile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="lineno">36</span> <span class="n">readfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="lineno">37</span> 
+<span class="lineno">38</span> <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'.'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s">'.html'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+<span class="lineno">39</span> 
+<span class="lineno">40</span> <span class="n">st</span> <span class="o">=</span> <span class="n">get_style_by_name</span><span class="p">(</span><span class="s">'native'</span><span class="p">)</span>
+<span class="lineno">41</span> <span class="n">myformat</span> <span class="o">=</span> <span class="n">HtmlFormatter</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="n">st</span><span class="p">,</span> <span class="n">linenos</span><span class="o">=</span><span class="s">'inline'</span><span class="p">)</span>
+<span class="lineno">42</span> 
+<span class="lineno">43</span> 
+<span class="lineno">44</span> <span class="n">content</span> <span class="o">=</span> <span class="s">'''&lt;style&gt;</span>
+<span class="lineno">45</span> <span class="s">.lineno {{</span>
+<span class="lineno">46</span> <span class="s">    color: {};</span>
+<span class="lineno">47</span> <span class="s">    margin-right: 5px;</span>
+<span class="lineno">48</span> <span class="s">}}</span>
+<span class="lineno">49</span> <span class="s">{}&lt;/style&gt;'''</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s">'#'</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span> <span class="n">st</span><span class="o">.</span><span class="n">background_color</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">+</span><span class="mi">303030</span><span class="p">),</span> <span class="n">myformat</span><span class="o">.</span><span class="n">get_style_defs</span><span class="p">(</span><span class="s">'.highlight'</span><span class="p">))</span>
+<span class="lineno">50</span> <span class="c">#rule the style</span>
+<span class="lineno">51</span> 
+<span class="lineno">52</span> <span class="n">content</span> <span class="o">+=</span> <span class="n">highlight</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">get_lexer_for_filename</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">myformat</span><span class="p">)</span>
+<span class="lineno">53</span> <span class="c">#add the highlighted code</span>
+<span class="lineno">54</span> 
+<span class="lineno">55</span> 
+<span class="lineno">56</span> <span class="nb">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+<span class="lineno">57</span> <span class="nb">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre>
+</div>
+
+
+<p>比起上次用原來的指令，所產生出來的html檔，這次不需要再多做一些修正，可以將完整的內容直接複製貼上，相對起來大概是有比較方便吧 :) 這篇就先到此吧~  </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/06/02/blog-post/" rel="next" title="快要破百了~">
+                <i class="fa fa-chevron-left"></i> 快要破百了~
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/05/03/read-open-source-pygments-1/" rel="prev" title="read open source pygments 1">
+                read open source pygments 1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars3.githubusercontent.com/u/5311569?v=3&s=460"
+               alt="jing" />
+          <p class="site-author-name" itemprop="name">jing</p>
+           
+              <p class="site-description motion-element" itemprop="description">I am a web developer. love python, know js, css, html and learn haskell in spare time.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sillygod" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/disciple.starry" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jing</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://mytravelinprogramming.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://sillygod.github.io/2014/05/10/read-open-source-pygments-2/';
+          this.page.identifier = '2014/05/10/read-open-source-pygments-2/';
+          this.page.title = 'read open source pygments 2';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://mytravelinprogramming.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

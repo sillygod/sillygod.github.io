@@ -1,0 +1,909 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="sillygod, jing blog, jing github" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="最近碰到跟這個有關的議題，因此就特別來了解一下，基本上來說 meta class 是class的class，也因此meta有超元的意思，舉例： metaprogram 就有超程式的意思， 產生程式的程式，所以呢！  class 是 metaclass的 instance屌吧！ 一般來說 class 的 instance 是一個 object  在python中，class一般的確是拿來創造物件，如">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python metaclass 理解">
+<meta property="og:url" content="http://sillygod.github.io/2015/01/25/understanding-python-metaclass/index.html">
+<meta property="og:site_name" content="My Travel in Programming">
+<meta property="og:description" content="最近碰到跟這個有關的議題，因此就特別來了解一下，基本上來說 meta class 是class的class，也因此meta有超元的意思，舉例： metaprogram 就有超程式的意思， 產生程式的程式，所以呢！  class 是 metaclass的 instance屌吧！ 一般來說 class 的 instance 是一個 object  在python中，class一般的確是拿來創造物件，如">
+<meta property="og:updated_time" content="2017-04-11T12:41:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python metaclass 理解">
+<meta name="twitter:description" content="最近碰到跟這個有關的議題，因此就特別來了解一下，基本上來說 meta class 是class的class，也因此meta有超元的意思，舉例： metaprogram 就有超程式的意思， 產生程式的程式，所以呢！  class 是 metaclass的 instance屌吧！ 一般來說 class 的 instance 是一個 object  在python中，class一般的確是拿來創造物件，如">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://sillygod.github.io/2015/01/25/understanding-python-metaclass/"/>
+
+
+
+
+
+  <title> python metaclass 理解 | My Travel in Programming </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My Travel in Programming</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">hh</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2015/01/25/understanding-python-metaclass/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5311569?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Travel in Programming">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                python metaclass 理解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-01-25T02:07:00+08:00">
+                2015-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/01/25/understanding-python-metaclass/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/01/25/understanding-python-metaclass/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近碰到跟這個有關的議題，因此就特別來了解一下，基本上來說 meta class 是class的class，也因此meta有超元的意思，舉例： metaprogram 就有超程式的意思， 產生程式的程式，所以呢！</p>
+<ul>
+<li>class 是 metaclass的 instance屌吧！</li>
+<li>一般來說 class 的 instance 是一個 object</li>
+</ul>
+<p>在python中，class一般的確是拿來創造物件，如下示範</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">objectCreator</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line">obj = objectCreator()</div><div class="line">print(obj)</div><div class="line"></div><div class="line">&lt;__main__.objectCreator object at <span class="number">0x7f46ccc7e3d0</span>&gt;</div></pre></td></tr></table></figure>
+<p>但是呢~ 其實在python中，class其實也是個物件！<br>沒錯！ 別懷疑，若你像我一樣從C或C++跳過來用python的，想必會感到很好奇！ 這也是動態語言跟靜態語言不太一樣的地方，一般而已動態語言會傾向與任何東西都是物件這種特性，以下來證明！<br>你可以操作class像是操作物件一樣，<br>舉例：</p>
+<ul>
+<li>assign 它</li>
+<li>複製它</li>
+<li>為它增加屬性</li>
+<li>把他當作參數一樣傳遞</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">def printClass(cls):</div><div class="line">    print(cls)</div><div class="line"></div><div class="line">printClass(objectCreator)</div><div class="line">print(hasattr(objectCreator, 'whoamI'))</div><div class="line"># expected False</div><div class="line"># now we add a attribute for it</div><div class="line"></div><div class="line">objectCreator.whoamI = 'objectCreator'</div><div class="line">print(hasattr(objectCreator, 'whoamI'))</div><div class="line"># expected True</div><div class="line"></div><div class="line">&lt;class '__main__.objectCreator'&gt;</div><div class="line">False</div><div class="line">True</div></pre></td></tr></table></figure>
+<p>試玩了一下證明，的確class可以操作物件那樣被操作，這邊我們就用python的built-in function type，來看看class會跑出什麼資訊 :)</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">print(type(<span class="number">1</span>))</div><div class="line">print(type(<span class="string">"1"</span>))</div><div class="line">print(type(objectCreator))</div><div class="line">print(type(objectCreator()))</div><div class="line"></div><div class="line">&lt;type <span class="string">'int'</span>&gt;</div><div class="line">&lt;type <span class="string">'str'</span>&gt;</div><div class="line">&lt;type <span class="string">'type'</span>&gt;</div><div class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">__main__</span>.<span class="title">objectCreator</span>'&gt;</span></div></pre></td></tr></table></figure>
+<p>注意到了嗎！！<br>class的類型是type，這代表著一件事，我們可以用type來創造class。<a href="https://docs.python.org/2/library/functions.html#type" target="_blank" rel="external">type官方文件</a><br>type(name, base, dict) 所以我們來試著用type創造一個class</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">creature = type(<span class="string">'creature'</span>, (), &#123;&#125;)</div><div class="line">obj = creature()</div><div class="line">print(type(obj))</div><div class="line"></div><div class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">__main__</span>.<span class="title">creature</span>'&gt;</span></div></pre></td></tr></table></figure>
+<p>接著我們讓creature多一個attribute看看</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">creature = type(<span class="string">'creature'</span>, (), &#123;<span class="string">'is_alive'</span>: <span class="keyword">True</span>&#125;)</div><div class="line">obj = creature()</div><div class="line">print(obj.is_alive)</div><div class="line"></div><div class="line"><span class="keyword">True</span></div></pre></td></tr></table></figure>
+<p>以上測試用type是可以創造出class的，那麼接著來測試一下繼承</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">bird = type(<span class="string">'bird'</span>, (creature, ), &#123;<span class="string">'creature_type'</span>:<span class="string">'bird'</span>&#125;)</div><div class="line">obj = bird()</div><div class="line">print(obj.is_alive)</div><div class="line">print(obj.creature_type)</div><div class="line"></div><div class="line"><span class="keyword">True</span></div><div class="line">bird</div></pre></td></tr></table></figure>
+<p>前面講了那麼多，其實就要讓你了解，meta class的概念~<br>In brief, 可以這樣說<br>IamClass = metaclass()<br>IamObject = IamClass()</p>
+<p>再來就是進入meta<br>在class裡面若有定義 _metaclass_ 在創建物件時，python會先進入這邊，做一些初始動作 詳情可以看這邊<br>簡單來說就是，python平常是用自定義的type來創造class，藏在背後，若你想要改變創造class的行為，換句話說就是你想要用你自創的type來創造 class，那你就要定義 _metaclass_，python會去抓你有沒有定義，有的話就會去用你定義的type來取代原生type~</p>
+<p><a href="https://docs.python.org/2/reference/datamodel.html#invoking-descriptors" target="_blank" rel="external">相關文檔</a><br>基本上，type只要是一個callable物件即可，但是他要接受3個參數和回傳一個物件<br>以下舉個例子！</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">mymeta</span><span class="params">(name, base, attributes)</span>:</span></div><div class="line">    print(<span class="string">'enter metaclass'</span>)</div><div class="line">    <span class="keyword">return</span> <span class="string">'hello'</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(object)</span>:</span></div><div class="line">    __metaclass__ = mymeta</div><div class="line"></div><div class="line"></div><div class="line">print(C)</div><div class="line">print(C, type(C))  <span class="comment"># 由此看來class 定義 只會跑一次唷！</span></div><div class="line"></div><div class="line">enter metaclass</div><div class="line">hello</div><div class="line">(<span class="string">'hello'</span>, &lt;type <span class="string">'str'</span>&gt;)</div></pre></td></tr></table></figure>
+<p>再來做個有趣的實驗，常常會有個情形，再開發專案我們常常想要知道哪個函式，在什麼時候有被call的，這時候若利用metaclass，會達到相當方便的妙用！ 以下示範</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">logged</span><span class="params">(time_format)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decorator</span><span class="params">(func)</span>:</span></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">decorated_func</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">            print(<span class="string">'Running &#123;&#125; on &#123;&#125;'</span>.format(func.__name__, time.strftime(time_format)))</div><div class="line">            start_time = time.time()</div><div class="line">            result = func(*args, **kwargs)</div><div class="line">            end_time = time.time()</div><div class="line">            print(<span class="string">'Finished &#123;&#125;, execution time=&#123;&#125;'</span>.format(func.__name__, end_time-start_time))</div><div class="line">            <span class="keyword">return</span> result</div><div class="line"></div><div class="line">        decorated_func.__name__ = func.__name__</div><div class="line">        <span class="keyword">return</span> decorated_func</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> decorator</div><div class="line"></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">log_everything_metaclass</span><span class="params">(name, base, attributes)</span>:</span></div><div class="line">    print(<span class="string">'Creating class: &#123;&#125;'</span>.format(name))</div><div class="line">    myattributes = &#123;&#125;</div><div class="line">    print(<span class="string">'attributes type is &#123;&#125;'</span>.format(type(attributes)))</div><div class="line">    <span class="keyword">for</span> name, value <span class="keyword">in</span> attributes.items():</div><div class="line">        <span class="comment"># 將任何可以被call的東西，都用loggeed</span></div><div class="line">        <span class="keyword">if</span> hasattr(value, <span class="string">'__call__'</span>):</div><div class="line">            myattributes[name] = logged(<span class="string">'%b %d %Y - %H:%M:%S'</span>)(value)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> type(name, base, myattributes)</div><div class="line"></div><div class="line"> </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(object)</span>:</span></div><div class="line">    __metaclass__ = log_everything_metaclass</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></div><div class="line">        self.x = x</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_x</span><span class="params">(self)</span>:</span></div><div class="line">        print(self.x)</div><div class="line"></div><div class="line"> </div><div class="line">print(<span class="string">'start create object'</span>)</div><div class="line">c = C(<span class="string">'haha'</span>)</div><div class="line">c.print_x()</div><div class="line"></div><div class="line"> </div><div class="line">Creating <span class="class"><span class="keyword">class</span>:</span> C</div><div class="line">attributes type <span class="keyword">is</span> &lt;type <span class="string">'dict'</span>&gt;</div><div class="line">start create object</div><div class="line">Running __init__ on Jan <span class="number">23</span> <span class="number">2015</span> - <span class="number">11</span>:<span class="number">07</span>:<span class="number">46</span></div><div class="line">Finished __init__, execution time=<span class="number">9.53674316406e-07</span></div><div class="line">Running print_x on Jan <span class="number">23</span> <span class="number">2015</span> - <span class="number">11</span>:<span class="number">07</span>:<span class="number">46</span></div><div class="line">haha</div><div class="line">Finished print_x, execution time=<span class="number">1.50203704834e-05</span></div></pre></td></tr></table></figure>
+<p>上面利用<em>metaclass</em>，做到每個callable attribute，將會被logged起來<br>再來看看其他user case，也是個人我目前想要試的功能，”真”動態創造class，概念上來說，就是一個class factory，假設我給予一個identifier，然後根據identifier 創造出相對應的class。</p>
+<p>如果不用metaclass，可能就要用一堆十分不好看的if else去判斷，除了代碼hedious之外，日後要維護跟用metaclass比較起來也沒那麼順手 :)</p>
+<p>ex.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class Iskill:</div><div class="line">    pass</div><div class="line"></div><div class="line">class fireball(Iskill):</div><div class="line">    identifier = 'fireball'</div><div class="line">    pass</div><div class="line"></div><div class="line">class iceball(Iskill):</div><div class="line">    identifier = 'iceball'</div><div class="line">    pass</div><div class="line"></div><div class="line">class skillFactory:</div><div class="line">    def __new__(....)</div><div class="line">        pass</div></pre></td></tr></table></figure>
+<p>之後給予factory相對應的參數，就會創造出你定義的相對class，以下示範</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">class SkillFactory(object):</div><div class="line"></div><div class="line">    _class_dict = &#123;&#125;</div><div class="line">    </div><div class="line">    def __new__(cls, name, base, attrs):</div><div class="line">        print('Creating class: &#123;&#125;'.format(name))</div><div class="line">        c = type(name, base, attrs)</div><div class="line"></div><div class="line">        if attrs.get('identifier', None):</div><div class="line">            # do something here</div><div class="line">            SkillFactory._class_dict[attrs['identifier']] = c</div><div class="line">            print(attrs['identifier'])</div><div class="line">        # 原封不動回傳type創建出來的class</div><div class="line">        return c</div><div class="line"></div><div class="line"></div><div class="line">    @staticmethod</div><div class="line">    def get_class_from_identifier(id):</div><div class="line">        return SkillFactory._class_dict[id] </div><div class="line"></div><div class="line"></div><div class="line">class ISkill(object):</div><div class="line"></div><div class="line">    def spell(self):</div><div class="line">        """spell skill. just print skill name here</div><div class="line">        """</div><div class="line">        raise NotImplementedError</div><div class="line"></div><div class="line"> </div><div class="line">class Fireball(ISkill):</div><div class="line">    __metaclass__ = SkillFactory</div><div class="line">    identifier = 'fireball'</div><div class="line"></div><div class="line">    def __init__(self):</div><div class="line">        self._name = 'fireball'</div><div class="line"></div><div class="line">    def spell(self):</div><div class="line">        print('spell &#123;&#125;'.format(self._name))</div><div class="line"></div><div class="line">    </div><div class="line">class Iceball(ISkill):</div><div class="line">    __metaclass__ = SkillFactory</div><div class="line">    identifier = 'iceball'</div><div class="line"></div><div class="line">    def __init__(self):</div><div class="line">        self._name = 'iceball'</div><div class="line"></div><div class="line">    def spell(self):</div><div class="line">        print('spell &#123;&#125;'.format(self._name))</div><div class="line">        </div><div class="line"></div><div class="line">fire = SkillFactory.get_class_from_identifier('fireball')</div><div class="line">ice = SkillFactory.get_class_from_identifier('iceball')</div><div class="line"></div><div class="line">print(fire)</div><div class="line">print(ice)</div><div class="line"></div><div class="line">Creating class: Fireball</div><div class="line">fireball</div><div class="line">Creating class: Iceball</div><div class="line">iceball</div><div class="line">&lt;class '__main__.Fireball'&gt;</div><div class="line">&lt;class '__main__.Iceball'&gt;</div></pre></td></tr></table></figure>
+<p>目前我認識就大概到這邊，以後若有其他更有趣的用法，會再上來PO一篇的。目前要學的東西可多了，只是我好像都在學一些不是職場上頗重要的東西，我時常在想自己這樣是不是很呆，或是說浪費時間，自從出了社會後，我內心的交雜其實更嚴重了，有許多矛盾的事情一直在我心中盤繞，sigh…. 原本以為早點出社會後，許多事情或許會茅塞頓開，但現在看來並非如此，反而陷入了更加社會現實面的問題，或許我需要一點時間來適應和冷靜吧~</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/02/12/rubicon-leave/" rel="next" title="毅然決然~離開">
+                <i class="fa fa-chevron-left"></i> 毅然決然~離開
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/01/11/django-development-note-1/" rel="prev" title="django development note 1">
+                django development note 1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars3.githubusercontent.com/u/5311569?v=3&s=460"
+               alt="jing" />
+          <p class="site-author-name" itemprop="name">jing</p>
+           
+              <p class="site-description motion-element" itemprop="description">I am a web developer. love python, know js, css, html and learn haskell in spare time.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sillygod" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/disciple.starry" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jing</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://mytravelinprogramming.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://sillygod.github.io/2015/01/25/understanding-python-metaclass/';
+          this.page.identifier = '2015/01/25/understanding-python-metaclass/';
+          this.page.title = 'python metaclass 理解';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://mytravelinprogramming.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
