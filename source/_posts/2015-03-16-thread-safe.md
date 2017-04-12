@@ -3,7 +3,7 @@ layout: post
 title: python queue thread safe
 date: 2015-03-16 08:43
 comments: true
-categories: 
+categories: [python]
 ---
 之前看了python官方文檔，關於[Queue](https://docs.python.org/2/library/queue.html#module-Queue)的說明，以前就有在意過了，官方說Queue是thread safe的，所以會用到**多執行緒**的時候，如果會用到list之累的資料結構，建議用Queue，yeap,很好用，但是我那時候就直接使用也沒特別去想，要怎麼證明他是thread safe的，所以以下特別來講講我的測試。
 

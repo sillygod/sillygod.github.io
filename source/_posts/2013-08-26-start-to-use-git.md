@@ -3,7 +3,7 @@ layout: post
 title: start to use git
 date: 2013-08-26 13:43
 comments: true
-categories: 
+categories: [git]
 ---
 ![pic][1]
 

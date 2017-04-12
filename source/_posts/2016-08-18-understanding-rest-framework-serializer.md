@@ -3,7 +3,7 @@ layout: post
 title: rest framework serializer 深入理解
 date: 2016-08-18 01:44
 comments: true
-categories: 
+categories: [rest framework]
 ---
 # rest framework serializer 深入理解
 

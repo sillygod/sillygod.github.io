@@ -3,7 +3,7 @@ layout: post
 title: 毅然決然~離開
 date: 2015-02-12 03:16
 comments: true
-categories: 
+categories: [miscellaneous]
 ---
 首先就用一首歌來點題吧~ 雖然可能不盡合乎主題，但是音樂的旋律卻十分貼近我心，讓我百聽不厭
 [I'll remember you](https://www.youtube.com/watch?v=7NuVj4xKWsQ)

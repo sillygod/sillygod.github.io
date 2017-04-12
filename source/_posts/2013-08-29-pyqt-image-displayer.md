@@ -3,7 +3,7 @@ layout: post
 title: pyqt image displayer
 date: 2013-08-29 07:30
 comments: true
-categories: 
+categories: [python, qt]
 ---
 
 

@@ -3,7 +3,7 @@ layout: post
 title: python tkinter 匯率換算器
 date: 2013-07-28 13:51
 comments: true
-categories: 
+categories: [python, tkinter]
 ---
 
 

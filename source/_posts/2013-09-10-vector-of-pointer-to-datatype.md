@@ -3,7 +3,7 @@ layout: post
 title: vector of pointer to datatype
 date: 2013-09-10 12:05
 comments: true
-categories: 
+categories: [python]
 ---
 
 

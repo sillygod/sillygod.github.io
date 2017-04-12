@@ -3,7 +3,7 @@ layout: post
 title: Django development note 2
 date: 2017-01-12 02:26
 comments: true
-categories: 
+categories: [django]
 ---
 # Django development note 2
 

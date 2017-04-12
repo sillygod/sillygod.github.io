@@ -3,7 +3,7 @@ layout: post
 title: python tkinter <簡單的滑鼠畫線>
 date: 2013-07-17 12:14
 comments: true
-categories: 
+categories: [python, tkinter]
 ---
 
 

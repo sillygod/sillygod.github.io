@@ -3,7 +3,7 @@ layout: post
 title: python wsgi 初體驗~
 date: 2014-01-02 15:29
 comments: true
-categories: 
+categories: [python]
 ---
 
 

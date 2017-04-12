@@ -3,7 +3,7 @@ layout: post
 title: first time to play lisp
 date: 2013-09-18 11:04
 comments: true
-categories: 
+categories: [lisp]
 ---
 
 

@@ -3,7 +3,7 @@ layout: post
 title: python tkinter+PIL
 date: 2013-07-23 06:12
 comments: true
-categories: 
+categories: [python, tkinter]
 ---
 
 

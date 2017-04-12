@@ -3,7 +3,7 @@ layout: post
 title: use ctypes to call windows api
 date: 2013-07-13 05:25
 comments: true
-categories: 
+categories: [python, ctypes]
 ---
 
 

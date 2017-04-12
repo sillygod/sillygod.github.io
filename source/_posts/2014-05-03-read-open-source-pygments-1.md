@@ -3,7 +3,7 @@ layout: post
 title: read open source pygments 1
 date: 2014-05-03 18:08
 comments: true
-categories: 
+categories: [python]
 ---
 [pygments][1] 簡單說是一個syntax highlighter，他支援的語言十分之多，最近會突然想閱讀他源碼，其實有部分原因是想開始練習閱讀open source，畢竟為了我另外一個project，我想，閱讀open source的能力，勢必要有所上升才行 :)  
   

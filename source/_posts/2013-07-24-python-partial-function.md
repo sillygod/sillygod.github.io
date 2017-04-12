@@ -3,7 +3,7 @@ layout: post
 title: python partial function
 date: 2013-07-24 14:19
 comments: true
-categories: 
+categories: [python]
 ---
 
 

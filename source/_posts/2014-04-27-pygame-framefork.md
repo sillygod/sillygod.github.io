@@ -3,7 +3,7 @@ layout: post
 title: pygame framefork 持續進行中
 date: 2014-04-27 04:56
 comments: true
-categories: 
+categories: [pygame, python]
 ---
 
 

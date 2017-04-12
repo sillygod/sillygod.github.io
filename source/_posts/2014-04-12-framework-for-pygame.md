@@ -3,7 +3,7 @@ layout: post
 title: 試著寫一個小小的framework for pygame
 date: 2014-04-12 11:44
 comments: true
-categories: 
+categories: [python, pygame]
 ---
 
 

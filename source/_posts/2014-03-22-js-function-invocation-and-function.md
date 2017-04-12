@@ -3,7 +3,7 @@ layout: post
 title: js function invocation and function context
 date: 2014-03-22 13:40
 comments: true
-categories: 
+categories: [javascript]
 ---
 
 

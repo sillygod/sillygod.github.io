@@ -3,7 +3,7 @@ layout: post
 title: read open source pygments 2
 date: 2014-05-10 14:14
 comments: true
-categories: 
+categories: [python] 
 ---
 
 

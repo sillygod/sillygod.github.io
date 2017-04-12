@@ -3,7 +3,7 @@ layout: post
 title: 介紹一本不錯的javascript的書
 date: 2014-01-31 13:37
 comments: true
-categories: 
+categories: [javascript]
 ---
 
 

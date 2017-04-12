@@ -3,7 +3,7 @@ layout: post
 title: how to write a dll
 date: 2013-08-05 14:02
 comments: true
-categories: 
+categories: [cplus, dll]
 ---
 
 

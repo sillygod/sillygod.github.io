@@ -3,7 +3,7 @@ layout: post
 title: 初嘗react native
 date: 2016-08-29 14:39
 comments: true
-categories: 
+categories: [react native]
 ---
 # 初嘗 React Native 
 

@@ -3,7 +3,7 @@ layout: post
 title: makefile note
 date: 2013-08-17 07:24
 comments: true
-categories: 
+categories: [makefile]
 ---
 
 

@@ -3,7 +3,7 @@ layout: post
 title: pyqt designer 初體驗
 date: 2014-02-05 04:42
 comments: true
-categories: 
+categories: [python, qt]
 ---
 
 

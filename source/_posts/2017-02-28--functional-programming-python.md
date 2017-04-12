@@ -3,7 +3,7 @@ layout: post
 title: 閱讀 Functional Programming Python 心得
 date: 2017-02-28 13:58
 comments: true
-categories: [python, fnctional]
+categories: [python, functional]
 ---
 # 閱讀 Functional Programming Python 心得
 

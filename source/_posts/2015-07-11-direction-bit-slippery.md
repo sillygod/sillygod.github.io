@@ -3,7 +3,7 @@ layout: post
 title: 方向有點捉摸不定
 date: 2015-07-11 13:06
 comments: true
-categories: 
+categories: [miscellaneous] 
 ---
 已經有幾個月沒寫blog，有一半的原因是新公司，事情太多了，讓我下班後沒力氣寫blog，連假日都想好好的休息阿 :(  這篇大概是個抒發隨手寫寫的文章吧XD
 

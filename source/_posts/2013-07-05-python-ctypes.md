@@ -3,7 +3,7 @@ layout: post
 title: python ctypes
 date: 2013-07-05 14:11
 comments: true
-categories: 
+categories: [python] 
 ---
 最近做了小小的測試，使用python的ctypes來實做windows api的data type  
   

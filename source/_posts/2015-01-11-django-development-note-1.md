@@ -3,7 +3,7 @@ layout: post
 title: django development note 1
 date: 2015-01-11 10:40
 comments: true
-categories: 
+categories: [django]
 ---
 # 春去秋來，冬去春回
 

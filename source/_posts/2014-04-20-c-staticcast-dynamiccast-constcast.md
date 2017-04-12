@@ -3,7 +3,7 @@ layout: post
 title: c++ static_cast, dynamic_cast, const_cast, reinterpret_cast
 date: 2014-04-20 04:50
 comments: true
-categories: 
+categories: [cplus]
 ---
 
 

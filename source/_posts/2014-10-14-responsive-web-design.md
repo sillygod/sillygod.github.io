@@ -3,7 +3,7 @@ layout: post
 title: 初嘗Responsive Web Design
 date: 2014-10-14 12:37
 comments: true
-categories: 
+categories: [web, css]
 ---
 
 以前就稍微略有耳聞過這個東東，RWD到底是什麼東西呢??  其實現在隨便google一下都會有答案，responsive 有點像 altermating的意思，就是交互的，響應的，所以網路上RWD翻譯常看到"響應式設計"，我想這種設計網站的風格，主要是因為現在mobile發展的太好啦，隨著瀏覽網頁的裝置不同，想必要有針對性的頁面設計吧~~  

@@ -3,7 +3,7 @@ layout: post
 title: how to resize the console window in windows
 date: 2014-07-13 06:39
 comments: true
-categories: 
+categories: [python, ctypes]
 ---
 
 

@@ -3,7 +3,7 @@ layout: post
 title: create a blog on github (in process
 date: 2014-02-15 13:42
 comments: true
-categories: 
+categories: [miscellaneous]
 ---
 
 

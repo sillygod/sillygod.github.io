@@ -3,7 +3,7 @@ layout: post
 title: python metaclass 理解
 date: 2015-01-25 02:07
 comments: true
-categories: 
+categories: [python]
 ---
 最近碰到跟這個有關的議題，因此就特別來了解一下，基本上來說 meta class 是class的class，也因此meta有超元的意思，舉例： metaprogram 就有超程式的意思， 產生程式的程式，所以呢！
 
