@@ -18,7 +18,7 @@ after_success:
   - ./node_modules/.bin/hexo g --debug
   - git checkout master
   - git pull origin master
-  - cp -a public/ .
+  - cp -af public/ .
   - rm -rf public
   - git add .
   - git commit -m "update from travis ci"
