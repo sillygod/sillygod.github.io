@@ -1,0 +1,28 @@
+language: python
+
+python:
+  - "3.5"
+
+before_install:
+  - npm install -g npm
+  - npm install hexo-cli -g
+
+install:
+  - npm install
+
+script:
+  - git config --global user.email "sillygod@livemail.tw"
+  - git config --global user.name "sillygod"
+  - git clone https://$GH_TOKEN@github.com/sillygod/sillygod.github.io.git output
+
+after_success:
+  - cd output
+  - git checkout develop
+  - hexo g --debug
+  - git checkout master
+  - git pull origin master
+  - cp -a public/ .
+  - rm -rf public
+  - git add .
+  - git commit -m "update from travis ci"
+  - git push --quiet origin master
