@@ -250,6 +250,184 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2017/04/13/github-page-auto-deployment-with-travis-ci/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/83f18dfd754f801352a9c1ee3df77c36.jpg?s=150">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Travel in Programming">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/13/github-page-auto-deployment-with-travis-ci/" itemprop="url">
+                  github-page-auto-deployment-with-travis-ci
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-13T14:46:41+00:00">
+                2017-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/13/github-page-auto-deployment-with-travis-ci/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/04/13/github-page-auto-deployment-with-travis-ci/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="緣由"><a href="#緣由" class="headerlink" title="緣由"></a>緣由</h2><p>其實個人有計劃未來要手動自己打造static website，跟撰寫部落格的工具，只是在此之前我想到說我之前的部落格是放在非static website的，如果一次轉換這麼大會經歷很痛的轉換期，再加上我想要先試用一下這類的工具，這樣我之後才知道什麼地方是我想要的，什麼是我不要的，所以我就找了一下順眼的工具來使用，這篇部落格會來講解使用<a href="https://hexo.io/" target="_blank" rel="external">hexo</a>結合<a href="https://travis-ci.org/" target="_blank" rel="external">travis ci</a>和<a href="https://pages.github.com/" target="_blank" rel="external">github page</a>，達到自動部署的靜態網頁的效果。</p>
+<h2 id="開始轉換之路"><a href="#開始轉換之路" class="headerlink" title="開始轉換之路"></a>開始轉換之路</h2><p>最一開始其實我是在google blogger上面寫部落格，後來碰到markdown語法，覺得簡單也滿喜歡的，所以我就一直找可以使用markdown來寫文章的平台，找著找著就遇到<a href="http://logdown.com/" target="_blank" rel="external">logdown</a>，使用上挺簡單的，介面也很簡潔，之後就是一直用它了，是到最近想說想要親手打造一個static web site generator，因此才開始轉換我的部落格。</p>
+<p>幸好<a href="http://logdown.com/" target="_blank" rel="external">logdown</a>本身就有提供匯出你的文章功能，只是要注意的是它匯出的格式是Octopress，<a href="https://hexo.io/" target="_blank" rel="external">hexo</a>真是剛剛好有支援這種格式，哈哈，其實也不是那麼剛好拉，除了順眼外，我還有故意挑是否有支援Octopress格式的，<a href="https://hexo.io/" target="_blank" rel="external">hexo</a>第三方套件數量不少，能夠選擇的主題也很多，主題我是用<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">hexo next theme</a>，相關細節設定，就不多說明了，文檔算是挺清楚的，再來講講使用<a href="https://hexo.io/" target="_blank" rel="external">hexo</a>可能會遇到的問題，一般都是出現在render時，也就是當你run <code>hexo g</code> or <code>hexo s</code>會遇到的，他的提示是render時遇到syntax error，直接跟你講幾乎問題都會出在你的文章們，裡面可能包含了什麼語法讓他parse錯誤～</p>
+<h2 id="github-page"><a href="#github-page" class="headerlink" title="github page"></a>github page</h2><p>關於什麼是github page，可以到<a href="https://pages.github.com/" target="_blank" rel="external">官網</a>，簡單來說就是github提供可以讓你放置靜態網站的服務，有分為兩種</p>
+<ul>
+<li>user or organization site</li>
+<li>project site</li>
+</ul>
+<p>比較需要注意的是，user or organization site，強制只能把網站相關的檔案放在master，你當然也可以故意放在其他branch拉，只是就會空白:p ，屬於user or organization site類型的，github是會去讀取branch master，屬於project site的話，就可以自由選擇要讓github去讀取哪個branch，這點要注意，也因此我的主要開發branch就是develop（另開的），寫完文章或是調整設定後，我就會run <code>hexo g</code>，產生靜態檔，之後就是把這些靜態檔放到branch master，所以你會發現我的master和develop檔案內容差異很大，可以到我的<a href="https://github.com/sillygod/sillygod.github.io" target="_blank" rel="external">repo</a>看看就會比較清楚我在講什麼了，到這邊為止其實整個部落格撰寫流程已經可以運作了</p>
+<ol>
+<li>撰寫文章.md</li>
+<li>run hexo s 看看是否ＯＫ</li>
+<li>run hexo g 產生靜態檔</li>
+<li>git checkout master 將靜態檔，搬到外面來</li>
+<li>git push origin master 看狀況branch develop也可能會需要push</li>
+</ol>
+<p>身為一個程式人，就是懶，當然能夠自動化的地方就讓電腦來，不是嗎？ 或者是減少重複性質動作也好 :) </p>
+<p>步驟1~3這邊無可避免必須是我們要自己來，畢竟電腦又不知道你寫的這文章是否是最終版本要上線了，但是步驟4跟5呢？ 這邊跟你說！ 是可以的！，也是這篇我主要想要跟大家分享的，我個人是這麼做的，步驟1~3後，接下來我就push branch develop，之後travis ci偵測到github的branch develop有所變動，接著就clone了我的專案，進行產生靜態檔，把靜態檔弄到branch master，之後在push，簡單說就是步驟4~5都被travis ci給拿去做了，那麽我們就先來看看travis ci。</p>
+<h2 id="travis-ci"><a href="#travis-ci" class="headerlink" title="travis ci"></a>travis ci</h2><p>travis ci是一個持續整合的平台，一般而言都是拿來當作run tests，比如，當有人發出pull request到你的repo，你可以讓他先run過測試檢查看看是不是符合最基本需求，至少他沒有把你的功能做壞，如果通過的話，你可以考量是否採納這個pull request，更進一步的人，會在測試成功後，做deploy的動作，也就是部署，所以github page是可以利用這個來達到自動部署的！</p>
+<p>至於要怎麼和github page做結合呢？ 有想法是一回事，實際做又是一回事，實作中一定會遇到問題，其實有點sense的人，應該一開始就會想到他是怎麼git push的，不是都要輸入密碼嗎？ 關於這個首先就要來看看<a href="https://github.com/blog/1270-easier-builds-and-deployments-using-git-over-https-and-oauth" target="_blank" rel="external">github personal access token</a>，藉由這種方式就可以避免掉需要輸入username和password了，像這樣<code>git clone https://&lt;token&gt;@github.com/owner/repo.git</code>，至於要怎麼建立access token呢？ 到你個人的github settings頁面，左邊側邊欄會有personal access token，進入後就會看到類似下面的頁面</p>
+<p><img src="http://i.imgur.com/6kW9kPp.png" alt="access token page"></p>
+<p>再來就是建立token，詳細的就不多說了,接下來就要把你的token給放到travis ci相對的project的環境變數，每個自動整合的project，都可以點進去做設定，它提供了可以設定環境變數的功能，也就是說在你的shell裡可以使用你設定的變數，避免你的script直接透露token值！ 如下面這張圖</p>
+<p><img src="http://i.imgur.com/1HOzeAw.png" alt="travis ci image"></p>
+<p>最後就是撰寫自己的deployment的shell script了。</p>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p><a href="https://hexo.io/" target="_blank" rel="external">hexo</a>使用起來的確簡單，但是使用這個工具，還是需要有點程式知識的人才有辦法輕鬆學會，相對而言，<a href="http://logdown.com/" target="_blank" rel="external">logdown</a>提供了一個不錯的撰寫環境，使用起來很簡單，我想之後有時間我開始實做我自己想要的撰寫部落格工具。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2017/04/06/mithril/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2074,176 +2252,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2015/07/11/direction-bit-slippery/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="jing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/83f18dfd754f801352a9c1ee3df77c36.jpg?s=150">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My Travel in Programming">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/11/direction-bit-slippery/" itemprop="url">
-                  方向有點捉摸不定
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-07-11T13:06:00+00:00">
-                2015-07-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/miscellaneous/" itemprop="url" rel="index">
-                    <span itemprop="name">miscellaneous</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/07/11/direction-bit-slippery/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/07/11/direction-bit-slippery/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>已經有幾個月沒寫blog，有一半的原因是新公司，事情太多了，讓我下班後沒力氣寫blog，連假日都想好好的休息阿 :(  這篇大概是個抒發隨手寫寫的文章吧XD</p>
-<p>現在我在這家公司，已經變得有點<strong>full stack</strong>了，雖然我的職稱是網站後端工程師，但是卻包辦前端css和angularJS，雖然我是略懂前端，只是要我像那些專精於前端，那麼會調校前端的細節處理，實在是強人所難~~  我目前的工作是用<strong>django</strong>和<strong>angularjs</strong>來寫網站，其實還稍微包辦，server的處理…不過幸好沒有要用到nginx的一些設置，只要會架就好…</p>
-<p>踩了兩家新創公司，其實讓我有個想法，恐怕台灣純軟新創應該幾乎都是雷了，要不然就是我不會挑公司和談薪水吧?，在新創公司說好聽點是可以學很多東西~~ 但是事實就是你要負責比別人多事情，要會的東西也要多，但是薪水就相對..恩你懂得。其實最近我一直在想</p>
-<ul>
-<li>我到底是要什麼樣的未來</li>
-<li>我想要什麼樣的能力</li>
-<li>我想要創造什麼東西</li>
-</ul>
-<p>我對於很多東西其實沒有特別排斥，唯有嵌入式…不知道為什麼聽到就不想碰~ 其實公司要我寫前端，我沒特別排斥，反正我也藉機會可以稍微增強自己的前端實力，只是我時常在想希望時間可以過慢點，這樣我才可以短時間將很多東西都學起來 :)  哈! 總感覺自己好像有點貪婪，想要什麼東西都會 :)</p>
-<p>但是這樣好像是不太好的? 因為好像沒有人是真的可以<strong>樣樣精通</strong>，如果是天才就算了? 很常看到一句話<code>什麼都會一點，但樣樣都不精通</code> 但是如果是 <code>什麼都是中等或是中高呢</code> ? 大家都是選擇只往某條路一直走下去，但是有確定那條路就是你真的想要的? 或是適合你發揮的? 或許有人就是可以樣樣都算是中等以上，就算是在某領域要到精通其實也頗難吧，有多少人自己為精通，其實…恩這就不多談~ 其實我當初以為早點出社會可以讓我心中的方向更明確點，但事實上我反而更亂了XD 因為越往programming方向走，越發現programming的無限可能性，可以說是生活中的一切都跟程式有關。</p>
-<p>但是我唯一確定的是我想要用程式創造一個讓我自豪的東西，這是十分肯定的! 雖然現階段我還不知道我想要創造什麼，所以目前我也只能像一頭牛狂奔，與其在原地轉圈圈，不如恣意的亂衝吧~ 或許我喜歡的就是<strong>路途中的所見所聞</strong>而不是到<strong>達終點的喜悅</strong>也說不定 :)</p>
-<p>哈! 這篇寫得雜亂無章，就只是一個抒發文和熱身文吧? 至少目前我想要稍微精進自己CSS和JS，下次來發篇跟這些相關的程式心得文。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2288,7 +2301,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-count">61</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

@@ -250,6 +250,175 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2013/09/13/vim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/83f18dfd754f801352a9c1ee3df77c36.jpg?s=150">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Travel in Programming">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/09/13/vim/" itemprop="url">
+                  初嘗vim
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-09-13T11:30:00+00:00">
+                2013-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vim/" itemprop="url" rel="index">
+                    <span itemprop="name">vim</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/09/13/vim/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2013/09/13/vim/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>其實很久以前就常聽人說，高手都用vim，但是我一直以來就不怎麼信這套 :) 但是最近常看一些論壇，偶然看到一些愛用編輯器或IDE排名，vim遙遙領先….emacs雖然是第二名，但是票數卻落後滿多的，sublime text則是第三名，票數跟emacs滿接近的，sublime會有這樣的票數，其實我不意外拉 :) 因為自己就很愛用sublime text理由大概有這些  </p>
+<ul>
+<li>界面十分簡潔和漂亮</li>
+<li>plugin很多很強大</li>
+<li>script language是用python</li>
+<li>開起速度很快，體積輕巧</li>
+</ul>
+<p>還有很多，有興趣的就看看吧 <a href="http://www.sublimetext.com/2" target="_blank" rel="external">sublime text</a>  </p>
+<p>哈有點離題 :) 我會突然想用用看vim的原因是就我看看emacs和vim的差別，其實我覺得emacs遠遠強於vim，它可以做的事太多了，我只能說emacs已經不能算是editor了，而且他的腳本語言是用lisp的方言，一個很有趣的語言，只是目前我也沒涉略太深就是了，但是vim有其吸引人的地方，我覺得他強調的特色是快速編輯，他的快捷鍵設定方式比較方便，相較之下emacs則是用到大量的ctrl、alt來結合，老實說這樣對於打字速度的確會慢下來，我想或許是這樣差異讓比較多人選擇vim吧，當然還有一些決定性的原因，但是就不一一列出來了，我就是因為快捷鍵和體積輕巧而從兩者間選擇vim來玩玩，來看看他到底有什麼魅力?  </p>
+<p>首先就到<a href="http://www.vim.org/" target="_blank" rel="external">這邊</a>下載vim，這邊有事情要注意的是，我平台是windows，要是你直接用網站上提供的windows installer，那到是一切順遂，不用擔心其他問題，但是如果你像我一樣選擇官方事先幫你built好的檔案(因為我想要portable版)，會有個問題那就是，這個vim並沒有python surpport，意思是你沒辦法用python來custom vim，只能乖乖用vimscript來寫，這也代表你用的plugin也不能是用python寫的，因為沒support，要是你覺得沒差那就用吧 :)  </p>
+<p>所謂的支不支持，輸入:version就可以看出來了如下圖<br><img src="http://i.imgur.com/oFz3wT0.png" alt="pic"><br>有+表示支持。  </p>
+<p>下載下來後，當然就要去安裝一些好用的plugin，我想第一個要安裝的應該是 <a href="https://github.com/tpope/vim-pathogen" target="_blank" rel="external">pathogen</a><br>這個東西的作用就跟sublime text的package control一樣，管理你的插件，如果你不安裝這個也行，那就是你得手動慢慢安裝插件，把什麼檔放到什麼資料夾中….，到時候想要刪除該plugin嘿嘿也頗麻煩 :)  </p>
+<p>再來我安裝的是 <a href="https://github.com/scrooloose/nerdtree" target="_blank" rel="external">nerdtree</a> ，就是一個file browser，不解釋 :)  </p>
+<p>這是我目前vim的樣子<br><img src="http://i.imgur.com/usjdcQV.png" alt="pic"><br>另外我還安裝一個東西，叫做 <a href="https://code.google.com/p/conque/" target="_blank" rel="external">conque</a> ，這個讓你vim buffer來做為一個terminal emulator，滿方便的東西，這功能emacs本身就有，若是你沒在在意，快捷鍵設定的方式，那就用emacs或sublime看看吧，而且兩者都有提供”一定程度”的vim快捷鍵。  </p>
+<p>目前用起來，就是還有好多快捷鍵要去記… 而且就算是我努力調整vim介面後，我還是感覺sublime text介面完勝阿，讓我動不動就關掉vim換sublime text:)  可能是我一直以來用sublime text，一個短暫時間沒用他，就開始想念它了吧。  </p>
+<p>往後發現有什麼需要記錄的東西，在來PO</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2013/09/10/vector-of-pointer-to-datatype/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1776,213 +1945,11 @@ p.sort_stats(<span class="string">'time'</span>).print_stats(<span class="number
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2013/08/13/python-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="jing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/83f18dfd754f801352a9c1ee3df77c36.jpg?s=150">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My Travel in Programming">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/08/13/python-2/" itemprop="url">
-                  python 物理模擬2
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-08-13T04:38:00+00:00">
-                2013-08-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/08/13/python-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/08/13/python-2/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>上次介紹過vector後，這篇就來講講我的碰撞是怎麼寫的，目前經過測試後我的計算應該是正確的，因為我計算了動能(k)，的確有守恆，除了當我用滑鼠點物體的時候，一但點下去會讓物體的速度歸0，並且可以拖曳給予速度，如下影片所示。  </p>
-<p><a href="http://www.youtube.com/v/d-nPdUxRIl8?version=3&amp;f=user_uploads&amp;c=google-webdrive-0&amp;app=youtube_gdata" target="_blank" rel="external">連結</a></p>
-<p>話說有什麼軟體是錄製的時候比較不會LAG的嗎? 我用的這個軟體錄起來好像沒說那麼順暢 :(。 回到正題，這邊我是假設兩球碰撞後是沒有旋轉的，因此不考慮進去進入我碰撞程式碼前，先給個概念。<br><img src="http://4.bp.blogspot.com/-xP_Bqq4QZjE/Ugmz3ZTYTXI/AAAAAAAAACU/wKTPoN95SzI/s1600/test.png" alt="pic"><br>上面要表達的是，一顆移動速度V的球，撞上靜止的球，另外當兩個球體碰撞時，在那個瞬間會有個impulse，且這個imulse方向是平行於連心線的，因此碰撞後會改變得動量也只有平行於連心線的動量，所以在此就把速度向量V拆成平行於連心線(vcos)和垂直於連心線這(vsin)兩種，之後一切就好搞啦 :) 之前說得好像很難，在這邊我要說那時候我腦筋打結阿啊!! 思考不順暢 :( 回到正題，接下來只要把vcos代入，高中教的二維碰撞公式，再將得到的結果與vsin合併，最後這就是答案 :) 這邊我就不教怎麼導出公式了，有興趣的就自己去查囉。</p>
-<pre><code class="py"><span class="function"><span class="keyword">def</span> <span class="title">collision</span><span class="params">(self, obj)</span>:</span>  
- <span class="string">'''  
- 2d collision -- split in two part  
- first -- v parallel to the line connected the two circle center  
-
- second -- v vertical to the line connected the two circle center   
- inelastic case, both will has the same velocity....  
-
- v1' = (m1-m2)v1/(m1+m2) + 2 m2v2/(m1+m2)   
-
- v2' = (2m1)v1/(m1+m2) + (m2-m1)v2/(m1+m2)  
-
- '''</span>  
- <span class="keyword">if</span> self.boundCircle.isCollision(obj.boundCircle): <span class="comment">#compare two circle  </span>
-
- o1x, o1y = self.boundCircle.pos.point  
- o2x, o2y = obj.boundCircle.pos.point  
- p1 = Vector(o2x-o1x, o2y-o1y)  
-
- v1, v2 = self.velocity, obj.velocity  
- v1L, v2L = v1.length(), v2.length()  
-
- <span class="keyword">try</span>:  
- rad1 = math.acos( v1.dot(p1)/ (p1.length()*v1L) )  
- <span class="keyword">except</span>:  
- rad1 = <span class="number">0</span>  
- <span class="keyword">try</span>:  
- rad2 = math.acos( v2.dot(-p1)/ (p1.length()*v2L) )  
- <span class="keyword">except</span>:  
- rad2 = <span class="number">0</span>  
-
-
- v1 = p1.normalize()*v1L*math.cos(rad1)  
- v2 = -p1.normalize()*v2L*math.cos(rad2)  
-
-
- m1, m2 = self.mass, obj.mass  
-
- v1f = (m1-m2)*v1/(m1+m2) + <span class="number">2</span>*m2*v2/(m1+m2)   
- v2f = <span class="number">2</span>*m1*v1/(m1+m2) + (m2-m1)*v2/(m1+m2)  
-
-
- self.velocity = v1f + (self.velocity-v1)  
- obj.velocity = v2f + (obj.velocity-v2)
-</code></pre>
-<p>目前這碰撞只是兩個圓體，我還在想，要是圓體碰撞正方體，要怎麼去計算碰撞後的情形，還要若要考慮旋轉，勢必要改寫這個碰撞公式，必須再花點時間來研究 :) 但是其實如果不想浪費時間在自己寫這些有的沒的，到是可以用別人寫好的物理模擬，目前聽過的有box2d和bullet這兩種，以供參考。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2027,7 +1994,7 @@ p.sort_stats(<span class="string">'time'</span>).print_stats(<span class="number
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-count">61</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
