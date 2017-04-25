@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="sillygod, jing blog, jing github" />
+  <meta name="keywords" content="sillygod, jing blog, jing github, my travel in programming" />
 
 
 
@@ -129,7 +129,7 @@
 
 
 
-  <title> My Travel in Programming </title>
+  <title> My Travel in Programming </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -154,7 +154,7 @@
     
   
 
-  <div class="container sidebar-position-left 
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
    page-home 
  ">
     <div class="headband"></div>
@@ -172,7 +172,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">hh</p>
+        <h1 class="site-subtitle" itemprop="description">hh</h1>
       
   </div>
 
@@ -250,6 +250,170 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2013/09/18/first-time-to-play-lisp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/83f18dfd754f801352a9c1ee3df77c36.jpg?s=150">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Travel in Programming">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/09/18/first-time-to-play-lisp/" itemprop="url">
+                  first time to play lisp
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-09-18T11:04:00+00:00">
+                2013-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/lisp/" itemprop="url" rel="index">
+                    <span itemprop="name">lisp</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/09/18/first-time-to-play-lisp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2013/09/18/first-time-to-play-lisp/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近不知道怎麼搞的，突然想要來碰一下這十分古老的語言 :) lisp是一個充滿分支的語言，我覺得他沒有像python那樣有一個強力標準在，意思是python有一個官方版本，雖然python也有眾多分支就是了，像是Jpython, Ironpython….有的沒的。  </p>
+<p>其實在後來有一個算的上稱為標準的lisp，那就是common lisp，以後在網路上搜索的結果，發現比較多人在用的是clisp(common lisp)和SBCL，但是common lisp也是有眾多實做版本，，我是下載 <a href="http://sourceforge.net/projects/clisp/" target="_blank" rel="external">gnu common lisp</a> ，如果想要玩SBCL請自行去找載點囉 :)  </p>
+<p>lisp的在網路上的資源，說多也不多，說少也不少，但是我覺得似乎沒那麼熱門，畢竟這語言，曾經被冷落一段時間，但是經過我稍微一探lisp的世界，我發現這語言雖然古老，但是它卻有著許多現代語言的特性，甚至該說更好嗎? 垃圾回收機制他也擁有。但是令我比較驚訝的是它的例外處理，他不像目前的語言，一遇到錯誤就只是丟個訊息，然後程式結束，lisp它似乎會讓你進入debug模式的樣子，然後列出一些你可以執行的動作，目前我也才剛碰一兩天而已，所以還無法完整了解，lisp的哲學，必須過一段時間才能領域精髓。<br><img src="http://i.imgur.com/660Ts3S.png" alt="pic"><br>上面是我的開發環境，因為網路上，我看到推薦的幾乎一致是 emacs + slime + your clisp，所以我就用囉，其實最近也在學vim，但是我看到的插件，竟然跟gnu screen配合，這實在是…很悲劇的他沒提供windows版的:( ，當然其實也有不是用gnu screen，純粹用vim buffer的，插件名字是slimv，但是目前還找不到無法使用的原因，目前猜想是我vim支持的python版本的不合的關係，但是我可不想為了這個，而重新去compile一個vim來用…，或許也是其他原因也說不定，只是想要無痛設定開發環境，就用emacs吧 :) 畢竟slime本來就是emacs的插件。  </p>
+<p>其實如果你不想要為了學lisp而在去安裝emacs、學emacs的話，我有找到一個IDE，方便好用，以供參考<a href="http://www.franz.com/downloads/clp/survey" target="_blank" rel="external">allegro common lisp</a> ，但是介面實在是…，如果你不介意介面的話，又不想碰emacs，那就用這個吧 :)  </p>
+<p>另外這邊記錄一下目前找到的資源，滿意外的lisp，有不少免費電子書而且品質還算不錯!!  </p>
+<ul>
+<li><a href="http://acl.readthedocs.org/en/latest/zhTW/index.html" target="_blank" rel="external">ansi common lisp</a> </li>
+<li><a href="http://zh.wikibooks.org/wiki/Category:Lisp_%E5%85%A5%E9%96%80" target="_blank" rel="external">wiki tutorial</a> </li>
+<li><a href="http://www.gigamonkeys.com/book/" target="_blank" rel="external">practical common lisp</a> </li>
+</ul>
+<p>我想看完這些就差不多了吧 :) </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2013/09/13/vim/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -267,7 +431,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -277,7 +441,7 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -436,7 +600,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -446,7 +610,7 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -531,8 +695,8 @@
           
             <p>最近開始回去用C++，乎~真的是久沒用，除了打code時忘了用 ; 來結尾，還有忘了打 { }(因為太習慣python了…)，另外對於一些C++ compiler背後運作的方式都有點生疏了，像是一些關於繼承方面會用到的語法xxx: public virtual xxx，虛擬繼承的東西，為啥會有這種東西的存在我不用多說吧? 有興趣就google: c++ diamod problem。  </p>
 <p>今天是想要記錄一些比較瑣碎的東西，以前我在用std::vector的時候，從來都沒有用資料型態是指標的，所以就沒有注意到一個問題，那就是如下code所示  </p>
-<pre><code class="cpp"><span class="keyword">class</span> animal  
-{  
+<pre><code class="cpp"><span class="class"><span class="keyword">class</span> <span class="title">animal</span>  
+{</span>  
 <span class="keyword">public</span>:  
  animal()  
  {  
@@ -546,7 +710,7 @@
 
 };  
 
-<span class="keyword">class</span> dog: <span class="keyword">public</span> animal  
+<span class="class"><span class="keyword">class</span> <span class="title">dog</span>:</span> <span class="keyword">public</span> animal  
 {  
 <span class="keyword">public</span>:  
  dog()  
@@ -561,7 +725,7 @@
 };  
 
 
-<span class="keyword">class</span> cat:<span class="keyword">public</span> animal  
+<span class="class"><span class="keyword">class</span> <span class="title">cat</span>:</span><span class="keyword">public</span> animal  
 {  
 <span class="keyword">public</span>:  
  cat()  
@@ -661,7 +825,7 @@ for(.......)
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -671,7 +835,7 @@ for(.......)
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -830,7 +994,7 @@ for(.......)
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -840,7 +1004,7 @@ for(.......)
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -995,7 +1159,7 @@ for(.......)
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -1005,7 +1169,7 @@ for(.......)
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -1154,7 +1318,7 @@ for(.......)
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -1164,7 +1328,7 @@ for(.......)
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -1248,7 +1412,7 @@ for(.......)
         
           
             <p>關於makefile的變數assign的方式，目前看到的大概有三種，詳細資料請看 <a href="http://www.ecoop.net/coop/translated/GNUMake3.77/make_6.html#SEC63" target="_blank" rel="external">這個</a>  </p>
-<p>第一種 simple expand variable，是使用 := 這樣的operator<br>舉個例子<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">who := mark  </div><div class="line">act :=  <span class="variable">$(who)</span> say  </div><div class="line">who := alice  </div><div class="line">echo $(act)  </div><div class="line">```  </div><div class="line">將會是 mark say，:=這種assgn的operator，如同字面上所言簡單的擴展，他一遇到該行就直接擴展並不會去查他最後是什麼樣子，如果你想要結果是 alice say的話那麼就是要使用第二種方式。  </div><div class="line">  </div><div class="line">第二種 recursive expand，是使用= 這樣的operator  </div><div class="line">```makefile  </div><div class="line">who = mark  </div><div class="line">act = <span class="variable">$(who)</span> say  </div><div class="line">who = alice  </div><div class="line">echo $(act)  </div><div class="line">```  </div><div class="line">這樣一來結果就會是alice say  </div><div class="line">  </div><div class="line">第三種是conditional variable assginment operator，是使用?=這樣的operator </div><div class="line">```makefile</div><div class="line">who = mark  </div><div class="line">act = <span class="variable">$(who)</span> say  </div><div class="line">who ?= alice  </div><div class="line">echo $(act)</div></pre></td></tr></table></figure></p>
+<p>第一種 simple expand variable，是使用 := 這樣的operator<br>舉個例子<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">who := mark  </div><div class="line">act :=  <span class="variable">$(who)</span> say  </div><div class="line">who := alice  </div><div class="line">echo <span class="variable">$(act)</span>  </div><div class="line">```  </div><div class="line">將會是 mark say，:=這種assgn的operator，如同字面上所言簡單的擴展，他一遇到該行就直接擴展並不會去查他最後是什麼樣子，如果你想要結果是 alice say的話那麼就是要使用第二種方式。  </div><div class="line">  </div><div class="line">第二種 recursive expand，是使用= 這樣的operator  </div><div class="line">```makefile  </div><div class="line">who = mark  </div><div class="line">act = <span class="variable">$(who)</span> say  </div><div class="line">who = alice  </div><div class="line">echo <span class="variable">$(act)</span>  </div><div class="line">```  </div><div class="line">這樣一來結果就會是alice say  </div><div class="line">  </div><div class="line">第三種是conditional variable assginment operator，是使用?=這樣的operator </div><div class="line">```makefile</div><div class="line">who = mark  </div><div class="line">act = <span class="variable">$(who)</span> say  </div><div class="line">who ?= alice  </div><div class="line">echo <span class="variable">$(act)</span></div></pre></td></tr></table></figure></p>
 <p>嘿嘿結果是 mark say喔~ 這個operator的作用是他會檢查該變數是否有值，有值的話就不會做assign的動作  </p>
 <p>關於make，基本上似乎看官方文件就很OK了，遇到不會的符號查查官方文件大概就有解，我是看gnu make的官方文件，畢竟mingw-make我找不到相關的文件，我想大概是mingw-make就是gnu make來的吧，所以兩者差異應該不大才是。</p>
 
@@ -1311,7 +1475,7 @@ for(.......)
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -1321,7 +1485,7 @@ for(.......)
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -1470,7 +1634,7 @@ p.sort_stats(<span class="string">'time'</span>).print_stats(<span class="number
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -1480,7 +1644,7 @@ p.sort_stats(<span class="string">'time'</span>).print_stats(<span class="number
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -1631,7 +1795,7 @@ p.sort_stats(<span class="string">'time'</span>).print_stats(<span class="number
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -1641,7 +1805,7 @@ p.sort_stats(<span class="string">'time'</span>).print_stats(<span class="number
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -1774,177 +1938,6 @@ p.sort_stats(<span class="string">'time'</span>).print_stats(<span class="number
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2013/08/16/pyqt/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="jing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/83f18dfd754f801352a9c1ee3df77c36.jpg?s=150">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My Travel in Programming">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/08/16/pyqt/" itemprop="url">
-                  初嘗pyqt
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-08-16T03:44:00+00:00">
-                2013-08-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/qt/" itemprop="url" rel="index">
-                    <span itemprop="name">qt</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/08/16/pyqt/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/08/16/pyqt/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>上次用python+PIL來進行將動畫GIF檔給分離出一張一張的圖片，結果不是很讓人滿意，因為PIL對於GIF檔的支援不是很好，因此有部分圖片顏色會有問題，關於當tkinter+PIL碰上gif的時候變的有多suck，看我另外一篇就知道了:(  所以我決定使用pyqt來測試看看。如下面這張animated gif<br><img src="http://1.bp.blogspot.com/-kKXCrfS78do/Ug2cWsAn2eI/AAAAAAAAACk/es1xtLGLGgk/s1600/1.gif" alt="pic"><br>經過我寫的程式後，分離出來的結果<br><img src="http://i.imgur.com/dXxYeDj.png" alt="pic"><br>哈!真是完美，qt就是好用阿，只是目前我還沒有弄熟pyqt，只知道其實它不只是一個gui library，它包括的範疇可真是廣到不行阿，網路、多媒體阿，還有很多很多，目前還沒辦法寫出太多心得，對它還沒特別研究 :) 另外，它官方的<a href="http://pyqt.sourceforge.net/Docs/PyQt4/classes.html" target="_blank" rel="external">文件</a>寫得滿詳細的  </p>
-<pre><code class="python">img = QImageReader(<span class="string">'D:/My Pictures/2.gif'</span>)  
-<span class="keyword">for</span> i <span class="keyword">in</span> range(img.imageCount()):  
- img.read().save(<span class="string">'{}.png'</span>.format(i))  
- img.jumpToNextImage()
-</code></pre>
-<p>我僅僅是看官方文件就輕鬆寫出將animated gif分離出來的code了如上面這樣簡單幾行。<br>對於教學的話，我目前沒有看到哪個教學是不錯的，如果有發現的話就另外補上 :) </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1986,15 +1979,15 @@ p.sort_stats(<span class="string">'time'</span>).print_stats(<span class="number
                alt="jing" />
           <p class="site-author-name" itemprop="name">jing</p>
            
-              <p class="site-description motion-element" itemprop="description">I am a web developer. love python, know js, css, html and learn haskell in spare time.</p>
-          
+              <p class="site-description motion-element" itemprop="description"></p>
+           
         </div>
         <nav class="site-state motion-element">
 
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2175,7 +2168,7 @@ p.sort_stats(<span class="string">'time'</span>).print_stats(<span class="number
   
 
     
-      <script id="dsq-count-scr" src="https://mytravelinprogramming.disqus.com/count.js" async></script>
+      <script id="dsq-count-scr" src="https://mytravelinprogramming.disqus.com/count.js" async></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 
     

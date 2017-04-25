@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="sillygod, jing blog, jing github" />
+  <meta name="keywords" content="sillygod, jing blog, jing github, my travel in programming" />
 
 
 
@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="初嘗 React Native學習動機有鑑於最近公司比較沒事，所以就心血來潮來玩一下，其實這還算是玩具性質的專案，有著效率上的問題，而且應該會有不少地雷存在，雖然他說得很漂亮，什麼write once, run anywhere? 當然我覺得這不是不可能，只是大概需要很常的時間，才能做到，不過呢，反正時間多出來了，就來玩玩看也不吃虧。 環境設置這邊是以Linux(ubuntu 14.04)為例，官">
 <meta property="og:image" content="http://i.imgur.com/oaTJs2U.png">
-<meta property="og:updated_time" content="2017-04-13T07:08:40.000Z">
+<meta property="og:updated_time" content="2017-04-25T05:22:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初嘗react native">
 <meta name="twitter:description" content="初嘗 React Native學習動機有鑑於最近公司比較沒事，所以就心血來潮來玩一下，其實這還算是玩具性質的專案，有著效率上的問題，而且應該會有不少地雷存在，雖然他說得很漂亮，什麼write once, run anywhere? 當然我覺得這不是不可能，只是大概需要很常的時間，才能做到，不過呢，反正時間多出來了，就來玩玩看也不吃虧。 環境設置這邊是以Linux(ubuntu 14.04)為例，官">
@@ -133,7 +133,7 @@
 
 
 
-  <title> 初嘗react native | My Travel in Programming </title>
+  <title> 初嘗react native | My Travel in Programming </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -158,7 +158,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -174,7 +174,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">hh</p>
+        <h1 class="site-subtitle" itemprop="description">hh</h1>
       
   </div>
 
@@ -269,14 +269,14 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
                 初嘗react native
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -360,17 +360,17 @@
         <h1 id="初嘗-React-Native"><a href="#初嘗-React-Native" class="headerlink" title="初嘗 React Native"></a>初嘗 React Native</h1><h3 id="學習動機"><a href="#學習動機" class="headerlink" title="學習動機"></a>學習動機</h3><p>有鑑於最近公司比較沒事，所以就心血來潮來玩一下，其實這還算是玩具性質的專案，有著效率上的問題，而且應該會有不少地雷存在，雖然他說得很漂亮，什麼write once, run anywhere? 當然我覺得這不是不可能，只是大概需要很常的時間，才能做到，不過呢，反正時間多出來了，就來玩玩看也不吃虧。</p>
 <h3 id="環境設置"><a href="#環境設置" class="headerlink" title="環境設置"></a>環境設置</h3><p>這邊是以Linux(ubuntu 14.04)為例，<a href="https://facebook.github.io/react-native/releases/next/docs/getting-started.html" target="_blank" rel="external">官網</a>其實都有教學，只是在ubuntu上面通常安裝相對於,mac和windows來講都會比較麻煩點.. 我也不知道為什麼，linux的東西，一直以來懶人包好像都比較少，不像其他平台都是點一點就安裝好啦～～ </p>
 <p>安裝node環境那邊很簡單就不多說， react native command line 安裝方法也滿簡單的如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g react-native-cli</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g react-native-cli</div></pre></td></tr></table></figure>
 <p>主要是 Android Studio這邊，首先呢！ 你必須先安裝一下java環境，最好是oracle的java， ubuntu還有個open java，我想畢竟android是用oracle java開發的，所以最好還是用oracle吧，當然有人想試試open jdk的，試玩再告訴我心得 :)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository ppa:webupd8team/java</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install oracle-java8-installer</div><div class="line">sudo apt-get install oracle-java8-set-default</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository ppa:webupd8team/java</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install oracle-java8-installer</div><div class="line">sudo apt-get install oracle-java8-set-default</div></pre></td></tr></table></figure>
 <p>至於安裝jre環境這邊我是用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install default-jre</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install default-jre</div></pre></td></tr></table></figure>
 <p>java環境這邊告一段落， 再來去<a href="https://developer.android.com/studio/index.html" target="_blank" rel="external">android studio</a>官網下載安裝檔，接著根據官方說明文件～ 請先做一個步驟</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6</div></pre></td></tr></table></figure>
 <p>這個是你系統是64bit ubuntu的話，再安裝這些，看起來他是需要32bit的library，所以才安裝這些，接著剛剛下載完的檔案，沒意外應該要是一個zip檔，就把他解壓到你要的地方吧，一般而言會是放在 /opt/下面，你爽就好 :p</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo unzip android-studio.zip -d /opt</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo unzip android-studio.zip -d /opt</div></pre></td></tr></table></figure>
 <p>這樣就算是安裝完成。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/opt/android-studio/bin/studio.sh</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/opt/android-studio/bin/studio.sh</div></pre></td></tr></table></figure>
 <p>上面就是啟動方式， 不過啟動程式這樣很麻煩對吧， 你想要的話，其實可以把 /opt/android-studio/bin/ 加入系統路徑， 這樣就可以簡短指令， 你只要 sutdio.sh 這樣就可以啟動了。</p>
 <p>不過我個人會比較想要建立一個 Desktop file 來啟動，就是像是桌面捷徑的感覺，點兩下就啟動程式，以下是Desktop file的內容</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[Desktop Entry]</div><div class="line">Version=1.0</div><div class="line">Type=Application</div><div class="line">Name=Android Studio</div><div class="line">Exec=&quot;/opt/android-studio/bin/studio.sh&quot; %f</div><div class="line">Icon=/opt/android-studio/bin/studio.png</div><div class="line">Categories=Development;IDE;</div><div class="line">Terminal=false</div><div class="line">StartupNotify=true</div><div class="line">StartupWMClass=android-studio</div></pre></td></tr></table></figure>
@@ -378,14 +378,14 @@
 <p><strong>Watchman</strong>這個他是沒說一定要裝啦，只是看起來裝了這個，開發上效率似乎會比較好，所以就都安裝啦， 哈哈哈哈阿， 這裡我選擇直接<a href="https://facebook.github.io/watchman/docs/install.html#installing-from-source" target="_blank" rel="external">install from source</a> 的方式，最簡單明瞭 :)</p>
 <p>再來差不多可以往下進行啦～</p>
 <h3 id="Reactive-Hello-World"><a href="#Reactive-Hello-World" class="headerlink" title="Reactive Hello World"></a>Reactive Hello World</h3><p>雖然官網就給個幾行指令，說這樣就可以啟動example了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">react-native init AwesomeProject </div><div class="line">cd AwesomeProject </div><div class="line">react-native run-android</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">react-native init AwesomeProject </div><div class="line">cd AwesomeProject </div><div class="line">react-native run-android</div></pre></td></tr></table></figure>
 <p>但是～～～ 事實果然就是沒那麼簡單喔～ 人生總是期待越高，失望越大。 疑！ 突然好像有點悲觀（題外話</p>
 <p>這邊要注意的是，請記得先啟動你的Android Studio，他會安裝android-sdk相關的東西，這邊需要注意版本， example 使用的是 23 版， 但是啟動時，我的是先安裝 24版的，所以記得安裝一下，安裝完後， 記得設置 <code>ANDROID_HOME</code>這個環境變數，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export ANDROID_HOME=$HOME/Android/Sdk</div><div class="line">export PATH=&quot;$HOME/Android/Sdk/platform-tools:$HOME/Android/Sdk/tools:$PATH&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export ANDROID_HOME=$HOME/Android/Sdk</div><div class="line">export PATH="$HOME/Android/Sdk/platform-tools:$HOME/Android/Sdk/tools:$PATH"</div></pre></td></tr></table></figure>
 <p>我的配置如上， 這樣一來大致上就沒問題了~~ 大概…吧</p>
 <p>可是！ 我錯了， 哈 第一次用關於android的東西，看了錯誤訊息，似乎是他需要先運行一個模擬器呢～ 所以我選擇是<code>Genymotion</code>公司的android員工說是用這個，說效率比較好，所以就先採取他們的意見啦 :)</p>
 <p>哈～ 不過呢！ 後來先換成用google的模擬器吧， Genymotion在ubuntu 15 以下版本，安裝有點步驟，頗麻煩… 首先先看看你的模擬器有哪些裝置，當然這邊你也可以自己建立一個模擬器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">android list targets</div><div class="line">android create avd -n react -t 1 --abi default/x86_64</div><div class="line">emulator -avd react  # 啟動模擬器</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">android list targets</div><div class="line">android create avd -n react -t 1 --abi default/x86_64</div><div class="line">emulator -avd react  # 啟動模擬器</div></pre></td></tr></table></figure>
 <p>值得注意的是有許多地方都需要依靠 android sdk manager，來安裝一些tool～</p>
 <p>啟動完模擬器後，雖然官網說執行 <code>react-native run-android</code> 這行就可以了，但是沒意外你應該會出現<strong>紅色錯誤</strong>，官方自己下面也補充了，請額外執行 <code>react-native start</code> 這行，這樣一來就可以看到成功畫面了，如下</p>
 <p><img src="http://i.imgur.com/oaTJs2U.png" alt="screenshot"></p>
@@ -511,15 +511,15 @@
                alt="jing" />
           <p class="site-author-name" itemprop="name">jing</p>
            
-              <p class="site-description motion-element" itemprop="description">I am a web developer. love python, know js, css, html and learn haskell in spare time.</p>
-          
+              <p class="site-description motion-element" itemprop="description"></p>
+           
         </div>
         <nav class="site-state motion-element">
 
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -734,7 +734,7 @@
         s.src = 'https://mytravelinprogramming.disqus.com/embed.js';
         s.setAttribute('data-timestamp', '' + +new Date());
         (d.head || d.body).appendChild(s);
-      </script>
+      </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 
   

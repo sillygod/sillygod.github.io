@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="sillygod, jing blog, jing github" />
+  <meta name="keywords" content="sillygod, jing blog, jing github, my travel in programming" />
 
 
 
@@ -129,7 +129,7 @@
 
 
 
-  <title> My Travel in Programming </title>
+  <title> My Travel in Programming </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -154,7 +154,7 @@
     
   
 
-  <div class="container sidebar-position-left 
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
    page-home 
  ">
     <div class="headband"></div>
@@ -172,7 +172,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">hh</p>
+        <h1 class="site-subtitle" itemprop="description">hh</h1>
       
   </div>
 
@@ -250,6 +250,258 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2017/04/24/dynamic-array/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/83f18dfd754f801352a9c1ee3df77c36.jpg?s=150">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Travel in Programming">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/24/dynamic-array/" itemprop="url">
+                  dynamic array
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-24T22:50:19+00:00">
+                2017-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/24/dynamic-array/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/04/24/dynamic-array/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="緣由"><a href="#緣由" class="headerlink" title="緣由"></a>緣由</h2><p>最近正在上一堂線上課程<a href="https://www.udemy.com/python-for-data-structures-algorithms-and-interviews/" target="_blank" rel="external">python for data structure algorithm and interviews</a>，其中遇到有趣的點，想說特別來記錄一下，用python這麼久，也沒特別注意這個問題，今天要講的東西就是python list，老實講我並沒有看過源碼是怎麼實作的，原本我都以為python list是個類似link list的實作咧 :P 誰叫他名字有list 哈哈，但是python的list，實際上就是類似c++的vector那種動態array的機制，一開始就先給你一定容量的container，等到滿了就在new一個容量更大的array，然後搬過去，可以看看下面的測試例子就會知道了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line"></div><div class="line">lst = []</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</div><div class="line">    </div><div class="line">    print(<span class="string">'&#123;&#125; &#123;&#125;'</span>.format(len(lst), sys.getsizeof(lst)))</div><div class="line">    lst.append(i)</div><div class="line"></div><div class="line"><span class="comment"># output</span></div><div class="line"><span class="comment">#0 64</span></div><div class="line"><span class="comment">#1 96</span></div><div class="line"><span class="comment">#2 96</span></div><div class="line"><span class="comment">#3 96</span></div><div class="line"><span class="comment">#4 96</span></div><div class="line"><span class="comment">#5 128</span></div><div class="line"><span class="comment">#6 128</span></div><div class="line"><span class="comment">#7 128</span></div><div class="line"><span class="comment">#8 128</span></div><div class="line"><span class="comment">#9 192</span></div></pre></td></tr></table></figure>
+<p>可以看出size會等於某數的倍數成長，我們可以來做點簡單的方程式來實際看看到底是哪個數字</p>
+<p>$$<br>x + y = 64 \\<br>x + 2y = 96<br>$$</p>
+<p>輕易的可以知道那個數字是32，至於一開始的32，是list這個物件其餘的size，python的 <code>sys.getsizeof</code>並不會像c或是c++得到該資料型態的size，原因就是python所有資料型態都是物件，還要加上gargabe collection！，若是想要使用Ｃ或Ｃ++那種sizeof，就必須使用python ctypes的sizeof。</p>
+<p>另外有趣的是我們可以藉由python ctypes來實作一個小小的dynamic array。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> ctypes</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DynamicArray</span>:</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.n = <span class="number">0</span></div><div class="line">        self.capacity = <span class="number">1</span></div><div class="line">        self.A = self.make_array(self.capacity)</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> self.n</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__sizeof__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> ctypes.sizeof(self.A)</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem</span><span class="params">(self, index)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="number">0</span> &lt; index &lt;= self.n:</div><div class="line">            <span class="keyword">raise</span> IndexError(<span class="string">'out of bound'</span>)</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> self.A[index]</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">append</span><span class="params">(self, ele)</span>:</span></div><div class="line">        <span class="keyword">if</span> self.n == self.capacity:</div><div class="line">            self._resize(self.capacity*<span class="number">2</span>)</div><div class="line">        </div><div class="line">        self.A[self.n] = ele</div><div class="line">        self.n += <span class="number">1</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_resize</span><span class="params">(self, new_cap)</span>:</span></div><div class="line">        B = self.make_array(new_cap)</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> index, ele <span class="keyword">in</span> enumerate(self.A):</div><div class="line">            B[index] = ele</div><div class="line">            </div><div class="line">        self.A = B</div><div class="line">        self.capacity = new_cap</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_array</span><span class="params">(self, new_cap)</span>:</span></div><div class="line">        <span class="keyword">return</span> (ctypes.py_object*new_cap)()</div></pre></td></tr></table></figure>
+<p>以下我們來測試一下，進行跟python list類似的範例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">from</span> ctypes <span class="keyword">import</span> sizeof</div><div class="line"></div><div class="line">darry = DynamicArray()</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">20</span>):</div><div class="line">    print(<span class="string">'&#123;&#125; &#123;&#125; &#123;&#125;'</span>.format(len(darry), sys.getsizeof(darry), sizeof(darry.A)))</div><div class="line">    </div><div class="line">    darry.append(i)</div><div class="line"></div><div class="line"><span class="comment">#output</span></div><div class="line"><span class="comment">#0 32 8</span></div><div class="line"><span class="comment">#1 32 8</span></div><div class="line"><span class="comment">#2 40 16</span></div><div class="line"><span class="comment">#3 56 32</span></div><div class="line"><span class="comment">#4 56 32</span></div><div class="line"><span class="comment">#5 88 64</span></div><div class="line"><span class="comment">#6 88 64</span></div><div class="line"><span class="comment">#7 88 64</span></div><div class="line"><span class="comment">#8 88 64</span></div><div class="line"><span class="comment">#9 152 128</span></div><div class="line"><span class="comment">#10 152 128</span></div><div class="line"><span class="comment">#11 152 128</span></div><div class="line"><span class="comment">#12 152 128</span></div><div class="line"><span class="comment">#13 152 128</span></div><div class="line"><span class="comment">#14 152 128</span></div><div class="line"><span class="comment">#15 152 128</span></div><div class="line"><span class="comment">#16 152 128</span></div><div class="line"><span class="comment">#17 280 256</span></div><div class="line"><span class="comment">#18 280 256</span></div><div class="line"><span class="comment">#19 280 256</span></div></pre></td></tr></table></figure>
+<p>前面提過<code>sys getsizeof</code>這個方法，<a href="https://docs.python.org/3/library/sys.html" target="_blank" rel="external">官方文檔</a>，可以看出他是實際上只針對該物件內容進行size計算，而不會另外去針對裡面內容額外指到的物件，因此這裡的獲得的size不會因為我們new array而有所改變，甚至是class多增加屬性也不會增加其size，所以～ 這裡我才改寫了<code>__sizeof__</code>讓他比較像原生lst的行為。</p>
+<h2 id="Amortized-Analysis"><a href="#Amortized-Analysis" class="headerlink" title="Amortized Analysis"></a>Amortized Analysis</h2><p>那麼對於這種動態array，他的append實際上效率要怎麼計算呢？ 因為你會發現並不是每次append都需要resize對吧，所以我們必須想個方法來衡量這個效率，這時候就要來講講amortized analysis了， amortization中文意思是分期償還，從這個意思來看，大概有點ＦＵ了吧，接下來要對dynamic array的append效率來做分析，首先就先來觀察並分析如下表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">append</span><span class="params">(self, ele)</span>:</span></div><div class="line">    <span class="keyword">if</span> self.n == self.capacity:</div><div class="line">        self._resize(self.capacity*<span class="number">2</span>)</div><div class="line"></div><div class="line">    self.A[self.n] = ele</div><div class="line">    self.n += <span class="number">1</span></div><div class="line">    </div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">_resize</span><span class="params">(self, new_cap)</span>:</span></div><div class="line">        B = self.make_array(new_cap)</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> index, ele <span class="keyword">in</span> enumerate(self.A):</div><div class="line">            B[index] = ele</div><div class="line">            </div><div class="line">        self.A = B</div><div class="line">        self.capacity = new_cap</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>ary cap</th>
+<th>cost</th>
+<th>is resized</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>x</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>o</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>o</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>1</td>
+<td>x</td>
+</tr>
+<tr>
+<td>5</td>
+<td>8</td>
+<td>5</td>
+<td>o</td>
+</tr>
+<tr>
+<td>6</td>
+<td>8</td>
+<td>1</td>
+<td>x</td>
+</tr>
+<tr>
+<td>7</td>
+<td>8</td>
+<td>1</td>
+<td>x</td>
+</tr>
+<tr>
+<td>8</td>
+<td>8</td>
+<td>1</td>
+<td>x</td>
+</tr>
+<tr>
+<td>9</td>
+<td>8</td>
+<td>9</td>
+<td>o</td>
+</tr>
+</tbody>
+</table>
+<p>每一次要resize時都會做copy動作，看看No. 9 那裡較明顯，因為要插入時發現是滿的，所以就做了resize，裡面動作有做到8次assgin（將前面的array內容複製到新array裡），另外一次就是新資料的輸入，所以有需要resized的情況下第n次append裡面就會做了n次assign動作，下面開始列出數學函示做點分析</p>
+<p>$$ \frac{1+2+3+1+5+1+1+1+9+…}{n} $$</p>
+<p>2, 3, 5 , 9 可以變成 (1+1) (1+2) (1+4) (1+8)</p>
+<p>$$ \frac{(1+1+1….+1) + (1+2+4+8+..)}{n} $$</p>
+<p>可以再繼續變化成下面這樣</p>
+<p>$$ \frac{ \sum_{i=1}^n 1 + \sum_{i=1}^{(\log_2{n-1}) + 1} 2^{i-1} } {n} $$</p>
+<p><strong>題外話</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$$ \frac&#123; \sum\_&#123;i=<span class="number">1</span>&#125;^n <span class="number">1</span> + \sum\_&#123;i=<span class="number">1</span>&#125;^&#123;(\log_2&#123;n<span class="number">-1</span>&#125;) + <span class="number">1</span>&#125; <span class="number">2</span>^&#123;i<span class="number">-1</span>&#125; &#125; &#123;n&#125; $$</div><div class="line"><span class="comment"># 根據你使用的markdown渲染引擎不同，你可能會遇到一些小問題，上面這行就是上面那個數學公式，</span></div><div class="line"><span class="comment"># 我一定要在 _ 前面使用escape symbol (\)，才能正常表現，但是我在ipython就不需要～</span></div></pre></td></tr></table></figure></p>
+<h3 id="等比級數公式"><a href="#等比級數公式" class="headerlink" title="等比級數公式"></a>等比級數公式</h3><p>$$ S_n = \frac{a_1 - r^n}{1-r} $$</p>
+<p>藉由等比級數可以將上面式子變成</p>
+<p>$$ \frac { n + 2^{(\log_2 n-1) + 1} } {n}  = \frac { n+ 2*(n-1)} {n} = \frac {3n-2} {n} $$</p>
+<p>算完之後這個效率等於 $ O(1) $</p>
+<h3 id="amortized-analysis相關知識"><a href="#amortized-analysis相關知識" class="headerlink" title="amortized analysis相關知識"></a>amortized analysis相關知識</h3><p>有三種方式</p>
+<ul>
+<li>the aggregate method</li>
+<li>the banker’s method</li>
+<li>the physicist’s method(potential function)</li>
+</ul>
+<p><code>The amortized cost</code> per operation for a sequence of n operations is the total<br>cost of the operations divided by n.</p>
+<p>其實說穿了amortized cost就是一種平均成本的概念，n次操作中，僅少數是昂貴的操作，絕大多數都是便宜的操作，平均後就會是便宜的操作，上面dynamic array就是個例子</p>
+<p><code>A potential function</code> is a function of the state of a system, that generally should<br>be non-negative and start at 0, and is used to smooth out analysis of some algorithm or process.</p>
+<p>老實講我還沒弄很懂這麼多種的分析方法是…但是對於我們上面這種分析方式，應該算是aggregate method，就是硬底子的去分析每一步操作去計算平均效率這樣，這堂課還有許多內容我還沒上完，之後有遇到有趣的東西的話，還會上來紀錄一下的。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2017/04/13/github-page-auto-deployment-with-travis-ci/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -267,7 +519,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -277,7 +529,7 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -445,7 +697,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -455,7 +707,7 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -637,7 +889,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -647,7 +899,7 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -838,7 +1090,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -848,7 +1100,7 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -1064,7 +1316,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -1074,7 +1326,7 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -1268,7 +1520,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -1278,7 +1530,7 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -1473,7 +1725,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -1483,7 +1735,7 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -1680,7 +1932,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -1690,7 +1942,7 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -1776,17 +2028,17 @@
             <h1 id="初嘗-React-Native"><a href="#初嘗-React-Native" class="headerlink" title="初嘗 React Native"></a>初嘗 React Native</h1><h3 id="學習動機"><a href="#學習動機" class="headerlink" title="學習動機"></a>學習動機</h3><p>有鑑於最近公司比較沒事，所以就心血來潮來玩一下，其實這還算是玩具性質的專案，有著效率上的問題，而且應該會有不少地雷存在，雖然他說得很漂亮，什麼write once, run anywhere? 當然我覺得這不是不可能，只是大概需要很常的時間，才能做到，不過呢，反正時間多出來了，就來玩玩看也不吃虧。</p>
 <h3 id="環境設置"><a href="#環境設置" class="headerlink" title="環境設置"></a>環境設置</h3><p>這邊是以Linux(ubuntu 14.04)為例，<a href="https://facebook.github.io/react-native/releases/next/docs/getting-started.html" target="_blank" rel="external">官網</a>其實都有教學，只是在ubuntu上面通常安裝相對於,mac和windows來講都會比較麻煩點.. 我也不知道為什麼，linux的東西，一直以來懶人包好像都比較少，不像其他平台都是點一點就安裝好啦～～ </p>
 <p>安裝node環境那邊很簡單就不多說， react native command line 安裝方法也滿簡單的如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g react-native-cli</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g react-native-cli</div></pre></td></tr></table></figure>
 <p>主要是 Android Studio這邊，首先呢！ 你必須先安裝一下java環境，最好是oracle的java， ubuntu還有個open java，我想畢竟android是用oracle java開發的，所以最好還是用oracle吧，當然有人想試試open jdk的，試玩再告訴我心得 :)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository ppa:webupd8team/java</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install oracle-java8-installer</div><div class="line">sudo apt-get install oracle-java8-set-default</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository ppa:webupd8team/java</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install oracle-java8-installer</div><div class="line">sudo apt-get install oracle-java8-set-default</div></pre></td></tr></table></figure>
 <p>至於安裝jre環境這邊我是用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install default-jre</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install default-jre</div></pre></td></tr></table></figure>
 <p>java環境這邊告一段落， 再來去<a href="https://developer.android.com/studio/index.html" target="_blank" rel="external">android studio</a>官網下載安裝檔，接著根據官方說明文件～ 請先做一個步驟</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6</div></pre></td></tr></table></figure>
 <p>這個是你系統是64bit ubuntu的話，再安裝這些，看起來他是需要32bit的library，所以才安裝這些，接著剛剛下載完的檔案，沒意外應該要是一個zip檔，就把他解壓到你要的地方吧，一般而言會是放在 /opt/下面，你爽就好 :p</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo unzip android-studio.zip -d /opt</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo unzip android-studio.zip -d /opt</div></pre></td></tr></table></figure>
 <p>這樣就算是安裝完成。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/opt/android-studio/bin/studio.sh</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/opt/android-studio/bin/studio.sh</div></pre></td></tr></table></figure>
 <p>上面就是啟動方式， 不過啟動程式這樣很麻煩對吧， 你想要的話，其實可以把 /opt/android-studio/bin/ 加入系統路徑， 這樣就可以簡短指令， 你只要 sutdio.sh 這樣就可以啟動了。</p>
 <p>不過我個人會比較想要建立一個 Desktop file 來啟動，就是像是桌面捷徑的感覺，點兩下就啟動程式，以下是Desktop file的內容</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[Desktop Entry]</div><div class="line">Version=1.0</div><div class="line">Type=Application</div><div class="line">Name=Android Studio</div><div class="line">Exec=&quot;/opt/android-studio/bin/studio.sh&quot; %f</div><div class="line">Icon=/opt/android-studio/bin/studio.png</div><div class="line">Categories=Development;IDE;</div><div class="line">Terminal=false</div><div class="line">StartupNotify=true</div><div class="line">StartupWMClass=android-studio</div></pre></td></tr></table></figure>
@@ -1794,14 +2046,14 @@
 <p><strong>Watchman</strong>這個他是沒說一定要裝啦，只是看起來裝了這個，開發上效率似乎會比較好，所以就都安裝啦， 哈哈哈哈阿， 這裡我選擇直接<a href="https://facebook.github.io/watchman/docs/install.html#installing-from-source" target="_blank" rel="external">install from source</a> 的方式，最簡單明瞭 :)</p>
 <p>再來差不多可以往下進行啦～</p>
 <h3 id="Reactive-Hello-World"><a href="#Reactive-Hello-World" class="headerlink" title="Reactive Hello World"></a>Reactive Hello World</h3><p>雖然官網就給個幾行指令，說這樣就可以啟動example了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">react-native init AwesomeProject </div><div class="line">cd AwesomeProject </div><div class="line">react-native run-android</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">react-native init AwesomeProject </div><div class="line">cd AwesomeProject </div><div class="line">react-native run-android</div></pre></td></tr></table></figure>
 <p>但是～～～ 事實果然就是沒那麼簡單喔～ 人生總是期待越高，失望越大。 疑！ 突然好像有點悲觀（題外話</p>
 <p>這邊要注意的是，請記得先啟動你的Android Studio，他會安裝android-sdk相關的東西，這邊需要注意版本， example 使用的是 23 版， 但是啟動時，我的是先安裝 24版的，所以記得安裝一下，安裝完後， 記得設置 <code>ANDROID_HOME</code>這個環境變數，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export ANDROID_HOME=$HOME/Android/Sdk</div><div class="line">export PATH=&quot;$HOME/Android/Sdk/platform-tools:$HOME/Android/Sdk/tools:$PATH&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export ANDROID_HOME=$HOME/Android/Sdk</div><div class="line">export PATH="$HOME/Android/Sdk/platform-tools:$HOME/Android/Sdk/tools:$PATH"</div></pre></td></tr></table></figure>
 <p>我的配置如上， 這樣一來大致上就沒問題了~~ 大概…吧</p>
 <p>可是！ 我錯了， 哈 第一次用關於android的東西，看了錯誤訊息，似乎是他需要先運行一個模擬器呢～ 所以我選擇是<code>Genymotion</code>公司的android員工說是用這個，說效率比較好，所以就先採取他們的意見啦 :)</p>
 <p>哈～ 不過呢！ 後來先換成用google的模擬器吧， Genymotion在ubuntu 15 以下版本，安裝有點步驟，頗麻煩… 首先先看看你的模擬器有哪些裝置，當然這邊你也可以自己建立一個模擬器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">android list targets</div><div class="line">android create avd -n react -t 1 --abi default/x86_64</div><div class="line">emulator -avd react  # 啟動模擬器</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">android list targets</div><div class="line">android create avd -n react -t 1 --abi default/x86_64</div><div class="line">emulator -avd react  # 啟動模擬器</div></pre></td></tr></table></figure>
 <p>值得注意的是有許多地方都需要依靠 android sdk manager，來安裝一些tool～</p>
 <p>啟動完模擬器後，雖然官網說執行 <code>react-native run-android</code> 這行就可以了，但是沒意外你應該會出現<strong>紅色錯誤</strong>，官方自己下面也補充了，請額外執行 <code>react-native start</code> 這行，這樣一來就可以看到成功畫面了，如下</p>
 <p><img src="http://i.imgur.com/oaTJs2U.png" alt="screenshot"></p>
@@ -1868,7 +2120,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -1878,7 +2130,7 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -2024,234 +2276,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2016/03/20/663369/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="jing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/83f18dfd754f801352a9c1ee3df77c36.jpg?s=150">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My Travel in Programming">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/20/663369/" itemprop="url">
-                  django rest framework 小小心得
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-20T13:44:00+00:00">
-                2016-03-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/django/" itemprop="url" rel="index">
-                    <span itemprop="name">django</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/03/20/663369/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/03/20/663369/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="django-rest-framework"><a href="#django-rest-framework" class="headerlink" title="django rest framework"></a>django rest framework</h1><p>這篇主要是針對於個人目前學習django rest framework的一些小小心得，在開發django而言，想要撰寫restful api，是有幾個套件可以選擇的</p>
-<ul>
-<li><a href="http://www.django-rest-framework.org/" target="_blank" rel="external">rest framework</a></li>
-<li><a href="https://github.com/django-tastypie/django-tastypie" target="_blank" rel="external">tastypie</a></li>
-</ul>
-<p>主要而言是這兩個，個人是學django rest framework，tastypie個人沒啥碰所以就不做啥比較了，當然你也可以不屑使用上面這兩個，小弟有看過使用requests來實作api的 :)</p>
-<p>大致上這篇會用下列的順序介紹</p>
-<ul>
-<li>core part</li>
-<li>serializer</li>
-<li>generic api</li>
-<li>url router</li>
-<li>some situation may bother you</li>
-</ul>
-<h2 id="core-part"><a href="#core-part" class="headerlink" title="core part"></a>core part</h2><p>個人覺得這套主要核心整個圍繞在<code>serializer</code>上，其他的有<code>class based views</code>的相關api，api通常會跟<code>permission</code>和<code>authentication</code>有所關聯，最後如果想要用比較generic way的方式，就要用到<code>viewset</code>和<code>router</code>。</p>
-<p>這邊rest framework的<a href="http://www.django-rest-framework.org/tutorial/quickstart/" target="_blank" rel="external">quick start</a>個人覺得做了一個很簡單上手的示範，讓你先了解一些基本概念，serializer的基本使用方法，如果有看他source code，可以看到他的概念就是從django form，field那些過來的，所以會有很多類似的東西，至於serializer比較深的東西，下一個段落再來多說明。</p>
-<p>quick start 後面也提到class based view的使用方式，不過他是從function based view帶到class based view，個人比較偏好class based view，可讀性更好，假如你一個function based view可接受很多http method，這樣裏面code就一定會參雜各種method的相對應code，很可能你裏面就會有向下面這樣</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@api_view(['GET', 'POST'])</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">userview</span><span class="params">(request, *arg, **kwargs)</span>:</span></div><div class="line">	<span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</div><div class="line">		<span class="keyword">pass</span></div><div class="line">	<span class="keyword">elif</span> request.method == <span class="string">'POST'</span>:</div><div class="line">		<span class="keyword">pass</span></div></pre></td></tr></table></figure>
-<p>沒有說那種一定好一定壞，就看客官的個人喜好囉~~</p>
-<p>再來<code>request</code>和<code>response</code>在restframework都有經過額外的包裝(包裝django的response和request)這邊比較沒啥要注意的。反而是<code>authentication</code>和<code>permission</code>比較值得注意，也就是對於API進行一些存取權限的控管。有個地方需要注意的是</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">permission_classes = (permissions.IsAuthenticatedOrReadOnly,</div><div class="line">                      IsOwnerOrReadOnly,)</div><div class="line"></div><div class="line">authentication_classes = (SessionAuthentication, BasicAuthentication)</div></pre></td></tr></table></figure>
-<p>permission是裡面<strong>所有的permission</strong>都過了，這個request才可以執行，authentication是<strong>只要裏面有一個成功通過</strong>，那就可以執行了。</p>
-<p>不信請看，rest framework源碼片斷</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment"># the process for checking permission</span></div><div class="line"><span class="keyword">for</span> permission <span class="keyword">in</span> self.get_permissions():</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> permission.has_permission(request, self):</div><div class="line">                self.permission_denied(</div><div class="line">                    request, message=getattr(permission, <span class="string">'message'</span>, <span class="keyword">None</span>)</div><div class="line">                )</div><div class="line"></div><div class="line"><span class="comment"># the process for checking authentication</span></div><div class="line"><span class="keyword">for</span> authenticator <span class="keyword">in</span> self.authenticators:</div><div class="line">		<span class="keyword">try</span>:</div><div class="line">			user_auth_tuple = authenticator.authenticate(self)</div><div class="line">		<span class="keyword">except</span> exceptions.APIException:</div><div class="line">			self._not_authenticated()</div><div class="line">			<span class="keyword">raise</span></div><div class="line"></div><div class="line">		<span class="keyword">if</span> user_auth_tuple <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">			self._authenticator = authenticator</div><div class="line">			self.user, self.auth = user_auth_tuple</div><div class="line">			<span class="keyword">return</span></div></pre></td></tr></table></figure>
-<p>最後的core part，就是viewset和router了，這部份就在url router那邊再多做說明。</p>
-<h2 id="serializer"><a href="#serializer" class="headerlink" title="serializer"></a>serializer</h2><p>serizlier跟django的Form使用起來很像，但是這不代表它是繼承於django的form喔，有興趣的看源碼，用serializer的目的，個人是覺得把表單驗證的邏輯(舉凡參數驗證也可)從api view切開，這樣也不會讓api裏面的程式碼過於複雜。</p>
-<p>一般而言大多數情況應該都是使用modelserializer，的確針對於CRUD方面確實方便，但是有時候就是會遇到當你create這個model時，會有和model對不上的欄位，進而造成錯誤發生，或是很難使用，拿個最簡單的例子，創造一個使用者，通常會需要一個email，password，password2，但是使用者model並不會有password2，畢竟那只是確認使用者密碼是不是一致。</p>
-<p>對於這種情形，我是另外寫一個serializer專門為創造使用者，而且也不是用ModelSerializer，只是一般的serializer，那記得要define create的method，假如你是要用在generic viewset的create的這地方。</p>
-<p>另外使用modelserializer會遇到的一種情況是，今天你想要客製化回傳的資料，比如今天你的user model裏面有一個欄位是mugshot(ImageField)，那個一般情況UserSerializer.data，那麼回傳格式通常會是希望是大概如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="string">"email"</span>: <span class="string">"aa@test.com"</span>,</div><div class="line">	<span class="string">"mugshot"</span>: <span class="string">"http://xxx.com.tw/media/.../"</span>  <span class="comment"># url 位址</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>但是往往天不從人願，預設可不是回傳url位址，像這種情況我目前知道的算比較OK的解法有兩種</p>
-<h5 id="第1種"><a href="#第1種" class="headerlink" title="第1種"></a>第1種</h5><p>就是使用<a href="http://www.django-rest-framework.org/api-guide/fields/#serializermethodfield" target="_blank" rel="external">SerializerMethodField</a>，基本上就是建立一個readonly的field，使用方法文檔說明了很清楚，這邊我就不多說明~~</p>
-<h5 id="第2種"><a href="#第2種" class="headerlink" title="第2種"></a>第2種</h5><p>就是overwride serializer的<code>to_representation</code>method，這個我是看源碼去理解出來的邪門歪道？ 不過這邊也只是跟你講講也可以用這樣的方法 :p</p>
-<p>再來就是文檔的地方也有說，使用serializer時，帶入partial這個參數是可以直接partiali update或是其他的東東，這是一個不錯用的東西~~</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">serializer = CommentSerializer(comment, data=&#123;<span class="string">'content'</span>: <span class="string">u'foo bar'</span>&#125;, partial=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
-<p>最後其實剛剛上述的對於creation的用途另外寫一個專用的serializer，你也可以不要這樣寫，就全都寫在同樣的serializer上，用上面的userserializer繼續舉例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></div><div class="line">	</div><div class="line">	password2 = serializer.CharField(required=<span class="keyword">False</span>)</div><div class="line">	</div><div class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">	</div><div class="line">		model = User</div><div class="line">		fields = (<span class="string">'username'</span>, <span class="string">'email'</span>)</div></pre></td></tr></table></figure>
-<p>注意～如果你password2的Field不加required的話，由於modelserializer的<code>to_representation</code>會去檢查這個field是否存在於這個model，這時就會爽快的爆掉啦～～</p>
-<p>不過別以為任務就這樣結束了，根據你這個serializer的用途，接下來你就要自己去overwrite，<code>create</code>or<code>update</code>這兩個方法。會不會覺得很簡單？ 其實說真的是不難（前提你知道rest framework背後幫你搞什麼…，但是我一直在想這樣寫就變成有好多邏輯都混在這個serializer裡面～</p>
-<p>目前而言，我並不清楚哪種寫法才是最好的，畢竟我碰這套framework沒有說很久，也不是核心開發者，我只是提供稍微比較tricky的方式來達到各種目的。</p>
-<h2 id="generic-api"><a href="#generic-api" class="headerlink" title="generic api"></a>generic api</h2><p>generic api這是我比較最近接觸的東西，老實講一開始學這套我還真的只用rest framework的APIView打天下，api的參數驗證也自己來，其實這也好像沒啥不行xxd，只是這套framework既然提供了serializer和generic api view，就一定有他的用處，所以最近碰了一些，打算寫點東西來記錄。</p>
-<p>首先來講講GenericViewSet和GenericAPIView，不~ 其實應該這樣看，在restframework的ViewSet其實都是繼承於APIView，所以看到GenericViewSet，可以知道其實這個是繼承GenericAPIView，那麼到底這兩者差在哪？ 一樣來看看源碼~ 比較仔細閱讀文檔，不如鑽研源碼搭配文檔還比較有效率，個人是這樣認為拉！ 每個人都有自己的習慣，所以不一定要照我的方法，找到屬於自己最有效率的方法才是比較重要的，話題拉回來，下面是源碼</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewSet</span><span class="params">(ViewSetMixin, views.APIView)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    The base ViewSet class does not provide any actions by default.</div><div class="line">    """</div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenericViewSet</span><span class="params">(ViewSetMixin, generics.GenericAPIView)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    The GenericViewSet class does not provide any actions by default,</div><div class="line">    but does include the base set of generic view behavior, such as</div><div class="line">    the `get_object` and `get_queryset` methods.</div><div class="line">    """</div><div class="line">    <span class="keyword">pass</span></div></pre></td></tr></table></figure>
-<p>看出什麼了嗎？他們都多了ViewSetMixin，如果懶的看源碼理解~ 其實可看他程式碼裏面的註解寫的簡單易懂，下面是註解片段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Overrides `.as_view()` so that it takes an `actions` keyword that performs</div><div class="line">    the binding of HTTP methods to actions on the Resource.</div><div class="line"></div><div class="line">    For example, to create a concrete view binding the &apos;GET&apos; and &apos;POST&apos; methods</div><div class="line">    to the &apos;list&apos; and &apos;create&apos; actions...</div><div class="line"></div><div class="line">    view = MyViewSet.as_view(&#123;&apos;get&apos;: &apos;list&apos;, &apos;post&apos;: &apos;create&apos;&#125;)</div></pre></td></tr></table></figure>
-<p>應該不需要多解釋了吧？ 再來主要需要理解的是 APIView和GenericAPIView這兩個做了什麼，這邊就不再貼源碼，直接做個大綱的介紹，應該說個人的理解 :P</p>
-<p>由於GenericAPIView是繼承APIView，所以就先來看看APIView實際上到底做了什麼，若你很常用class based view，其實這你應該常碰到，這個我本人也沒深入研究（掩面，但是大致上是做了authentication和permission以及dispatch（url router相關），還有一些和browserable api render相關等等的處理，這個就不多說了，畢竟源碼我沒什麼讀。</p>
-<p>GenericAPIView比起剛剛那些多了</p>
-<ul>
-<li>get_queryset</li>
-<li>get_object</li>
-<li>get_serializer</li>
-<li>filter_queryset</li>
-<li>….</li>
-</ul>
-<p>很明顯開始跟serializer之間關聯性越來越高，因此ModelViewSet也是繼承這個去實作額外的動作 :) GenericAPIView有幾個地方值得注意，因為根據你的case，你應該會很容易發現到，你會想要客製化某些功能，因為你的case並沒有那麼generic～～</p>
-<p>最常會overwrite的function應該是<code>get_serializer_class</code>，這通常是CRUD中，你特別寫了C的serializer，R也一個，甚至U也一個，所以這時候需要判斷不同http method或是action去使用不同的serializer。</p>
-<ul>
-<li><code>get_queryset</code></li>
-<li><code>get_object</code></li>
-</ul>
-<p>這兩個你也有可能會想覆寫～</p>
-<p>最後一個心得，關於這邊的使用方式，與其去讀文檔，直接來讀source code更容易理解，給各位客官參考</p>
-<h2 id="url-router"><a href="#url-router" class="headerlink" title="url router"></a>url router</h2><p>Routers，這個東東，老實講我並沒有覺得好用，而且綁得很死，Routers是跟ModelViewSet綁在一起的，她做的事情其實也只是幫你自動產生你常寫的urlpattern。</p>
-<p>所以所以，我個人目前不知道這個有很好用？ 仔細想想，今天假如你要用一個nested router的效果，但是你的第二層，卻只是單單onetoone，這樣url後面還需要帶參數(id)嗎？</p>
-<p>ex.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">http://example.com/api/users/<span class="number">5</span>/profile/&lt;pk&gt;/  <span class="comment"># 後面還需要？</span></div><div class="line">http://example.com/api/users/<span class="number">5</span>/profile/       <span class="comment"># 應該只要這樣就好了吧</span></div></pre></td></tr></table></figure>
-<p>這個問題，是我在用nested router套件時發現的，沒錯<strong>套件</strong>，你沒看錯，內建是沒有支援nested的….</p>
-<p>因此，我個人推薦urlpattern這邊還是自己動手寫吧，自由度相對大很多，而且別人要trace你的code，也變得比較容易，要不然你都用register，沒辦法一眼看出，那個url是對應到哪個view～</p>
-<p>最後如果有人知道Router其實可以變得好用，也請教教我xxd</p>
-<h2 id="some-situation-may-bother-you"><a href="#some-situation-may-bother-you" class="headerlink" title="some situation may bother you"></a>some situation may bother you</h2><p>這邊阿～～～ 其實前面在講各個觀念時，也大概都提了一些可能會遇到的卡點，所以這邊大概是小小結論我仍然覺得疑惑的地方，</p>
-<p>第一點，serializer到底是只要純負責關於CRUD的處理判斷邏輯就好？ 還是說對於api的參數處理，我都應該要實作一個serializer去對應？ 這個是指有些api並沒有對model做CRUD，但是卻也有相對應的動作，比如要驗證手機時，獲取驗證碼（GET)，驗證你拿到的驗證碼（POST? PATCH?)，這些動作也一定會有參數需要驗證吧，但是我目前還不知道把邏輯放在哪邊比較好～～ 也不知道有在用rest framework的各位寫程式時，有沒有一樣的煩惱</p>
-<p>第二點，就是該用哪種http method去對應動作，通常是對於非CRUD，可能會猶豫一下該用哪種http method，url的配置要怎麼配置，前面router說不想用也是這個原因，router把你綁死，萬一你遇到奇怪神奇的要求，你就好笑了，但是這個還好，看各家公司想要怎麼做吧～～</p>
-<p>第三點，想要直接全域客製化api回傳格式，這是最近我遇到的要求，解法也在這邊提供一下，<a href="http://www.django-rest-framework.org/api-guide/exceptions/" target="_blank" rel="external">根據文檔</a>，自己寫一個APIException handler，處理成你想要的格式即可。</p>
-<p>最後，就是這套framework是需要時間熟悉的xd 想要一看就上手恐怕有點難，除非你本來django就熟到爆炸，那這套framework你應該會很快上手，畢竟有一些概念時來自django的。</p>
-<h6 id="tags-python-restful-api-django"><a href="#tags-python-restful-api-django" class="headerlink" title="tags: python restful api django"></a>tags: <code>python</code> <code>restful api</code> <code>django</code></h6>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2293,15 +2317,15 @@
                alt="jing" />
           <p class="site-author-name" itemprop="name">jing</p>
            
-              <p class="site-description motion-element" itemprop="description">I am a web developer. love python, know js, css, html and learn haskell in spare time.</p>
-          
+              <p class="site-description motion-element" itemprop="description"></p>
+           
         </div>
         <nav class="site-state motion-element">
 
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2482,7 +2506,7 @@
   
 
     
-      <script id="dsq-count-scr" src="https://mytravelinprogramming.disqus.com/count.js" async></script>
+      <script id="dsq-count-scr" src="https://mytravelinprogramming.disqus.com/count.js" async></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 
     
