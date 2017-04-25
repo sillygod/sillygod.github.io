@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="上次介紹過vector後，這篇就來講講我的碰撞是怎麼寫的，目前經過測試後我的計算應該是正確的，因為我計算了動能(k)，的確有守恆，除了當我用滑鼠點物體的時候，一但點下去會讓物體的速度歸0，並且可以拖曳給予速度，如下影片所示。   連結 話說有什麼軟體是錄製的時候比較不會LAG的嗎? 我用的這個軟體錄起來好像沒說那麼順暢 :(。 回到正題，這邊我是假設兩球碰撞後是沒有旋轉的，因此不考慮進去進入我碰撞">
 <meta property="og:image" content="http://4.bp.blogspot.com/-xP_Bqq4QZjE/Ugmz3ZTYTXI/AAAAAAAAACU/wKTPoN95SzI/s1600/test.png">
-<meta property="og:updated_time" content="2017-04-25T05:50:36.000Z">
+<meta property="og:updated_time" content="2017-04-25T05:54:29.405Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python 物理模擬2">
 <meta name="twitter:description" content="上次介紹過vector後，這篇就來講講我的碰撞是怎麼寫的，目前經過測試後我的計算應該是正確的，因為我計算了動能(k)，的確有守恆，除了當我用滑鼠點物體的時候，一但點下去會讓物體的速度歸0，並且可以拖曳給予速度，如下影片所示。   連結 話說有什麼軟體是錄製的時候比較不會LAG的嗎? 我用的這個軟體錄起來好像沒說那麼順暢 :(。 回到正題，這邊我是假設兩球碰撞後是沒有旋轉的，因此不考慮進去進入我碰撞">
@@ -723,7 +723,24 @@
         s.src = 'https://mytravelinprogramming.disqus.com/embed.js';
         s.setAttribute('data-timestamp', '' + +new Date());
         (d.head || d.body).appendChild(s);
-      </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
     
 
   

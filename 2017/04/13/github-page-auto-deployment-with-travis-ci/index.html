@@ -96,7 +96,7 @@
 <meta property="og:description" content="緣由其實個人有計劃未來要手動自己打造static website，跟撰寫部落格的工具，只是在此之前我想到說我之前的部落格是放在非static website的，如果一次轉換這麼大會經歷很痛的轉換期，再加上我想要先試用一下這類的工具，這樣我之後才知道什麼地方是我想要的，什麼是我不要的，所以我就找了一下順眼的工具來使用，這篇部落格會來講解使用hexo結合travis ci和github page，達到">
 <meta property="og:image" content="http://i.imgur.com/6kW9kPp.png">
 <meta property="og:image" content="http://i.imgur.com/1HOzeAw.png">
-<meta property="og:updated_time" content="2017-04-25T05:50:36.000Z">
+<meta property="og:updated_time" content="2017-04-25T05:54:29.409Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="github-page-auto-deployment-with-travis-ci">
 <meta name="twitter:description" content="緣由其實個人有計劃未來要手動自己打造static website，跟撰寫部落格的工具，只是在此之前我想到說我之前的部落格是放在非static website的，如果一次轉換這麼大會經歷很痛的轉換期，再加上我想要先試用一下這類的工具，這樣我之後才知道什麼地方是我想要的，什麼是我不要的，所以我就找了一下順眼的工具來使用，這篇部落格會來講解使用hexo結合travis ci和github page，達到">
@@ -725,7 +725,24 @@
         s.src = 'https://mytravelinprogramming.disqus.com/embed.js';
         s.setAttribute('data-timestamp', '' + +new Date());
         (d.head || d.body).appendChild(s);
-      </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
     
 
   
