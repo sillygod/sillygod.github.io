@@ -6,7 +6,7 @@
 favicon: /favicon.ico
 
 # Set default keywords (Use a comma to separate)
-keywords: "sillygod, jing blog, jing github"
+keywords: "sillygod, jing blog, jing github, my travel in programming"
 
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
@@ -29,7 +29,7 @@ copyright: true
 canonical: true
 
 # Change headers hierarchy on site-subtitle (will be main site description) and on all post/pages titles for better SEO-optimization.
-seo: false
+seo: true
 
 # ---------------------------------------------------------------
 # Menu Settings

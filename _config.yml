@@ -17,6 +17,24 @@ root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
+
+# Mathjax settings
+
+math:
+  engine: 'mathjax' # 'mathjax' or 'katex'
+  mathjax:
+    src: "//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    config:
+      tex2jax:
+        inlineMath: [['$','$']]
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        processEscapes: true
+      
+      TeX:
+        equationNumbers:
+          autoNumber: "AMS"
+
+
 # Directory
 source_dir: source
 public_dir: public
