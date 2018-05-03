@@ -1,0 +1,820 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="sillygod, jing blog, jing github, my travel in programming" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="最近我提離職了，也休息了幾個禮拜了，這期間我在回想著我過去的經歷，也把之前的線上課程上一上(雖然還有一堆…)，所以也才有了時間可以寫部落格 :) 從出社會第一家做比特幣交易所的公司一開始因為很開心在104滿滿的職缺海中找到了可以用python的職缺！後來有著各種原因讓我決定離職，其中像是，  原本有位要來的前輩沒來（後來跟我點出公司一些問題後，去了痞客邦當machine learning tec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="離職休息、閱讀學習、記錄">
+<meta property="og:url" content="http://sillygod.github.io/2018/05/03/retire-break-thought/index.html">
+<meta property="og:site_name" content="My Travel in Programming">
+<meta property="og:description" content="最近我提離職了，也休息了幾個禮拜了，這期間我在回想著我過去的經歷，也把之前的線上課程上一上(雖然還有一堆…)，所以也才有了時間可以寫部落格 :) 從出社會第一家做比特幣交易所的公司一開始因為很開心在104滿滿的職缺海中找到了可以用python的職缺！後來有著各種原因讓我決定離職，其中像是，  原本有位要來的前輩沒來（後來跟我點出公司一些問題後，去了痞客邦當machine learning tec">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://i.imgur.com/3OyFqK5.png">
+<meta property="og:image" content="https://i.imgur.com/XGwh8oL.png">
+<meta property="og:image" content="https://i.imgur.com/7ageHDg.png">
+<meta property="og:image" content="https://i.imgur.com/HK86MEW.gif">
+<meta property="og:updated_time" content="2018-05-03T15:19:15.912Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="離職休息、閱讀學習、記錄">
+<meta name="twitter:description" content="最近我提離職了，也休息了幾個禮拜了，這期間我在回想著我過去的經歷，也把之前的線上課程上一上(雖然還有一堆…)，所以也才有了時間可以寫部落格 :) 從出社會第一家做比特幣交易所的公司一開始因為很開心在104滿滿的職缺海中找到了可以用python的職缺！後來有著各種原因讓我決定離職，其中像是，  原本有位要來的前輩沒來（後來跟我點出公司一些問題後，去了痞客邦當machine learning tec">
+<meta name="twitter:image" content="https://i.imgur.com/3OyFqK5.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://sillygod.github.io/2018/05/03/retire-break-thought/"/>
+
+
+
+
+
+  <title> 離職休息、閱讀學習、記錄 | My Travel in Programming </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My Travel in Programming</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">hh</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2018/05/03/retire-break-thought/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/83f18dfd754f801352a9c1ee3df77c36.jpg?s=150">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Travel in Programming">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                離職休息、閱讀學習、記錄
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-03T21:55:35+00:00">
+                2018-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/03/retire-break-thought/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/03/retire-break-thought/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近我提離職了，也休息了幾個禮拜了，這期間我在回想著我過去的經歷，也把之前的線上課程上一上(雖然還有一堆…)，所以也才有了時間可以寫部落格 :)</p>
+<h3 id="從出社會第一家做比特幣交易所的公司"><a href="#從出社會第一家做比特幣交易所的公司" class="headerlink" title="從出社會第一家做比特幣交易所的公司"></a>從出社會第一家做比特幣交易所的公司</h3><p>一開始因為很開心在104滿滿的職缺海中找到了可以用python的職缺！後來有著各種原因讓我決定離職，其中像是，</p>
+<ul>
+<li>原本有位要來的前輩沒來（後來跟我點出公司一些問題後，去了痞客邦當machine learning tech lead)</li>
+<li>跟我一樣是新鮮人的夥伴離職</li>
+<li>公司決策不停變換(畫大餅有點不實際)</li>
+</ul>
+<p>所以我在想我是不是應該換個地方，因此也才在下一間遇到了一些不錯的夥伴，但是…</p>
+<h3 id="第二間是個做交友網站的公司"><a href="#第二間是個做交友網站的公司" class="headerlink" title="第二間是個做交友網站的公司"></a>第二間是個做交友網站的公司</h3><p>這間一開始吸引我的點是，他用了django這個framework來開發，剛好是我想要的，雖然一開始我進去只有我、技術長、跟一位mis兼程式開發的前輩，三位RD，加上一位美術和櫃檯，有點辛苦的撐著XD 但是後來慢慢的徵了</p>
+<ul>
+<li>前端</li>
+<li>後端</li>
+<li>android工程師</li>
+<li>美術</li>
+</ul>
+<p>公司有慢慢的壯大，其實我滿喜歡這種感覺的，和夥伴一同努力! 但是我只能說新創…就是變數大，期間發生了很多事情，公司商業變換政策往大陸發展，開始變控股公司…甚至董事長詐騙募資人的錢，捲款落跑，公司最後是倒閉收場.. 老實講若沒有發生這些很扯的事情，我想我會繼續待在這家公司，因為有著不錯的夥伴！</p>
+<h3 id="接著第三家公司博奕公司"><a href="#接著第三家公司博奕公司" class="headerlink" title="接著第三家公司博奕公司"></a>接著第三家公司博奕公司</h3><p>其實這家是hr主動找過來的，原本的我出於好奇心，因為對於博弈產業不了解，所以來面試看看這家，結果意外的感覺其實沒我想的那麼不好?! 不知道是不是因為在松菸誠品的關係所以印象加分不少ＸＤＤ 但是由於公司是做技術提供，所以我就把它想成跟一般外面軟體公司類型很像，只是產業別跟客戶不同。</p>
+<p>不得不說博弈背後真的就是錢的實力雄厚，光是能夠租在松菸誠品然後，在我進去公司九個月，十個月的時間後，公司從2x人成長到5x人就是個證明。</p>
+<p>在這邊也遇到一些不錯的人，但是為何最近我離職了呢？ 原因大概是下面幾點。</p>
+<ul>
+<li>東西學習了差不多</li>
+<li>不少夥伴走人了</li>
+<li>陷入了部門鬥爭…</li>
+<li>沒有往上發展的機會</li>
+</ul>
+<p>當然還有著其他因素，詳細的內容這裡就不多說明，免得…咳咳，據說我離開之後情況還是沒啥變化，看來我給予的建議，應該是被當作耳邊風吧，這間我離開的時候，老實講沒有上一家那麼依依不捨，我想因為是鬥爭的感覺吧…</p>
+<p>仔細想想，我果然還是很在意相處的感覺更甚於錢，也不是說我care錢拉，錢很重要！ 尤其是對於社會的現實，沒有錢的你，又能夠做到什麼？ 但是我覺得即使身在社會的洪流裡，還是得保持著妳的初衷，不要因為外面而過度讓你自己變得不像自己。</p>
+<p>休息的這期間，我思考著我未來的展望是什麼？ 其實該怎麼說呢，對我來講就是兩個字，<strong>學習</strong>，老實講我並沒有像一些人很明確的，直接說未來要當技術長、軟體架構師或是資料分析師什麼的，我只是純粹認為programming很有趣，把想法現實化，很有挑戰但也很有成就！ 但是對於想要的公司類型呢？ 的確我現在似乎有點迷惘，因為對我來說主要是和人相處的感覺吧，但是這又不是面試可以面出來的… 哈哈，所以最近在迷惘中閱讀與記錄！ </p>
+<p>該來講講這次要記錄的東西了！！ 之後還會發個幾篇心得文，畢竟最近比較<strong>閒</strong>！ 哈哈，今天要講的其實也沒什麼特別深度，是要講emacs lisp相關的東西。</p>
+<h2 id="Emacs-lisp-初學心得"><a href="#Emacs-lisp-初學心得" class="headerlink" title="Emacs lisp 初學心得"></a>Emacs lisp 初學心得</h2><p>最近會想看emacs lisp，其實是有點原因的，老實講emacs一直以來我都沒有認真去學習他，其實最大原因就是懶（嘿嘿），因為使用他前實在是需要很多客製化動作，就算是使用<a href="https://github.com/syl20bnr/spacemacs" target="_blank" rel="noopener">spacemacs</a>老實講，我覺得還是需要一些客製化，雖然它已經讓emacs的上手度大大降低很多了，只是用了一陣子後，我總覺得spacemacs實在有點肥，有太多東西是我用不到的，有時候我想要的功能她沒有，而且老實說對於程式開發，像是python的應用開發，我已經從spacemacs轉去<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">vscode</a>，vscode對於不少語言的套件品質其實都滿高的，而且debug方面的功能也都做得不錯，話雖如此，emacs也有著其他人無法取代的套件，例如：magit，所以最近我在思考著我是否該先好好的了解emacs本身，竟然有人可以開發出這麼好用的套件，同時也在幻想著，我之後可以客製化emacs將它變成我得心應手的工具，所以我開始嘗試著學習一下emacs lisp這個語言，emacs本身就是用這個語言寫成的。其實也是滿有趣的</p>
+<blockquote>
+<p>emacs lisp -&gt; emacs -&gt; ? </p>
+</blockquote>
+<p>emacs lisp 生出 emacs ，emacs又可以讀取emacs lisp，簡言之我可以藉由emacs lisp將emacs變成其他東西，不一定是一個程式編輯器。好了，以下開始記錄我一些關於emacs lisp的小小心得。</p>
+<h2 id="emacs-hello-world"><a href="#emacs-hello-world" class="headerlink" title="emacs hello world"></a>emacs hello world</h2><p>首先我們打開emacs到下面截圖中<strong>scratch</strong>這個buffer來，這是可以讓你隨意玩emacs lisp的地方</p>
+<p><img src="https://i.imgur.com/3OyFqK5.png" alt="scratch"></p>
+<p>接著來段hello world吧，<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">message</span> <span class="string">"hello world"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>接著按下<code>C-x C-e</code>記得要把游標移到行尾，因為他執行的功能是，evaluate the last s-expression，s-expression指的就是lisp相關方言的表達式，有興趣可以查看看wiki，這篇不會特別著墨lisp相關知識，但是這邊還是稍微提一下，sexp是一種標記法，表達巢狀list，一般都是只有儲存data，但是lisp卻連程式碼都存，這也是為什麼接下來後面程式碼你都只會看到一堆括號的原因～</p>
+<p><img src="https://i.imgur.com/XGwh8oL.png" alt="hello world"></p>
+<p>轉回正題，上面執行完後你會看到最下面有印出<code>hello world</code>的字樣，那就是你的執行結果。另外其實你也可以到<strong>Message</strong>的buffer看，那裡會有所有訊息包括歷史記錄，接著來稍微講一下emacs lips的primitive data跟一些性質</p>
+<p><img src="https://i.imgur.com/7ageHDg.png" alt=""></p>
+<p>由於前面提到的sexp，你會發現lisp是一個前序表達的方式，來看看<code>(+ 1 3)</code> 這個其實換成中序表達，會是(1 + 3)，沒錯！這個表達式的答案就是4，lisp在背後真正的表達應該是長這樣的<code>(+ . (1 . (3 . nil)))</code>，<code>.</code>這個符號就當作list串接的意味吧 :)</p>
+<p>關於lisp語言本身，我想之後我再來寫一篇記錄好了，轉回來，經由上面的那個表達式，其實應該也不難猜出，其實我們是可以做這樣的事情的 <code>(+ 1 2 3 4 5)</code> 也就說我們可以用任意參數，不信的話，你是可以試試看，另外若是沒寫過python, 可能會對於上面的加號其實是一個function感到訝異吧～ 別懷疑他就是函式，在emacs裡，你可以把游標移到你想要的函式上面，然後按下<code>C-h f</code> 你就會看到相關的文檔敘述跑出來。</p>
+<p>再來對於elisp，他其實沒有boolean type，只要是nil,或是empty list都是屬於false，其餘都是true，關於變數呢～ <code>(setq a 3)</code> 這樣就會將a變成3，但是這是全域的，若是要用區域變數的話</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(let (a b)</span><br><span class="line">  (setq a 3)</span><br><span class="line">  (setq b 2)</span><br><span class="line">  (+ a b)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>像上面，a和b只會在let區塊裡面有作用，如果你在外面使用a or b會發現他們並沒有被定義。</p>
+<p>再來<code>progn</code> 一個很特別的語法，可以把它當成一個區塊的expression，然後他會回傳最後一個expression</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">(progn (setq b &quot;5&quot;) (message b))</span><br></pre></td></tr></table></figure>
+<p>上面progn本身並沒自己形成一個區塊，因此b是個全域變數。</p>
+<p>再來就是關於迴圈方面elisp有提供<code>while</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(let ((x 32))</span><br><span class="line">  (while (&lt; x 127)</span><br><span class="line">    (insert-char x)</span><br><span class="line">    (setq x (+ x 1)))</span><br></pre></td></tr></table></figure>
+<p>上面這段會執行在游標插入一些字母和符號～ </p>
+<p>elisp function定義的方式，<code>defun name (pram..)</code> 如下 </p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">(<span class="name">defun</span> sayHi ()</span><br><span class="line">  <span class="string">"this is a doc string"</span> <span class="comment">;; 這是function doc</span></span><br><span class="line">  (<span class="name">interactive</span>)</span><br><span class="line">  (<span class="name">message</span> <span class="string">"hi"</span>))</span><br></pre></td></tr></table></figure>
+<p>上面這樣就是定義了一個函式會印出hi的字樣，其中特別的一點是，<code>(interactive)</code>會讓這個function變得可以從emacs中的<code>M-x</code>呼叫，不加的話，你就不會看到sayHi再<code>M-x</code>列出的函式清單。</p>
+<p>整體上而言想要學會怎麼客製化emacs的話，對於lisp方言的掌握度，並不需要很深，只要懂的一些基礎就夠了，頂多只差在效能，接下來嘗試做個小小的功能，比如： 在轉寫程式碼時，有時候我忘記把單字放在””裡面，所以我想要有個功能是能夠快速把游標上的單字左右加上”這個符號。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">(defun quotify-region (start end)</span><br><span class="line">  &quot;insert \&apos; or \&quot; at the beginning and end of your</span><br><span class="line">selection&quot;</span><br><span class="line">  (interactive &quot;r&quot;)</span><br><span class="line">  (save-excursion</span><br><span class="line">    (save-restriction</span><br><span class="line">      (goto-char start) (insert &quot;\&quot;&quot;)</span><br><span class="line">      (goto-char (+ end 1)) (insert &quot;\&quot;&quot;))))</span><br></pre></td></tr></table></figure>
+<p>上面這段就是簡單版的實現，你只要選取你想要的單字後，呼叫這個函式就會看到效果了，比如接下來下面的demo，你會看到我選取的evil，然後將<code>&quot; &quot;</code>加在他的前後！</p>
+<p><img src="https://i.imgur.com/HK86MEW.gif" alt="demo"></p>
+<p>其實上面這段程式碼，是我還在亂玩emacs的設定，新手上路，請不要電我～ 這邊呢，我有將我剛剛實作的功能綁定在evil的visual mode的快捷<code>m</code>然後按<code>&#39;</code> 就會看到神奇的效果了。</p>
+<h1 id="To-Sum-up"><a href="#To-Sum-up" class="headerlink" title="To Sum up"></a>To Sum up</h1><p>現在充斥著各種editor或是ide，其實認真講，我真的要開發golang, python, nodejs, 之類的我還是會用vscode，emacs目前我個人是當作興趣玩玩，順便來看看他可以在什麼地方用上，增加我的開發效率，然後經過稍微碰觸emacs lisp後，我只能說他真的太多東西要讀，我當前還沒整理出一個開發套件的模式，比如要去哪找你想要的函示名稱，這種東西一定需要一個地方可以讓你快速參考，還有就是對於lisp其實當前我只有基礎而已。</p>
+<p>但是我深刻體驗到emacs的彈性了，真的是很容易就實作一個功能馬上應用，我想我會繼續挖掘emacs的特點，繼續記錄一些心得，下面reference的部分是一些連結我覺得可以看一下的。</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a href="https://www.emacswiki.org/emacs/ElispCookbook" target="_blank" rel="noopener">elisp cookbook</a></li>
+<li><a href="http://ergoemacs.org/emacs/elisp.html" target="_blank" rel="noopener">elisp simple tutorial</a></li>
+<li><a href="https://www.gnu.org/software/emacs/manual/elisp.html" target="_blank" rel="noopener">official elisp manual</a></li>
+<li><a href="http://emacslife.com/emacs-lisp-tutorial.html#sec-1" target="_blank" rel="noopener">learning emacs</a></li>
+<li><a href="http://ergoemacs.org/emacs_manual/elisp/index.html#Top" target="_blank" rel="noopener">ergoemacs lisp manual</a></li>
+</ul>
+<p>下面兩個是關於lisp的免費書，想要更深入了解的人，建議可以去看一下</p>
+<ul>
+<li><a href="http://acl.readthedocs.io/en/latest/zhTW/index.html" target="_blank" rel="noopener">ansi common lisp</a></li>
+<li><a href="http://www.gigamonkeys.com/book/" target="_blank" rel="noopener">practical common lisp</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/24/dynamic-array/" rel="next" title="dynamic array">
+                <i class="fa fa-chevron-left"></i> dynamic array
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://www.gravatar.com/avatar/83f18dfd754f801352a9c1ee3df77c36.jpg?s=150"
+               alt="jing" />
+          <p class="site-author-name" itemprop="name">jing</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sillygod" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/disciple.starry" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#從出社會第一家做比特幣交易所的公司"><span class="nav-number">1.</span> <span class="nav-text">從出社會第一家做比特幣交易所的公司</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二間是個做交友網站的公司"><span class="nav-number">2.</span> <span class="nav-text">第二間是個做交友網站的公司</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接著第三家公司博奕公司"><span class="nav-number">3.</span> <span class="nav-text">接著第三家公司博奕公司</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Emacs-lisp-初學心得"><span class="nav-number"></span> <span class="nav-text">Emacs lisp 初學心得</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#emacs-hello-world"><span class="nav-number"></span> <span class="nav-text">emacs hello world</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#To-Sum-up"><span class="nav-number"></span> <span class="nav-text">To Sum up</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number"></span> <span class="nav-text">Reference</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jing</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://mytravelinprogramming.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://sillygod.github.io/2018/05/03/retire-break-thought/';
+          this.page.identifier = '2018/05/03/retire-break-thought/';
+          this.page.title = '離職休息、閱讀學習、記錄';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://mytravelinprogramming.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

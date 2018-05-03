@@ -88,13 +88,13 @@
 
 
 <meta name="description" content="最近讀lisp的心得，感覺的確是一個滿有趣的語言，要說讓我不怎麼喜歡的地方，大概就是那一堆(())這些符號，真的讓我剛開始，看到眼花，語言的可讀性跟python比起來真的差很多 :( 但是我也在想就是因為他的這種語言特性，才會讓lisp這麼多彩多姿 :)，也讓lisp有個說法是lisp就像是DNA一樣。   lisp全名是(list processor)，從這名字就可以略知一二了，在這程式語言裡">
-<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="lisp note 2">
 <meta property="og:url" content="http://sillygod.github.io/2013/09/20/lisp-note-2/index.html">
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="最近讀lisp的心得，感覺的確是一個滿有趣的語言，要說讓我不怎麼喜歡的地方，大概就是那一堆(())這些符號，真的讓我剛開始，看到眼花，語言的可讀性跟python比起來真的差很多 :( 但是我也在想就是因為他的這種語言特性，才會讓lisp這麼多彩多姿 :)，也讓lisp有個說法是lisp就像是DNA一樣。   lisp全名是(list processor)，從這名字就可以略知一二了，在這程式語言裡">
-<meta property="og:updated_time" content="2017-04-25T05:54:37.261Z">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-05-03T15:19:15.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lisp note 2">
 <meta name="twitter:description" content="最近讀lisp的心得，感覺的確是一個滿有趣的語言，要說讓我不怎麼喜歡的地方，大概就是那一堆(())這些符號，真的讓我剛開始，看到眼花，語言的可讀性跟python比起來真的差很多 :( 但是我也在想就是因為他的這種語言特性，才會讓lisp這麼多彩多姿 :)，也讓lisp有個說法是lisp就像是DNA一樣。   lisp全名是(list processor)，從這名字就可以略知一二了，在這程式語言裡">
@@ -361,7 +361,7 @@
 <p>其實 (1 2)，它相當於(cons 1 (cons 2 nil))這樣，當然你會想，要是你想建一個很長的list，那豈不是要打一長串這樣的東西，很麻煩 :( ，lisp是有提供一個syntax sugar的，那就是list，(list 1 2)，這樣的效果是一樣的。因此這也給我了一個想法，用cons是可以做出額外許多東西的，或許可以建造新型態? 只是目前我也沒試過，所以說lisp裡面的元素非cons即cons，似乎也無可厚非呢 :)  </p>
 <p>lisp這語言實在有好多東西要挖喔 :) 目前我沒辦法闡述太多心得，因為還有太多東西沒讀到，也還有太多東西沒釐清，所以沒辦法寫太多心得出來，但是，有一點是lisp有一些語法是有歷史淵源的，我覺得看那些歷史淵源，讓我了解更多的東西，千萬不要遇到語法就硬記，當你知道他的淵源，使用它就跟喝水一樣自然:)  </p>
 <p>我是這麼認為的，有太多人只把語言當作工具而利用，而沒有去深層了解他背後的語意和哲學，我覺得這是很可惜的，就像是為了考試而讀書一樣，沒有去了解書中給你的意境，想當然爾，會覺得讀書無趣，食之無味。 或許這就是現實面吧，我想lisp有效率上的問題，所以在以前才沒有熱門起來，但是不管如何，我還是覺得lisp值得一學，至少它目前讓我開了許多眼界 :)  </p>
-<p>在此提供一個可以當做文件查詢的網站<a href="http://clhs.lisp.se/Body/c_conses.htm" target="_blank" rel="external"> reference</a><br>另外lisp的表示法是用前序表達，這或許也是讓許多人第一次看不習慣的原因吧，這邊有個<a href="http://en.wikipedia.org/wiki/S-expression" target="_blank" rel="external">wiki</a> 可以看 </p>
+<p>在此提供一個可以當做文件查詢的網站<a href="http://clhs.lisp.se/Body/c_conses.htm" target="_blank" rel="noopener"> reference</a><br>另外lisp的表示法是用前序表達，這或許也是讓許多人第一次看不習慣的原因吧，這邊有個<a href="http://en.wikipedia.org/wiki/S-expression" target="_blank" rel="noopener">wiki</a> 可以看 </p>
 
       
     </div>
@@ -398,8 +398,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2013/09/24/c-regex/" rel="next" title="C++ regex">
-                <i class="fa fa-chevron-left"></i> C++ regex
+              <a href="/2013/09/18/first-time-to-play-lisp/" rel="next" title="first time to play lisp">
+                <i class="fa fa-chevron-left"></i> first time to play lisp
               </a>
             
           </div>
@@ -408,8 +408,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2013/09/18/first-time-to-play-lisp/" rel="prev" title="first time to play lisp">
-                first time to play lisp <i class="fa fa-chevron-right"></i>
+              <a href="/2013/09/24/c-regex/" rel="prev" title="C++ regex">
+                C++ regex <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -480,7 +480,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -555,7 +555,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

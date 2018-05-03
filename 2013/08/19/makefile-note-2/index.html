@@ -88,13 +88,13 @@
 
 
 <meta name="description" content="關於make的target和prerequisites是用dependency graph來做記錄的，所以像這樣的寫法   a: b.c c.ca: d.c e.c其實同等於a: b.c c.c d.c e.c   他只是持續的修改dependency graph而已，但是如果是用double colon(例:a::b.c c.c)事情就會變得不一樣了，它會分別建立dependency graph">
-<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="makefile note 2">
 <meta property="og:url" content="http://sillygod.github.io/2013/08/19/makefile-note-2/index.html">
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="關於make的target和prerequisites是用dependency graph來做記錄的，所以像這樣的寫法   a: b.c c.ca: d.c e.c其實同等於a: b.c c.c d.c e.c   他只是持續的修改dependency graph而已，但是如果是用double colon(例:a::b.c c.c)事情就會變得不一樣了，它會分別建立dependency graph">
-<meta property="og:updated_time" content="2017-04-25T05:54:37.257Z">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-05-03T15:19:15.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="makefile note 2">
 <meta name="twitter:description" content="關於make的target和prerequisites是用dependency graph來做記錄的，所以像這樣的寫法   a: b.c c.ca: d.c e.c其實同等於a: b.c c.c d.c e.c   他只是持續的修改dependency graph而已，但是如果是用double colon(例:a::b.c c.c)事情就會變得不一樣了，它會分別建立dependency graph">
@@ -362,7 +362,7 @@
 <p>clean:<br>    rm -f *.o  </p>
 <p>如此這類的，但是呢! 當你要用來做這種事情的時候，請記得多加這一行 .phony: clean<br>會需要多加這行的原因是 make它是無法辨別target是要用來產生檔案或是純粹執行指令，所以要加.phony的宣告，讓make知道它是always out of date，舉個例子吧，如果今天你沒有加這行會發生什麼事呢?  </p>
 <p>當你同目錄下沒有檔案叫做clean的話那一切就會正常，always out of date，但~~~是~有的話呢!，此時你的target就會被認為是要產生檔案用的，由於clean的rule並沒有任何prerequisites所以always up to date，所以就不會被執行了。   </p>
-<p>另外make是支援自定義變數的，例如: 你宣告了 compile = g++ ， 那麼當你要使用這變數時要用錢字號來取得，$(compile)這樣，make有所謂的 auto variable，詳情請見 <a href="http://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html" target="_blank" rel="external">這個</a><br>目前對這個沒太多研究，我想這個的目的大概是減少code的量，畢竟一直重複打同樣的字是一件很煩的事，像機器人的做的事就交給機器人來做吧 :) </p>
+<p>另外make是支援自定義變數的，例如: 你宣告了 compile = g++ ， 那麼當你要使用這變數時要用錢字號來取得，$(compile)這樣，make有所謂的 auto variable，詳情請見 <a href="http://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html" target="_blank" rel="noopener">這個</a><br>目前對這個沒太多研究，我想這個的目的大概是減少code的量，畢竟一直重複打同樣的字是一件很煩的事，像機器人的做的事就交給機器人來做吧 :) </p>
 
       
     </div>
@@ -399,8 +399,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2013/08/22/python-22/" rel="next" title="python 分析程式效率">
-                <i class="fa fa-chevron-left"></i> python 分析程式效率
+              <a href="/2013/08/17/makefile-note/" rel="next" title="makefile note">
+                <i class="fa fa-chevron-left"></i> makefile note
               </a>
             
           </div>
@@ -409,8 +409,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2013/08/17/makefile-note/" rel="prev" title="makefile note">
-                makefile note <i class="fa fa-chevron-right"></i>
+              <a href="/2013/08/22/python-22/" rel="prev" title="python 分析程式效率">
+                python 分析程式效率 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -481,7 +481,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -556,7 +556,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -88,15 +88,15 @@
 
 
 <meta name="description" content="pygments 簡單說是一個syntax highlighter，他支援的語言十分之多，最近會突然想閱讀他源碼，其實有部分原因是想開始練習閱讀open source，畢竟為了我另外一個project，我想，閱讀open source的能力，勢必要有所上升才行 :)   另外原因是，之前有朋友問，怎麼在blogger上面hightlight code，關於這個，我之前都是用這個 ，這是based">
-<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="read open source pygments 1">
 <meta property="og:url" content="http://sillygod.github.io/2014/05/03/read-open-source-pygments-1/index.html">
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="pygments 簡單說是一個syntax highlighter，他支援的語言十分之多，最近會突然想閱讀他源碼，其實有部分原因是想開始練習閱讀open source，畢竟為了我另外一個project，我想，閱讀open source的能力，勢必要有所上升才行 :)   另外原因是，之前有朋友問，怎麼在blogger上面hightlight code，關於這個，我之前都是用這個 ，這是based">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="http://i.imgur.com/TlAATpe.png">
 <meta property="og:image" content="http://i.imgur.com/bcecuSV.png">
-<meta property="og:updated_time" content="2017-04-25T05:54:37.261Z">
+<meta property="og:updated_time" content="2018-05-03T15:19:15.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="read open source pygments 1">
 <meta name="twitter:description" content="pygments 簡單說是一個syntax highlighter，他支援的語言十分之多，最近會突然想閱讀他源碼，其實有部分原因是想開始練習閱讀open source，畢竟為了我另外一個project，我想，閱讀open source的能力，勢必要有所上升才行 :)   另外原因是，之前有朋友問，怎麼在blogger上面hightlight code，關於這個，我之前都是用這個 ，這是based">
@@ -358,10 +358,10 @@
       
 
       
-        <p><a href="http://pygments.org/" target="_blank" rel="external">pygments</a> 簡單說是一個syntax highlighter，他支援的語言十分之多，最近會突然想閱讀他源碼，其實有部分原因是想開始練習閱讀open source，畢竟為了我另外一個project，我想，閱讀open source的能力，勢必要有所上升才行 :)  </p>
-<p>另外原因是，之前有朋友問，怎麼在blogger上面hightlight code，關於這個，我之前都是用<a href="http://alexgorbatchev.com/SyntaxHighlighter/" target="_blank" rel="external">這個</a> ，這是based on javascript的，所以必須要在blogger的後端，加入一些連結，而且每次要寫code時，都必須把code包覆在<code>&lt;pre brush:xx&gt;&lt;/pre&gt;</code>裡面，才會有效果出現，其實就以寫blog而言，真的有那麼一點不順就是了 :(  </p>
+        <p><a href="http://pygments.org/" target="_blank" rel="noopener">pygments</a> 簡單說是一個syntax highlighter，他支援的語言十分之多，最近會突然想閱讀他源碼，其實有部分原因是想開始練習閱讀open source，畢竟為了我另外一個project，我想，閱讀open source的能力，勢必要有所上升才行 :)  </p>
+<p>另外原因是，之前有朋友問，怎麼在blogger上面hightlight code，關於這個，我之前都是用<a href="http://alexgorbatchev.com/SyntaxHighlighter/" target="_blank" rel="noopener">這個</a> ，這是based on javascript的，所以必須要在blogger的後端，加入一些連結，而且每次要寫code時，都必須把code包覆在<code>&lt;pre brush:xx&gt;&lt;/pre&gt;</code>裡面，才會有效果出現，其實就以寫blog而言，真的有那麼一點不順就是了 :(  </p>
 <p>不過朋友說他做了設定後，卻沒有效果出來，好吧，我人沒在他旁邊，所以也不知道問題出在哪，所以最近在想乾脆用用pygments將code highlight後output成html格式，再將它PO在blog上面，這樣就比較簡單了 :) 於是我的閱讀之旅就這樣開始拉，雖然僅能利用假日來讀 :(<br><img src="http://i.imgur.com/TlAATpe.png" alt="pci"><br>我想，首先就從package的<code>__init__.py</code>來開始看，應該是沒錯的，如上圖所示，它做了一些最基本的說明 “pygments 是一個用python寫的語法高亮器 bla bla bla” 以下省略 :p  </p>
-<p>這邊特別說明一下 <code>__all__</code> 這個東西的效用，其實看<a href="https://docs.python.org/3.2/tutorial/modules.html?highlight=__all__" target="_blank" rel="external">官網</a> 的說明，就大概知道了，當你用 <code>from pygments import *</code>，如果你有定義 <code>__all__</code> ，那它只會import 在all裡面的那些東東而已，沒定義的話，就會看你的 <code>__init__.py</code> 裡面有什麼就 import 啥，比如上面有<code>import sys</code>，那它也會跟著<code>import sys</code>，好啦轉回正題~  </p>
+<p>這邊特別說明一下 <code>__all__</code> 這個東西的效用，其實看<a href="https://docs.python.org/3.2/tutorial/modules.html?highlight=__all__" target="_blank" rel="noopener">官網</a> 的說明，就大概知道了，當你用 <code>from pygments import *</code>，如果你有定義 <code>__all__</code> ，那它只會import 在all裡面的那些東東而已，沒定義的話，就會看你的 <code>__init__.py</code> 裡面有什麼就 import 啥，比如上面有<code>import sys</code>，那它也會跟著<code>import sys</code>，好啦轉回正題~  </p>
 <p>這個檔案的結構也滿簡單的，highlight這個function用到了 lex 和 format，另外當<code>__init__.py</code>被當成執行入口時，它會import cmdline.py，所以接下來我要去讀的package和檔案其實也滿明顯的，接下來我是選擇先閱讀cmdline.py，其實從名字一看也知道這是關於在cmd中如何進行操作的檔案，看完這檔案，應該就知道怎麼使用 pygments了，畢竟先懂得怎麼使用，然後再試著修改，我想這應該是不錯的順序吧 :p，另外也不用再去看官方docments的操作說明 :)<br><img src="http://i.imgur.com/bcecuSV.png" alt="pic"><br>看吧，果然有使用方法，不過這檔案用到挺多東西的，其中它用到了兩個standard module，  </p>
 <ol>
 <li>getopt  </li>
@@ -412,8 +412,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/05/10/read-open-source-pygments-2/" rel="next" title="read open source pygments 2">
-                <i class="fa fa-chevron-left"></i> read open source pygments 2
+              <a href="/2014/04/27/pygame-framefork/" rel="next" title="pygame framefork 持續進行中">
+                <i class="fa fa-chevron-left"></i> pygame framefork 持續進行中
               </a>
             
           </div>
@@ -422,8 +422,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/04/27/pygame-framefork/" rel="prev" title="pygame framefork 持續進行中">
-                pygame framefork 持續進行中 <i class="fa fa-chevron-right"></i>
+              <a href="/2014/05/10/read-open-source-pygments-2/" rel="prev" title="read open source pygments 2">
+                read open source pygments 2 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -494,7 +494,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -569,7 +569,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -93,6 +93,7 @@
 <meta property="og:url" content="http://sillygod.github.io/page/5/index.html">
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="I am a web developer. love python, know js, css, html and learn haskell in spare time.">
+<meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="My Travel in Programming">
 <meta name="twitter:description" content="I am a web developer. love python, know js, css, html and learn haskell in spare time.">
@@ -250,6 +251,166 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2013/09/20/lisp-note-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/83f18dfd754f801352a9c1ee3df77c36.jpg?s=150">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Travel in Programming">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/09/20/lisp-note-2/" itemprop="url">
+                  lisp note 2
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-09-20T06:07:00+00:00">
+                2013-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/lisp/" itemprop="url" rel="index">
+                    <span itemprop="name">lisp</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/09/20/lisp-note-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2013/09/20/lisp-note-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p> 最近讀lisp的心得，感覺的確是一個滿有趣的語言，要說讓我不怎麼喜歡的地方，大概就是那一堆(())這些符號，真的讓我剛開始，看到眼花，語言的可讀性跟python比起來真的差很多 :( 但是我也在想就是因為他的這種語言特性，才會讓lisp這麼多彩多姿 :)，也讓lisp有個說法是lisp就像是DNA一樣。  </p>
+<p>lisp全名是(list processor)，從這名字就可以略知一二了，在這程式語言裡，你會看到一堆list，事實也是如此，大致上可以這樣看，lisp裡面的元素，可以分為兩種非cons，是cons，是什麼意思呢?  </p>
+<p>cons掌控著兩個指標，第一個指標指的元素(car)，第二個是(cdr)，所以你會看到有語法是這樣的， (car ‘(1 2))， 這將會得到1，想當然爾(cdr ‘(1 2))，就是得到2，看到我看到這樣的語法時，心中就開始想了一件事…..<br>那就是，既然這語法是成功執行的，那是不是代表後面那東西就是一種cons所組成的物件?<br>後來，經過網路上的搜尋後，事實果然就是如此!!  </p>
+<p>其實 (1 2)，它相當於(cons 1 (cons 2 nil))這樣，當然你會想，要是你想建一個很長的list，那豈不是要打一長串這樣的東西，很麻煩 :( ，lisp是有提供一個syntax sugar的，那就是list，(list 1 2)，這樣的效果是一樣的。因此這也給我了一個想法，用cons是可以做出額外許多東西的，或許可以建造新型態? 只是目前我也沒試過，所以說lisp裡面的元素非cons即cons，似乎也無可厚非呢 :)  </p>
+<p>lisp這語言實在有好多東西要挖喔 :) 目前我沒辦法闡述太多心得，因為還有太多東西沒讀到，也還有太多東西沒釐清，所以沒辦法寫太多心得出來，但是，有一點是lisp有一些語法是有歷史淵源的，我覺得看那些歷史淵源，讓我了解更多的東西，千萬不要遇到語法就硬記，當你知道他的淵源，使用它就跟喝水一樣自然:)  </p>
+<p>我是這麼認為的，有太多人只把語言當作工具而利用，而沒有去深層了解他背後的語意和哲學，我覺得這是很可惜的，就像是為了考試而讀書一樣，沒有去了解書中給你的意境，想當然爾，會覺得讀書無趣，食之無味。 或許這就是現實面吧，我想lisp有效率上的問題，所以在以前才沒有熱門起來，但是不管如何，我還是覺得lisp值得一學，至少它目前讓我開了許多眼界 :)  </p>
+<p>在此提供一個可以當做文件查詢的網站<a href="http://clhs.lisp.se/Body/c_conses.htm" target="_blank" rel="noopener"> reference</a><br>另外lisp的表示法是用前序表達，這或許也是讓許多人第一次看不習慣的原因吧，這邊有個<a href="http://en.wikipedia.org/wiki/S-expression" target="_blank" rel="noopener">wiki</a> 可以看 </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2013/09/18/first-time-to-play-lisp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -361,14 +522,14 @@
         
           
             <p>最近不知道怎麼搞的，突然想要來碰一下這十分古老的語言 :) lisp是一個充滿分支的語言，我覺得他沒有像python那樣有一個強力標準在，意思是python有一個官方版本，雖然python也有眾多分支就是了，像是Jpython, Ironpython….有的沒的。  </p>
-<p>其實在後來有一個算的上稱為標準的lisp，那就是common lisp，以後在網路上搜索的結果，發現比較多人在用的是clisp(common lisp)和SBCL，但是common lisp也是有眾多實做版本，，我是下載 <a href="http://sourceforge.net/projects/clisp/" target="_blank" rel="external">gnu common lisp</a> ，如果想要玩SBCL請自行去找載點囉 :)  </p>
+<p>其實在後來有一個算的上稱為標準的lisp，那就是common lisp，以後在網路上搜索的結果，發現比較多人在用的是clisp(common lisp)和SBCL，但是common lisp也是有眾多實做版本，，我是下載 <a href="http://sourceforge.net/projects/clisp/" target="_blank" rel="noopener">gnu common lisp</a> ，如果想要玩SBCL請自行去找載點囉 :)  </p>
 <p>lisp的在網路上的資源，說多也不多，說少也不少，但是我覺得似乎沒那麼熱門，畢竟這語言，曾經被冷落一段時間，但是經過我稍微一探lisp的世界，我發現這語言雖然古老，但是它卻有著許多現代語言的特性，甚至該說更好嗎? 垃圾回收機制他也擁有。但是令我比較驚訝的是它的例外處理，他不像目前的語言，一遇到錯誤就只是丟個訊息，然後程式結束，lisp它似乎會讓你進入debug模式的樣子，然後列出一些你可以執行的動作，目前我也才剛碰一兩天而已，所以還無法完整了解，lisp的哲學，必須過一段時間才能領域精髓。<br><img src="http://i.imgur.com/660Ts3S.png" alt="pic"><br>上面是我的開發環境，因為網路上，我看到推薦的幾乎一致是 emacs + slime + your clisp，所以我就用囉，其實最近也在學vim，但是我看到的插件，竟然跟gnu screen配合，這實在是…很悲劇的他沒提供windows版的:( ，當然其實也有不是用gnu screen，純粹用vim buffer的，插件名字是slimv，但是目前還找不到無法使用的原因，目前猜想是我vim支持的python版本的不合的關係，但是我可不想為了這個，而重新去compile一個vim來用…，或許也是其他原因也說不定，只是想要無痛設定開發環境，就用emacs吧 :) 畢竟slime本來就是emacs的插件。  </p>
-<p>其實如果你不想要為了學lisp而在去安裝emacs、學emacs的話，我有找到一個IDE，方便好用，以供參考<a href="http://www.franz.com/downloads/clp/survey" target="_blank" rel="external">allegro common lisp</a> ，但是介面實在是…，如果你不介意介面的話，又不想碰emacs，那就用這個吧 :)  </p>
+<p>其實如果你不想要為了學lisp而在去安裝emacs、學emacs的話，我有找到一個IDE，方便好用，以供參考<a href="http://www.franz.com/downloads/clp/survey" target="_blank" rel="noopener">allegro common lisp</a> ，但是介面實在是…，如果你不介意介面的話，又不想碰emacs，那就用這個吧 :)  </p>
 <p>另外這邊記錄一下目前找到的資源，滿意外的lisp，有不少免費電子書而且品質還算不錯!!  </p>
 <ul>
-<li><a href="http://acl.readthedocs.org/en/latest/zhTW/index.html" target="_blank" rel="external">ansi common lisp</a> </li>
-<li><a href="http://zh.wikibooks.org/wiki/Category:Lisp_%E5%85%A5%E9%96%80" target="_blank" rel="external">wiki tutorial</a> </li>
-<li><a href="http://www.gigamonkeys.com/book/" target="_blank" rel="external">practical common lisp</a> </li>
+<li><a href="http://acl.readthedocs.org/en/latest/zhTW/index.html" target="_blank" rel="noopener">ansi common lisp</a> </li>
+<li><a href="http://zh.wikibooks.org/wiki/Category:Lisp_%E5%85%A5%E9%96%80" target="_blank" rel="noopener">wiki tutorial</a> </li>
+<li><a href="http://www.gigamonkeys.com/book/" target="_blank" rel="noopener">practical common lisp</a> </li>
 </ul>
 <p>我想看完這些就差不多了吧 :) </p>
 
@@ -531,13 +692,13 @@
 <li>script language是用python</li>
 <li>開起速度很快，體積輕巧</li>
 </ul>
-<p>還有很多，有興趣的就看看吧 <a href="http://www.sublimetext.com/2" target="_blank" rel="external">sublime text</a>  </p>
+<p>還有很多，有興趣的就看看吧 <a href="http://www.sublimetext.com/2" target="_blank" rel="noopener">sublime text</a>  </p>
 <p>哈有點離題 :) 我會突然想用用看vim的原因是就我看看emacs和vim的差別，其實我覺得emacs遠遠強於vim，它可以做的事太多了，我只能說emacs已經不能算是editor了，而且他的腳本語言是用lisp的方言，一個很有趣的語言，只是目前我也沒涉略太深就是了，但是vim有其吸引人的地方，我覺得他強調的特色是快速編輯，他的快捷鍵設定方式比較方便，相較之下emacs則是用到大量的ctrl、alt來結合，老實說這樣對於打字速度的確會慢下來，我想或許是這樣差異讓比較多人選擇vim吧，當然還有一些決定性的原因，但是就不一一列出來了，我就是因為快捷鍵和體積輕巧而從兩者間選擇vim來玩玩，來看看他到底有什麼魅力?  </p>
-<p>首先就到<a href="http://www.vim.org/" target="_blank" rel="external">這邊</a>下載vim，這邊有事情要注意的是，我平台是windows，要是你直接用網站上提供的windows installer，那到是一切順遂，不用擔心其他問題，但是如果你像我一樣選擇官方事先幫你built好的檔案(因為我想要portable版)，會有個問題那就是，這個vim並沒有python surpport，意思是你沒辦法用python來custom vim，只能乖乖用vimscript來寫，這也代表你用的plugin也不能是用python寫的，因為沒support，要是你覺得沒差那就用吧 :)  </p>
+<p>首先就到<a href="http://www.vim.org/" target="_blank" rel="noopener">這邊</a>下載vim，這邊有事情要注意的是，我平台是windows，要是你直接用網站上提供的windows installer，那到是一切順遂，不用擔心其他問題，但是如果你像我一樣選擇官方事先幫你built好的檔案(因為我想要portable版)，會有個問題那就是，這個vim並沒有python surpport，意思是你沒辦法用python來custom vim，只能乖乖用vimscript來寫，這也代表你用的plugin也不能是用python寫的，因為沒support，要是你覺得沒差那就用吧 :)  </p>
 <p>所謂的支不支持，輸入:version就可以看出來了如下圖<br><img src="http://i.imgur.com/oFz3wT0.png" alt="pic"><br>有+表示支持。  </p>
-<p>下載下來後，當然就要去安裝一些好用的plugin，我想第一個要安裝的應該是 <a href="https://github.com/tpope/vim-pathogen" target="_blank" rel="external">pathogen</a><br>這個東西的作用就跟sublime text的package control一樣，管理你的插件，如果你不安裝這個也行，那就是你得手動慢慢安裝插件，把什麼檔放到什麼資料夾中….，到時候想要刪除該plugin嘿嘿也頗麻煩 :)  </p>
-<p>再來我安裝的是 <a href="https://github.com/scrooloose/nerdtree" target="_blank" rel="external">nerdtree</a> ，就是一個file browser，不解釋 :)  </p>
-<p>這是我目前vim的樣子<br><img src="http://i.imgur.com/usjdcQV.png" alt="pic"><br>另外我還安裝一個東西，叫做 <a href="https://code.google.com/p/conque/" target="_blank" rel="external">conque</a> ，這個讓你vim buffer來做為一個terminal emulator，滿方便的東西，這功能emacs本身就有，若是你沒在在意，快捷鍵設定的方式，那就用emacs或sublime看看吧，而且兩者都有提供”一定程度”的vim快捷鍵。  </p>
+<p>下載下來後，當然就要去安裝一些好用的plugin，我想第一個要安裝的應該是 <a href="https://github.com/tpope/vim-pathogen" target="_blank" rel="noopener">pathogen</a><br>這個東西的作用就跟sublime text的package control一樣，管理你的插件，如果你不安裝這個也行，那就是你得手動慢慢安裝插件，把什麼檔放到什麼資料夾中….，到時候想要刪除該plugin嘿嘿也頗麻煩 :)  </p>
+<p>再來我安裝的是 <a href="https://github.com/scrooloose/nerdtree" target="_blank" rel="noopener">nerdtree</a> ，就是一個file browser，不解釋 :)  </p>
+<p>這是我目前vim的樣子<br><img src="http://i.imgur.com/usjdcQV.png" alt="pic"><br>另外我還安裝一個東西，叫做 <a href="https://code.google.com/p/conque/" target="_blank" rel="noopener">conque</a> ，這個讓你vim buffer來做為一個terminal emulator，滿方便的東西，這功能emacs本身就有，若是你沒在在意，快捷鍵設定的方式，那就用emacs或sublime看看吧，而且兩者都有提供”一定程度”的vim快捷鍵。  </p>
 <p>目前用起來，就是還有好多快捷鍵要去記… 而且就算是我努力調整vim介面後，我還是感覺sublime text介面完勝阿，讓我動不動就關掉vim換sublime text:)  可能是我一直以來用sublime text，一個短暫時間沒用他，就開始想念它了吧。  </p>
 <p>往後發現有什麼需要記錄的東西，在來PO</p>
 
@@ -695,8 +856,8 @@
           
             <p>最近開始回去用C++，乎~真的是久沒用，除了打code時忘了用 ; 來結尾，還有忘了打 { }(因為太習慣python了…)，另外對於一些C++ compiler背後運作的方式都有點生疏了，像是一些關於繼承方面會用到的語法xxx: public virtual xxx，虛擬繼承的東西，為啥會有這種東西的存在我不用多說吧? 有興趣就google: c++ diamod problem。  </p>
 <p>今天是想要記錄一些比較瑣碎的東西，以前我在用std::vector的時候，從來都沒有用資料型態是指標的，所以就沒有注意到一個問題，那就是如下code所示  </p>
-<pre><code class="cpp"><span class="class"><span class="keyword">class</span> <span class="title">animal</span>  
-{</span>  
+<pre><code class="cpp"><span class="class"><span class="keyword">class</span> <span class="title">animal</span>  </span>
+<span class="class">{</span>  
 <span class="keyword">public</span>:  
  animal()  
  {  
@@ -741,8 +902,8 @@
 
 
 
-<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>  
-</span>{  
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>  </span>
+<span class="function"></span>{  
  <span class="built_in">vector</span>&lt;animal*&gt; obj;  
  obj.push_back(<span class="keyword">new</span> cat());  
  obj.push_back(<span class="keyword">new</span> dog());  
@@ -756,7 +917,7 @@
  }  
  <span class="built_in">cout</span>&lt;&lt;<span class="string">"..."</span>&lt;&lt;<span class="built_in">endl</span>;  
  <span class="keyword">return</span> <span class="number">0</span>;  
-}
+}  
 </code></pre>
 <p>今天我宣告一個baseclass名為animal，然後有兩個class去繼承他分別為cat和dog，用這樣是為了來做一個upcasting的例子而已，其實這樣的做法是有其方便的地方，假如你今天在做一個遊戲，想當然爾需要常常用到Draw(…)來render物件吧，那麼這時候upcasting這種方式就可以出來耀武揚威了:) 你可以宣告一個interface裡面有draw()，然後繼承該class的class也必須分別implement它們各自的Draw的內容，那麼接下來你就可以用<br><code>`cpp
 vector&lt;xxx*&gt; obj  
@@ -930,10 +1091,10 @@ for(.......)
         
           
             <p>最近開始動手寫我之前講要實做的image displayer了，要學的東西太多，所以就晚了許多時刻才開始研究 :)<br>大體上動機是想要讓自己更加了解qt這個library，另外的目的就是windows預設的image displayer是無法看動態gif的，所以我打算自己做一個可以看動態gif的圖片檢視器，目前的進度是這樣，一個非常楊春的界面，還有功能 :(  </p>
-<p>介面架構:<br><img src="http://4.bp.blogspot.com/-ts3zKxfTXoc/Uh73aR4SZQI/AAAAAAAAADU/nbJ_q1oj3p4/s1600/3.png" alt="pic"><br>大概就簡單如上面所示，只是toolbar的方面還要設計icon，所以目前就沒加上去，所以進度目前是50%吧 :) (或許更低)，下面影片是展示目前的進度  <a href="http://www.youtube.com/v/6w2TaPNtjlg?version=3&amp;f=user_uploads&amp;c=google-webdrive-0&amp;app=youtube_gdata" target="_blank" rel="external">連結</a>  </p>
+<p>介面架構:<br><img src="http://4.bp.blogspot.com/-ts3zKxfTXoc/Uh73aR4SZQI/AAAAAAAAADU/nbJ_q1oj3p4/s1600/3.png" alt="pic"><br>大概就簡單如上面所示，只是toolbar的方面還要設計icon，所以目前就沒加上去，所以進度目前是50%吧 :) (或許更低)，下面影片是展示目前的進度  <a href="http://www.youtube.com/v/6w2TaPNtjlg?version=3&amp;f=user_uploads&amp;c=google-webdrive-0&amp;app=youtube_gdata" target="_blank" rel="noopener">連結</a>  </p>
 <p>稍後整理目前心得，一直查官方文件看的有夠累 :(<br>整理完再重新編輯這篇文章 :-S<br>目前使用的qt物件<br>QGraphicsScene<br>QGraphicsView<br>QgridLayout<br>QMainWindow<br>..<br>..<br>其實QT實在有太多東西了，讓我覺得其實要做同樣的東西，可以使用很多不同的元件去達成，為何最後我會選QGraphicsScene來顯示圖片，是因為他對2D圖片顯示似乎是比較快的，當然你也可以用QLabel來達成，只是我想效率可能就會比較低吧? 沒實際比較過也不清楚 ，而且QGraphicsView可以控制你觀看QGraphicsScene的視角，像是旋轉阿~有的沒的，所以在種種因素考慮下才使用這兩個。  </p>
 <p>另外QT其實有提供designer讓你可以用拖曳的方式來做GUI界面，滿方便的:) 只是我想要先嘗試一下hard coding的感覺而已  </p>
-<p>要看源碼的話，我有放在github上面<a href="https://github.com/sillygod/my-travel-in-learning-python/tree/master/imageDisplayer" target="_blank" rel="external">點此</a>，最近才開使用 :)  </p>
+<p>要看源碼的話，我有放在github上面<a href="https://github.com/sillygod/my-travel-in-learning-python/tree/master/imageDisplayer" target="_blank" rel="noopener">點此</a>，最近才開使用 :)  </p>
 
           
         
@@ -1093,7 +1254,7 @@ for(.......)
 <li>git clone</li>
 </ol>
 <p>第一種，就是你在cmd中，先移到你要的目錄然後輸入git init，就會產生.git的directory，裡面當然就是包含著一些有的沒的，用來確認檔案狀態阿，還有一些configuration，目前不會深入講解那些。  </p>
-<p>第二種，就是比如你在網路上看到一些open source比如像<a href="https://github.com/django/django" target="_blank" rel="external">這個</a>，你有興趣想要把它整個下載下來，這時候如同上面先移到你要的目錄，然後輸入 git clone <a href="https://github.com/django/django.git" target="_blank" rel="external">https://github.com/django/django.git</a> 這樣就會將整個repository下載下來。<br><img src="http://4.bp.blogspot.com/-NDRF8DoIMtE/UhySz5R0BBI/AAAAAAAAADE/WiJNxlnNmzQ/s1600/%E6%9C%AA%E5%91%BD%E5%90%8D.png" alt="pic"><br>圖案來源是前一篇所堤到的電子書裡面的 :) 目前正在閱讀中   </p>
+<p>第二種，就是比如你在網路上看到一些open source比如像<a href="https://github.com/django/django" target="_blank" rel="noopener">這個</a>，你有興趣想要把它整個下載下來，這時候如同上面先移到你要的目錄，然後輸入 git clone <a href="https://github.com/django/django.git" target="_blank" rel="noopener">https://github.com/django/django.git</a> 這樣就會將整個repository下載下來。<br><img src="http://4.bp.blogspot.com/-NDRF8DoIMtE/UhySz5R0BBI/AAAAAAAAADE/WiJNxlnNmzQ/s1600/%E6%9C%AA%E5%91%BD%E5%90%8D.png" alt="pic"><br>圖案來源是前一篇所堤到的電子書裡面的 :) 目前正在閱讀中   </p>
 <p>git對於檔案有分為上面這幾種狀態<br>對於repository裡面的檔案狀態，你隨時可以輸入git status來查看  </p>
 <p>舉例:<br>剛開始一個空的repository，如果你輸入git status則會告訴你nothing to commit，意指沒有檔案被修改，接著你創了一個readme.txt，再輸入一次這指令，它就會告訴你你有untracked file: readme.txt，所以當你想要讓git開始track這個檔案的時候就得輸入 git add readme.txt，如此一來這個檔案就處於staged的狀態，再來如果你修改了readme.txt，這時候檔案就處於modified狀態，必須再輸入一次git add讓它再一次處於staged狀態。  </p>
 <p>為何要讓檔案處於staged狀態呢? 因為git commit這指令只會commit那些檔案處於staged狀態。其實這些指令還有很多詳細的用法，你只要在cmd中輸入git help就會跑出一堆git可以用的指令，然後在更進一步比如你想要知道git add有什麼其他用法，那就輸入git help add，就會有更詳細的解說。  </p>
@@ -1257,7 +1418,7 @@ for(.......)
 <p>但是有時候我突然在想如果我在不同的地方，想要繼續把某個code給完成，這時候我就得先想過，我曾經在某地方是否下載過，然後做了一些修改，最後是否有上傳呢? 如果沒有的話，那我現在寫的這些又該怎麼跟之前寫過的合併?<br><img src="http://3.bp.blogspot.com/-5BvdLGM6j7w/UhtbTvpWsEI/AAAAAAAAAC0/HRz5yxzNfsU/s1600/1.png" alt="pic"><br> 嘿嘿，version control這種工具就有提供merge這種功能，可以把兩種不同版本的code給merge起來，你可以先把目前寫的上傳上去，然後在回去把之前修改過的也上傳上去，最後在merge，一切輕鬆，而且另外的情形是，萬一你修改了很多很多的code，然後你突然後悔了想要復原這些修改，又剛好你在寫之前沒備份，這時候git就方便拉，它有功能是可以讓你回到上一個版本的樣子呢。  </p>
 <p>version control是不錯用的工具，所以我想說乾脆以後如果要寫什麼program的話，乾脆就用git這version control的工具，放在github這樣，順便也可以當作備份呢 :)  </p>
 <p>只是git我目前也不怎麼熟悉，所以打算做一些做記錄，免得忘記一些指令該怎麼用 :)  </p>
-<p>這是<a href="http://git-scm.com/" target="_blank" rel="external">官網</a> 上面有免費的電子書，可以下載下來，想學git就去看吧</p>
+<p>這是<a href="http://git-scm.com/" target="_blank" rel="noopener">官網</a> 上面有免費的電子書，可以下載下來，想學git就去看吧</p>
 
           
         
@@ -1411,8 +1572,8 @@ for(.......)
       
         
           
-            <p>關於makefile的變數assign的方式，目前看到的大概有三種，詳細資料請看 <a href="http://www.ecoop.net/coop/translated/GNUMake3.77/make_6.html#SEC63" target="_blank" rel="external">這個</a>  </p>
-<p>第一種 simple expand variable，是使用 := 這樣的operator<br>舉個例子<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">who := mark  </div><div class="line">act :=  <span class="variable">$(who)</span> say  </div><div class="line">who := alice  </div><div class="line">echo <span class="variable">$(act)</span>  </div><div class="line">```  </div><div class="line">將會是 mark say，:=這種assgn的operator，如同字面上所言簡單的擴展，他一遇到該行就直接擴展並不會去查他最後是什麼樣子，如果你想要結果是 alice say的話那麼就是要使用第二種方式。  </div><div class="line">  </div><div class="line">第二種 recursive expand，是使用= 這樣的operator  </div><div class="line">```makefile  </div><div class="line">who = mark  </div><div class="line">act = <span class="variable">$(who)</span> say  </div><div class="line">who = alice  </div><div class="line">echo <span class="variable">$(act)</span>  </div><div class="line">```  </div><div class="line">這樣一來結果就會是alice say  </div><div class="line">  </div><div class="line">第三種是conditional variable assginment operator，是使用?=這樣的operator </div><div class="line">```makefile</div><div class="line">who = mark  </div><div class="line">act = <span class="variable">$(who)</span> say  </div><div class="line">who ?= alice  </div><div class="line">echo <span class="variable">$(act)</span></div></pre></td></tr></table></figure></p>
+            <p>關於makefile的變數assign的方式，目前看到的大概有三種，詳細資料請看 <a href="http://www.ecoop.net/coop/translated/GNUMake3.77/make_6.html#SEC63" target="_blank" rel="noopener">這個</a>  </p>
+<p>第一種 simple expand variable，是使用 := 這樣的operator<br>舉個例子<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">who := mark  </span><br><span class="line">act :=  <span class="variable">$(who)</span> say  </span><br><span class="line">who := alice  </span><br><span class="line">echo <span class="variable">$(act)</span>  </span><br><span class="line">```  </span><br><span class="line">將會是 mark say，:=這種assgn的operator，如同字面上所言簡單的擴展，他一遇到該行就直接擴展並不會去查他最後是什麼樣子，如果你想要結果是 alice say的話那麼就是要使用第二種方式。  </span><br><span class="line">  </span><br><span class="line">第二種 recursive expand，是使用= 這樣的operator  </span><br><span class="line">```makefile  </span><br><span class="line">who = mark  </span><br><span class="line">act = <span class="variable">$(who)</span> say  </span><br><span class="line">who = alice  </span><br><span class="line">echo <span class="variable">$(act)</span>  </span><br><span class="line">```  </span><br><span class="line">這樣一來結果就會是alice say  </span><br><span class="line">  </span><br><span class="line">第三種是conditional variable assginment operator，是使用?=這樣的operator </span><br><span class="line">```makefile</span><br><span class="line">who = mark  </span><br><span class="line">act = <span class="variable">$(who)</span> say  </span><br><span class="line">who ?= alice  </span><br><span class="line">echo <span class="variable">$(act)</span></span><br></pre></td></tr></table></figure></p>
 <p>嘿嘿結果是 mark say喔~ 這個operator的作用是他會檢查該變數是否有值，有值的話就不會做assign的動作  </p>
 <p>關於make，基本上似乎看官方文件就很OK了，遇到不會的符號查查官方文件大概就有解，我是看gnu make的官方文件，畢竟mingw-make我找不到相關的文件，我想大概是mingw-make就是gnu make來的吧，所以兩者差異應該不大才是。</p>
 
@@ -1568,9 +1729,9 @@ for(.......)
       
         
           
-            <p>這是意外發現到的python standard module裡面有個較做profile.py，這東西實在是異常好用阿! 由於上次我用python寫粒子碰撞，我發現當我用到150個particle互相碰撞時，fps就開始降了，於是我開始想著要怎麼提升效率，我在論壇上面發問，結果就有人給我這個分析的方法，實在是很感謝那個人:) python又讓我驚豔了一次。  首先就來看看這張結果圖吧<br><img src="http://i.imgur.com/LRQIq93.png" alt="pic"><br>非常詳細的分析，這個模組的使用方法其實很簡單，<a href="http://docs.python.org/3.2/library/profile.html" target="_blank" rel="external">官方網站</a> 隨便看都懂，在cmd裡面打cProfile.py -o outputfile.txt youfile.py，這麼一來就會將分析結果存在outputfile.txt中，cProfile.py是用C實現的比起profile.py純python實現，來的有效率。<br>然後呢要查看這個結果時再用 pstats 這模組  </p>
+            <p>這是意外發現到的python standard module裡面有個較做profile.py，這東西實在是異常好用阿! 由於上次我用python寫粒子碰撞，我發現當我用到150個particle互相碰撞時，fps就開始降了，於是我開始想著要怎麼提升效率，我在論壇上面發問，結果就有人給我這個分析的方法，實在是很感謝那個人:) python又讓我驚豔了一次。  首先就來看看這張結果圖吧<br><img src="http://i.imgur.com/LRQIq93.png" alt="pic"><br>非常詳細的分析，這個模組的使用方法其實很簡單，<a href="http://docs.python.org/3.2/library/profile.html" target="_blank" rel="noopener">官方網站</a> 隨便看都懂，在cmd裡面打cProfile.py -o outputfile.txt youfile.py，這麼一來就會將分析結果存在outputfile.txt中，cProfile.py是用C實現的比起profile.py純python實現，來的有效率。<br>然後呢要查看這個結果時再用 pstats 這模組  </p>
 <pre><code class="python">p = pstats.Stats(<span class="string">'outputfile.txt'</span>)  
-p.sort_stats(<span class="string">'time'</span>).print_stats(<span class="number">10</span>)
+p.sort_stats(<span class="string">'time'</span>).print_stats(<span class="number">10</span>)  
 </code></pre>
 <p>經過這兩行就會，將結果過濾成以total time來排序並取前10名，如這張圖表示，拖累效率的地方在於collision這function，其實前幾名都把矛頭指向一個地方，那就是我之前寫的vector:(<br>果然用python來直接寫數學運算是比較沒效率的。  </p>
 <p>本來的想法是想用numpy來試試看，可是看過官方document後，我覺得numpy是對於數組的運算才有比較大的效率差別，也就是array的運算，因此決定乾脆用C++來寫一個python版的vector :) 不過這得稍微花時間來研究一下了 :)</p>
@@ -1734,176 +1895,7 @@ p.sort_stats(<span class="string">'time'</span>).print_stats(<span class="number
 <p>clean:<br>    rm -f *.o  </p>
 <p>如此這類的，但是呢! 當你要用來做這種事情的時候，請記得多加這一行 .phony: clean<br>會需要多加這行的原因是 make它是無法辨別target是要用來產生檔案或是純粹執行指令，所以要加.phony的宣告，讓make知道它是always out of date，舉個例子吧，如果今天你沒有加這行會發生什麼事呢?  </p>
 <p>當你同目錄下沒有檔案叫做clean的話那一切就會正常，always out of date，但~~~是~有的話呢!，此時你的target就會被認為是要產生檔案用的，由於clean的rule並沒有任何prerequisites所以always up to date，所以就不會被執行了。   </p>
-<p>另外make是支援自定義變數的，例如: 你宣告了 compile = g++ ， 那麼當你要使用這變數時要用錢字號來取得，$(compile)這樣，make有所謂的 auto variable，詳情請見 <a href="http://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html" target="_blank" rel="external">這個</a><br>目前對這個沒太多研究，我想這個的目的大概是減少code的量，畢竟一直重複打同樣的字是一件很煩的事，像機器人的做的事就交給機器人來做吧 :) </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://sillygod.github.io/2013/08/17/makefile-note/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="jing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/83f18dfd754f801352a9c1ee3df77c36.jpg?s=150">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My Travel in Programming">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/08/17/makefile-note/" itemprop="url">
-                  makefile note
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-08-17T07:24:00+00:00">
-                2013-08-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/makefile/" itemprop="url" rel="index">
-                    <span itemprop="name">makefile</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/08/17/makefile-note/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/08/17/makefile-note/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>我一直以來其實都不怎麼想用makefile來進行編譯的工作 :( 因為實在是有太多好用的IDE了!哈哈，只是我最近常常用sublime text做為我的coding環境，但是只用它來寫python和網頁語言而已。  </p>
-<p>最近突然想到乾脆比較簡單的C++也在這環境寫好了:) 因此決定來親自碰一下這東西好了，這樣一來我只要自己寫一個subilme build的檔案，就可以按下ctrl+B進行編譯了。  </p>
-<p><a href="http://i.imgur.com/1IO2lP3.png" target="_blank" rel="external"><img src="http://i.imgur.com/1IO2lP3.png" alt=""></a></p>
-<p>如上所示!OK  </p>
-<p> makefile的規則包括三個部份如下  </p>
-<ol>
-<li>target</li>
-<li>prerequisite</li>
-<li>commands</li>
-</ol>
-<p>target: prerequisite<br>[tab] commands  # [tab]表示字元\t而已  </p>
-<p>target:簡單說就是你所要建置的目標，不一定要為檔名<br>prerequisite:建置目標前，所需要的先決條件<br>commands:就是shell commands!! 記得開頭得有tab才行  </p>
-<p>ex:<br>cc.exe: cc.o<br>[tab] mingw32-g++ cc.o -o cc.exe<br>cc.o: cc.cpp<br>[tab] mingw32-g++ cc.cpp -std=c++11 -c   </p>
-<p>然後當我在cmd中輸入mingw32-make，由於我沒給任何argument所以他會以預設得來執行，但是預設的是什麼呢? 答案就是開頭最前面的target。接下來make的分析規則大概是這樣的，先看target和prerequisite去找檔案，如果prerequisite有相關的rule存在那麼就會以他為優先去執行，另外如果prerequisite比target還要新(意思是像是進行修改)，那麼就會rebuild該target。  </p>
-<p>所以，以範例為例一開始碰到cc.exe: cc.o，很好發現了cc.o有相關的rule，那就是cc.o: cc.cpp……那串，所以就會變成先優先執行這條 ，執行完後就會產生cc.o檔，然後就回去執行剛剛那條rule，最後就產生cc.exe這樣。  </p>
-<p>make是還有更多的用法的，目前這篇僅記錄最基本的法則和用法，不過印象中make不同的版本似乎會有他們獨特的用法就是了，我也不知道會不會用到那麼多 :)  </p>
+<p>另外make是支援自定義變數的，例如: 你宣告了 compile = g++ ， 那麼當你要使用這變數時要用錢字號來取得，$(compile)這樣，make有所謂的 auto variable，詳情請見 <a href="http://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html" target="_blank" rel="noopener">這個</a><br>目前對這個沒太多研究，我想這個的目的大概是減少code的量，畢竟一直重複打同樣的字是一件很煩的事，像機器人的做的事就交給機器人來做吧 :) </p>
 
           
         
@@ -1987,7 +1979,7 @@ p.sort_stats(<span class="string">'time'</span>).print_stats(<span class="number
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2062,7 +2054,7 @@ p.sort_stats(<span class="string">'time'</span>).print_stats(<span class="number
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

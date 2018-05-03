@@ -88,16 +88,16 @@
 
 
 <meta name="description" content="真的好感慨啊!! 想想以前用windows api去寫相同的程式，就要多很多工夫，很多底層的東西都要自己實做，用別人幫你建構好的架構就是快速簡單阿 :)   1234567891011121314151617181920212223242526272829303132from tkinter import *  from tkinter import ttk      def main():">
-<meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python tkinter <簡單的滑鼠畫線>">
+<meta property="og:title" content="python tkinter &lt;簡單的滑鼠畫線&gt;">
 <meta property="og:url" content="http://sillygod.github.io/2013/07/17/python-tkinter/index.html">
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="真的好感慨啊!! 想想以前用windows api去寫相同的程式，就要多很多工夫，很多底層的東西都要自己實做，用別人幫你建構好的架構就是快速簡單阿 :)   1234567891011121314151617181920212223242526272829303132from tkinter import *  from tkinter import ttk      def main():">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="http://i.imgur.com/H3ulIXE.png">
-<meta property="og:updated_time" content="2017-04-25T05:54:37.257Z">
+<meta property="og:updated_time" content="2018-05-03T15:19:15.904Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python tkinter <簡單的滑鼠畫線>">
+<meta name="twitter:title" content="python tkinter &lt;簡單的滑鼠畫線&gt;">
 <meta name="twitter:description" content="真的好感慨啊!! 想想以前用windows api去寫相同的程式，就要多很多工夫，很多底層的東西都要自己實做，用別人幫你建構好的架構就是快速簡單阿 :)   1234567891011121314151617181920212223242526272829303132from tkinter import *  from tkinter import ttk      def main():">
 <meta name="twitter:image" content="http://i.imgur.com/H3ulIXE.png">
 
@@ -369,7 +369,7 @@
 
       
         <p>真的好感慨啊!! 想想以前用windows api去寫相同的程式，就要多很多工夫，很多底層的東西都要自己實做，用別人幫你建構好的架構就是快速簡單阿 :)  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span> *  </div><div class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span> ttk  </div><div class="line">  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span>  </div><div class="line"> lasty, lastx = <span class="number">0</span>, <span class="number">0</span>  </div><div class="line">  </div><div class="line"> <span class="function"><span class="keyword">def</span> <span class="title">xy</span><span class="params">(event)</span>:</span>  </div><div class="line"> <span class="keyword">nonlocal</span> lasty, lastx  </div><div class="line"> lastx = event.x  </div><div class="line"> lasty = event.y  </div><div class="line">  </div><div class="line"> <span class="function"><span class="keyword">def</span> <span class="title">addLine</span><span class="params">(event)</span>:</span>  </div><div class="line"> <span class="keyword">nonlocal</span> lasty, lastx  </div><div class="line"> canvas.create_line((lastx, lasty, event.x, event.y))  </div><div class="line"> lasty = event.y  </div><div class="line"> lastx = event.x  </div><div class="line">  </div><div class="line">  </div><div class="line"> root = Tk()  </div><div class="line"> root.columnconfigure(<span class="number">0</span>, weight=<span class="number">1</span>)  </div><div class="line"> root.rowconfigure(<span class="number">0</span>, weight=<span class="number">1</span>)  </div><div class="line">  </div><div class="line"> canvas = Canvas(root)  </div><div class="line"> canvas.grid(column=<span class="number">0</span>, row=<span class="number">0</span>, sticky=<span class="string">'nwes'</span>)  </div><div class="line"> canvas.bind(<span class="string">'&amp;ltButton-1&amp;gt'</span>, xy)  </div><div class="line"> canvas.bind(<span class="string">'&amp;ltB1-Motion&amp;gt'</span>, addLine)  </div><div class="line"> root.mainloop()  </div><div class="line">  </div><div class="line">  </div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:  </div><div class="line"> main()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span> *  </span><br><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span> ttk  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span>  </span><br><span class="line"> lasty, lastx = <span class="number">0</span>, <span class="number">0</span>  </span><br><span class="line">  </span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">xy</span><span class="params">(event)</span>:</span>  </span><br><span class="line"> <span class="keyword">nonlocal</span> lasty, lastx  </span><br><span class="line"> lastx = event.x  </span><br><span class="line"> lasty = event.y  </span><br><span class="line">  </span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">addLine</span><span class="params">(event)</span>:</span>  </span><br><span class="line"> <span class="keyword">nonlocal</span> lasty, lastx  </span><br><span class="line"> canvas.create_line((lastx, lasty, event.x, event.y))  </span><br><span class="line"> lasty = event.y  </span><br><span class="line"> lastx = event.x  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"> root = Tk()  </span><br><span class="line"> root.columnconfigure(<span class="number">0</span>, weight=<span class="number">1</span>)  </span><br><span class="line"> root.rowconfigure(<span class="number">0</span>, weight=<span class="number">1</span>)  </span><br><span class="line">  </span><br><span class="line"> canvas = Canvas(root)  </span><br><span class="line"> canvas.grid(column=<span class="number">0</span>, row=<span class="number">0</span>, sticky=<span class="string">'nwes'</span>)  </span><br><span class="line"> canvas.bind(<span class="string">'&amp;ltButton-1&amp;gt'</span>, xy)  </span><br><span class="line"> canvas.bind(<span class="string">'&amp;ltB1-Motion&amp;gt'</span>, addLine)  </span><br><span class="line"> root.mainloop()  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:  </span><br><span class="line"> main()</span><br></pre></td></tr></table></figure>
 <p>這樣短短的code就實做出來了。 成果如圖案所示(掩面，用滑鼠寫字好難 :( )  </p>
 <p><img src="http://i.imgur.com/H3ulIXE.png" alt="pic"> </p>
 <p>其實這次會PO這篇，是想要做個記錄:) 頭一次用到nonlocal = =，這是用來取的最近的上層scope的變數，因此我在 xy函式裡面寫了 nonlocal lastx, lasty 是為了取得 main函式的 lastx, lasty的reference，讓我可以隨意改變他們的值</p>
@@ -409,8 +409,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2013/07/21/c-traits/" rel="next" title="c++ traits">
-                <i class="fa fa-chevron-left"></i> c++ traits
+              <a href="/2013/07/13/use-ctypes-to-call-windows-api/" rel="next" title="use ctypes to call windows api">
+                <i class="fa fa-chevron-left"></i> use ctypes to call windows api
               </a>
             
           </div>
@@ -419,8 +419,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2013/07/13/use-ctypes-to-call-windows-api/" rel="prev" title="use ctypes to call windows api">
-                use ctypes to call windows api <i class="fa fa-chevron-right"></i>
+              <a href="/2013/07/21/c-traits/" rel="prev" title="c++ traits">
+                c++ traits <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -491,7 +491,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -566,7 +566,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

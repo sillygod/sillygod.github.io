@@ -88,17 +88,17 @@
 
 
 <meta name="description" content="這篇就來，繼續上次的進度 :)   上次code貼上來的結果不甚理想，所以我在想是不是要自己來寫一個format會比較方便，當然在動手之前，我想重新理解code的流程是必須的，因為要讓自己對這份open source掌握更加清楚，所以我決定利用debug的step into，來進行trace code :p   這邊就來介紹一下我用的工具，關於debug，我還是選擇用IDE，因為比較直覺化又容易使">
-<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="read open source pygments 2">
 <meta property="og:url" content="http://sillygod.github.io/2014/05/10/read-open-source-pygments-2/index.html">
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="這篇就來，繼續上次的進度 :)   上次code貼上來的結果不甚理想，所以我在想是不是要自己來寫一個format會比較方便，當然在動手之前，我想重新理解code的流程是必須的，因為要讓自己對這份open source掌握更加清楚，所以我決定利用debug的step into，來進行trace code :p   這邊就來介紹一下我用的工具，關於debug，我還是選擇用IDE，因為比較直覺化又容易使">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="http://i.imgur.com/gxPLPNv.png">
 <meta property="og:image" content="http://i.imgur.com/nhja3Fq.png">
 <meta property="og:image" content="http://i.imgur.com/b57Jy6r.png">
 <meta property="og:image" content="http://i.imgur.com/J9gGWbC.png">
-<meta property="og:updated_time" content="2017-04-25T05:54:37.261Z">
+<meta property="og:updated_time" content="2018-05-03T15:19:15.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="read open source pygments 2">
 <meta name="twitter:description" content="這篇就來，繼續上次的進度 :)   上次code貼上來的結果不甚理想，所以我在想是不是要自己來寫一個format會比較方便，當然在動手之前，我想重新理解code的流程是必須的，因為要讓自己對這份open source掌握更加清楚，所以我決定利用debug的step into，來進行trace code :p   這邊就來介紹一下我用的工具，關於debug，我還是選擇用IDE，因為比較直覺化又容易使">
@@ -363,7 +363,7 @@
         <p>這篇就來，繼續上次的進度 :)  </p>
 <p>上次code貼上來的結果不甚理想，所以我在想是不是要自己來寫一個format會比較方便，當然在動手之前，我想重新理解code的流程是必須的，因為要讓自己對這份open source掌握更加清楚，所以我決定利用debug的step into，來進行trace code :p  </p>
 <p>這邊就來介紹一下我用的工具，關於debug，我還是選擇用IDE，因為比較直覺化又容易使用，我是覺得沒必要去聽信那些說用gdb才是王道，畢竟那要打一些指令，實在是有點麻煩，個人是認為有興趣的話再去用那種方式 :p  </p>
-<p>說要介紹我是用哪款IDE都差點忘了 :) 這邊我是用<a href="http://www.jetbrains.com/pycharm/" target="_blank" rel="external">pycharm</a> ，這一直以來都算很有名氣，雖然是要錢的，但是網路上總有…咳咳，不過那僅限以前!!，現在可好了呢，它有提供open source版，而且功能很夠用，有興趣的人可以去載來用看看 :)  </p>
+<p>說要介紹我是用哪款IDE都差點忘了 :) 這邊我是用<a href="http://www.jetbrains.com/pycharm/" target="_blank" rel="noopener">pycharm</a> ，這一直以來都算很有名氣，雖然是要錢的，但是網路上總有…咳咳，不過那僅限以前!!，現在可好了呢，它有提供open source版，而且功能很夠用，有興趣的人可以去載來用看看 :)  </p>
 <p><img src="http://i.imgur.com/gxPLPNv.png" alt="pic"></p>
 <p>pycharm的介面如上，它提供了算是不錯的code intellisense，加上trace code也是方便，像是find definition，加上它的plugin也是挺多的，要說讓我說嘴的地方就是記憶體吃的有點多:(<br>另外以介面來講，我還是喜歡sublime就是了，好啦，該來講講怎麼trace code的部分了，一般來講都要先下個所謂的break point，就是讓程式執行到該行時，停下來，接著就有如下幾個操作  </p>
 <ul>
@@ -372,7 +372,7 @@
 <li>step out<br>… 等等  </li>
 </ul>
 <p>就先來看看這張圖吧<br><img src="http://i.imgur.com/nhja3Fq.png" alt="pic"><br>我在40行的地方下了中斷點，所以程式執行到這邊就會停下來，之後呢，我特別在watch中加入一些我想看的變數，上面這張圖是我step over後，可以看出它是一個class，有興趣要看它是怎麼一步一步產生的話，就必須用step into，就像接下來的HtmlFormatter，我用了step into就會如下面這張圖<br><img src="http://i.imgur.com/b57Jy6r.png" alt="pic"><br>程式碼頁面會跳到HtmlFormatter所在的檔案html.py，接著你更想的話，你當然可以繼續用step into，就看你想要鑽到的地方有多深，就跳多深吧 :)  </p>
-<p>另外我覺得用pycharm來debug真的是頗爽 :) 老實講真的太方便了，看前面幾張圖就知道，它其實會自己監看一些變數，起初我用sublime text閱讀源碼時，其實有點卡卡的，當時我認為是我理解力不夠，因為有很多地方看過去，我會有種不知道這樣的code會產生什麼效果，但是用了pycharm就方便多了，因為你會看到這些變數，就知道他們是否如你所想像的一樣，這樣一來多了一些證實，自然就會多了信心，閱讀起來更加順遂，就舉個例子好了，請看下面這張<br><img src="http://i.imgur.com/J9gGWbC.png" alt="pci"><br>我當初一眼看沒有懂的地方就是這裡<br><code>arg = (&#39;cssclass&#39; in self.options and &#39;.&#39;+self.cssclass or &#39;&#39;)</code><br>從圖中可以看到arg的值是.highlight其實就是’.’+self.cssfile<br>很好!! 這樣的寫法到底是怎麼運作呢? 詳細可以看看 <a href="http://www.diveintopython.net/power_of_introspection/and_or.html" target="_blank" rel="external">這個</a>這樣的寫法不是每個programming language都可以寫的呢 :) 看看這個<a href="http://en.wikipedia.org/wiki/Short-circuit_evaluation" target="_blank" rel="external">wiki</a> 就知道囉~  </p>
+<p>另外我覺得用pycharm來debug真的是頗爽 :) 老實講真的太方便了，看前面幾張圖就知道，它其實會自己監看一些變數，起初我用sublime text閱讀源碼時，其實有點卡卡的，當時我認為是我理解力不夠，因為有很多地方看過去，我會有種不知道這樣的code會產生什麼效果，但是用了pycharm就方便多了，因為你會看到這些變數，就知道他們是否如你所想像的一樣，這樣一來多了一些證實，自然就會多了信心，閱讀起來更加順遂，就舉個例子好了，請看下面這張<br><img src="http://i.imgur.com/J9gGWbC.png" alt="pci"><br>我當初一眼看沒有懂的地方就是這裡<br><code>arg = (&#39;cssclass&#39; in self.options and &#39;.&#39;+self.cssclass or &#39;&#39;)</code><br>從圖中可以看到arg的值是.highlight其實就是’.’+self.cssfile<br>很好!! 這樣的寫法到底是怎麼運作呢? 詳細可以看看 <a href="http://www.diveintopython.net/power_of_introspection/and_or.html" target="_blank" rel="noopener">這個</a>這樣的寫法不是每個programming language都可以寫的呢 :) 看看這個<a href="http://en.wikipedia.org/wiki/Short-circuit_evaluation" target="_blank" rel="noopener">wiki</a> 就知道囉~  </p>
 <p>回到正題，那行的意思是 ‘cssclass’有沒有在self.options裡，有的話就會回傳’.’+selfclass，沒有的話，就會繼續evaluate下去，那就是變成回傳’’，這其實是用到short circuit的技術 :p<br>其實個人認為這邊根本不需要用到這種寫法，只是徒增不可讀性就是了，用if else還親民多了，不過這不代表這樣的寫法沒用處，我想大概可以用在 lambda這地方吧 :)  </p>
 <p>經過這次的閱讀，目前我想到一個，不用自己繼承一個HtmlFormatter的寫法了，我是用了擷取部分code，之後再自行增加一些必須的html的方式。  </p>
 <p>目前我粗略地寫了個簡單測試腳本，效果如下  </p>
@@ -552,8 +552,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/06/02/blog-post/" rel="next" title="快要破百了~">
-                <i class="fa fa-chevron-left"></i> 快要破百了~
+              <a href="/2014/05/03/read-open-source-pygments-1/" rel="next" title="read open source pygments 1">
+                <i class="fa fa-chevron-left"></i> read open source pygments 1
               </a>
             
           </div>
@@ -562,8 +562,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/05/03/read-open-source-pygments-1/" rel="prev" title="read open source pygments 1">
-                read open source pygments 1 <i class="fa fa-chevron-right"></i>
+              <a href="/2014/06/02/blog-post/" rel="prev" title="快要破百了~">
+                快要破百了~ <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -634,7 +634,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -709,7 +709,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

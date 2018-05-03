@@ -88,14 +88,14 @@
 
 
 <meta name="description" content="上次介紹過vector後，這篇就來講講我的碰撞是怎麼寫的，目前經過測試後我的計算應該是正確的，因為我計算了動能(k)，的確有守恆，除了當我用滑鼠點物體的時候，一但點下去會讓物體的速度歸0，並且可以拖曳給予速度，如下影片所示。   連結 話說有什麼軟體是錄製的時候比較不會LAG的嗎? 我用的這個軟體錄起來好像沒說那麼順暢 :(。 回到正題，這邊我是假設兩球碰撞後是沒有旋轉的，因此不考慮進去進入我碰撞">
-<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python 物理模擬2">
 <meta property="og:url" content="http://sillygod.github.io/2013/08/13/python-2/index.html">
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="上次介紹過vector後，這篇就來講講我的碰撞是怎麼寫的，目前經過測試後我的計算應該是正確的，因為我計算了動能(k)，的確有守恆，除了當我用滑鼠點物體的時候，一但點下去會讓物體的速度歸0，並且可以拖曳給予速度，如下影片所示。   連結 話說有什麼軟體是錄製的時候比較不會LAG的嗎? 我用的這個軟體錄起來好像沒說那麼順暢 :(。 回到正題，這邊我是假設兩球碰撞後是沒有旋轉的，因此不考慮進去進入我碰撞">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="http://4.bp.blogspot.com/-xP_Bqq4QZjE/Ugmz3ZTYTXI/AAAAAAAAACU/wKTPoN95SzI/s1600/test.png">
-<meta property="og:updated_time" content="2017-04-25T05:54:37.257Z">
+<meta property="og:updated_time" content="2018-05-03T15:19:15.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python 物理模擬2">
 <meta name="twitter:description" content="上次介紹過vector後，這篇就來講講我的碰撞是怎麼寫的，目前經過測試後我的計算應該是正確的，因為我計算了動能(k)，的確有守恆，除了當我用滑鼠點物體的時候，一但點下去會讓物體的速度歸0，並且可以拖曳給予速度，如下影片所示。   連結 話說有什麼軟體是錄製的時候比較不會LAG的嗎? 我用的這個軟體錄起來好像沒說那麼順暢 :(。 回到正題，這邊我是假設兩球碰撞後是沒有旋轉的，因此不考慮進去進入我碰撞">
@@ -358,21 +358,21 @@
 
       
         <p>上次介紹過vector後，這篇就來講講我的碰撞是怎麼寫的，目前經過測試後我的計算應該是正確的，因為我計算了動能(k)，的確有守恆，除了當我用滑鼠點物體的時候，一但點下去會讓物體的速度歸0，並且可以拖曳給予速度，如下影片所示。  </p>
-<p><a href="http://www.youtube.com/v/d-nPdUxRIl8?version=3&amp;f=user_uploads&amp;c=google-webdrive-0&amp;app=youtube_gdata" target="_blank" rel="external">連結</a></p>
+<p><a href="http://www.youtube.com/v/d-nPdUxRIl8?version=3&amp;f=user_uploads&amp;c=google-webdrive-0&amp;app=youtube_gdata" target="_blank" rel="noopener">連結</a></p>
 <p>話說有什麼軟體是錄製的時候比較不會LAG的嗎? 我用的這個軟體錄起來好像沒說那麼順暢 :(。 回到正題，這邊我是假設兩球碰撞後是沒有旋轉的，因此不考慮進去進入我碰撞程式碼前，先給個概念。<br><img src="http://4.bp.blogspot.com/-xP_Bqq4QZjE/Ugmz3ZTYTXI/AAAAAAAAACU/wKTPoN95SzI/s1600/test.png" alt="pic"><br>上面要表達的是，一顆移動速度V的球，撞上靜止的球，另外當兩個球體碰撞時，在那個瞬間會有個impulse，且這個imulse方向是平行於連心線的，因此碰撞後會改變得動量也只有平行於連心線的動量，所以在此就把速度向量V拆成平行於連心線(vcos)和垂直於連心線這(vsin)兩種，之後一切就好搞啦 :) 之前說得好像很難，在這邊我要說那時候我腦筋打結阿啊!! 思考不順暢 :( 回到正題，接下來只要把vcos代入，高中教的二維碰撞公式，再將得到的結果與vsin合併，最後這就是答案 :) 這邊我就不教怎麼導出公式了，有興趣的就自己去查囉。</p>
 <pre><code class="py"><span class="function"><span class="keyword">def</span> <span class="title">collision</span><span class="params">(self, obj)</span>:</span>  
- <span class="string">'''  
- 2d collision -- split in two part  
- first -- v parallel to the line connected the two circle center  
-
- second -- v vertical to the line connected the two circle center   
- inelastic case, both will has the same velocity....  
-
- v1' = (m1-m2)v1/(m1+m2) + 2 m2v2/(m1+m2)   
-
- v2' = (2m1)v1/(m1+m2) + (m2-m1)v2/(m1+m2)  
-
- '''</span>  
+ <span class="string">'''  </span>
+<span class="string"> 2d collision -- split in two part  </span>
+<span class="string"> first -- v parallel to the line connected the two circle center  </span>
+<span class="string"></span>
+<span class="string"> second -- v vertical to the line connected the two circle center   </span>
+<span class="string"> inelastic case, both will has the same velocity....  </span>
+<span class="string"></span>
+<span class="string"> v1' = (m1-m2)v1/(m1+m2) + 2 m2v2/(m1+m2)   </span>
+<span class="string"></span>
+<span class="string"> v2' = (2m1)v1/(m1+m2) + (m2-m1)v2/(m1+m2)  </span>
+<span class="string"></span>
+<span class="string"> '''</span>  
  <span class="keyword">if</span> self.boundCircle.isCollision(obj.boundCircle): <span class="comment">#compare two circle  </span>
 
  o1x, o1y = self.boundCircle.pos.point  
@@ -403,7 +403,7 @@
 
 
  self.velocity = v1f + (self.velocity-v1)  
- obj.velocity = v2f + (obj.velocity-v2)
+ obj.velocity = v2f + (obj.velocity-v2)  
 </code></pre>
 <p>目前這碰撞只是兩個圓體，我還在想，要是圓體碰撞正方體，要怎麼去計算碰撞後的情形，還要若要考慮旋轉，勢必要改寫這個碰撞公式，必須再花點時間來研究 :) 但是其實如果不想浪費時間在自己寫這些有的沒的，到是可以用別人寫好的物理模擬，目前聽過的有box2d和bullet這兩種，以供參考。</p>
 
@@ -442,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2013/08/16/pyqt/" rel="next" title="初嘗pyqt">
-                <i class="fa fa-chevron-left"></i> 初嘗pyqt
+              <a href="/2013/08/09/python/" rel="next" title="python 物理模擬">
+                <i class="fa fa-chevron-left"></i> python 物理模擬
               </a>
             
           </div>
@@ -452,8 +452,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2013/08/09/python/" rel="prev" title="python 物理模擬">
-                python 物理模擬 <i class="fa fa-chevron-right"></i>
+              <a href="/2013/08/16/pyqt/" rel="prev" title="初嘗pyqt">
+                初嘗pyqt <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -524,7 +524,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -599,7 +599,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

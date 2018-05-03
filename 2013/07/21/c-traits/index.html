@@ -88,14 +88,14 @@
 
 
 <meta name="description" content="今天逛一些論壇，意外發現到我以前學C++都沒有注意過的技術” C++ traits”我是看到這篇的解說 http://www.cantrip.org/traits.html 讓我重新知道自己似乎該是時候回到C++的懷抱了:) 之前學了一些，但是自從用了python，就一直很少回去碰C++，如今感覺，該是時候繼續精進C++了。   這個技術目前我覺得只是對於template遇到某些型態對此特別處理這">
-<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c++ traits">
 <meta property="og:url" content="http://sillygod.github.io/2013/07/21/c-traits/index.html">
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="今天逛一些論壇，意外發現到我以前學C++都沒有注意過的技術” C++ traits”我是看到這篇的解說 http://www.cantrip.org/traits.html 讓我重新知道自己似乎該是時候回到C++的懷抱了:) 之前學了一些，但是自從用了python，就一直很少回去碰C++，如今感覺，該是時候繼續精進C++了。   這個技術目前我覺得只是對於template遇到某些型態對此特別處理這">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="http://i.imgur.com/hliw73q.png">
-<meta property="og:updated_time" content="2017-04-25T05:54:37.257Z">
+<meta property="og:updated_time" content="2018-05-03T15:19:15.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c++ traits">
 <meta name="twitter:description" content="今天逛一些論壇，意外發現到我以前學C++都沒有注意過的技術” C++ traits”我是看到這篇的解說 http://www.cantrip.org/traits.html 讓我重新知道自己似乎該是時候回到C++的懷抱了:) 之前學了一些，但是自從用了python，就一直很少回去碰C++，如今感覺，該是時候繼續精進C++了。   這個技術目前我覺得只是對於template遇到某些型態對此特別處理這">
@@ -357,28 +357,28 @@
       
 
       
-        <p>今天逛一些論壇，意外發現到我以前學C++都沒有注意過的技術” C++ traits”<br>我是看到這篇的解說 <a href="http://www.cantrip.org/traits.html" target="_blank" rel="external">http://www.cantrip.org/traits.html </a>讓我重新知道自己似乎該是時候回到C++的懷抱了:) 之前學了一些，但是自從用了python，就一直很少回去碰C++，如今感覺，該是時候繼續精進C++了。  </p>
+        <p>今天逛一些論壇，意外發現到我以前學C++都沒有注意過的技術” C++ traits”<br>我是看到這篇的解說 <a href="http://www.cantrip.org/traits.html" target="_blank" rel="noopener">http://www.cantrip.org/traits.html </a>讓我重新知道自己似乎該是時候回到C++的懷抱了:) 之前學了一些，但是自從用了python，就一直很少回去碰C++，如今感覺，該是時候繼續精進C++了。  </p>
 <p>這個技術目前我覺得只是對於template遇到某些型態對此特別處理這樣，讓泛型的樣板，更加容易使用，更加靈活，看完這篇論述後，心裡有了一點想法，可以使用traits來進行參數的型態判斷，code如下  </p>
 <pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;  </span></span>
 <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;  
 
 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;  
-<span class="class"><span class="keyword">class</span> <span class="title">typeof</span>  
-{</span>  
+<span class="class"><span class="keyword">class</span> <span class="title">typeof</span>  </span>
+<span class="class">{</span>  
  <span class="keyword">public</span>:  
  <span class="keyword">const</span> <span class="keyword">char</span> *type = <span class="string">"unknown"</span>;  
 };  
 
 <span class="keyword">template</span>&lt;&gt;  
-<span class="class"><span class="keyword">class</span> <span class="title">typeof</span>&lt;char&gt;  
-{</span>  
+<span class="class"><span class="keyword">class</span> <span class="title">typeof</span>&lt;char&gt;  </span>
+<span class="class">{</span>  
  <span class="keyword">public</span>:  
  <span class="keyword">const</span> <span class="keyword">char</span> *type = <span class="string">"char"</span>;  
 };  
 
 <span class="keyword">template</span>&lt;&gt;  
-<span class="class"><span class="keyword">class</span> <span class="title">typeof</span>&lt;int&gt;  
-{</span>  
+<span class="class"><span class="keyword">class</span> <span class="title">typeof</span>&lt;int&gt;  </span>
+<span class="class">{</span>  
  <span class="keyword">public</span>:  
  <span class="keyword">const</span> <span class="keyword">char</span> *type = <span class="string">"int"</span>;  
 };  
@@ -394,13 +394,13 @@ class test
  }  
 };  
 
-<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>  
-</span>{  
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>  </span>
+<span class="function"></span>{  
  test&lt;<span class="keyword">int</span>&gt; a;  
  test&lt;<span class="keyword">char</span>&gt; b;  
  test&lt;<span class="keyword">bool</span>&gt; c;  
  <span class="keyword">return</span> <span class="number">0</span>;  
-}
+}  
 </code></pre>
 <p>結果如圖:  </p>
 <p><img src="http://i.imgur.com/hliw73q.png" alt="pic"></p>
@@ -441,8 +441,8 @@ class test
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2013/07/23/python-tkinterpil/" rel="next" title="python tkinter+PIL">
-                <i class="fa fa-chevron-left"></i> python tkinter+PIL
+              <a href="/2013/07/17/python-tkinter/" rel="next" title="python tkinter <簡單的滑鼠畫線>">
+                <i class="fa fa-chevron-left"></i> python tkinter <簡單的滑鼠畫線>
               </a>
             
           </div>
@@ -451,8 +451,8 @@ class test
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2013/07/17/python-tkinter/" rel="prev" title="python tkinter <簡單的滑鼠畫線>">
-                python tkinter <簡單的滑鼠畫線> <i class="fa fa-chevron-right"></i>
+              <a href="/2013/07/23/python-tkinterpil/" rel="prev" title="python tkinter+PIL">
+                python tkinter+PIL <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -523,7 +523,7 @@ class test
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -598,7 +598,7 @@ class test
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

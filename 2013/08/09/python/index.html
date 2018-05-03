@@ -88,13 +88,13 @@
 
 
 <meta name="description" content="最近心血來潮，想要自己實做一些物理方面的模擬，一般來講應該都是從2D方面開始，畢竟3D的世界有很多數學概念，相較起來2D的數學概念比較不吃重，話雖如此，只是果然天算不如人算阿 :(   一開始一路過關斬將，直到我開始寫碰撞的時候，一路上荊棘滿佈，頭一次寫程式寫到有種快要發飆的感覺 :) 我只能說我的數學，大學上學的我都忘了，剩下高中程度，若是一維碰撞那到是簡單的很，公式也能輕易推算出來，但是沒想到">
-<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python 物理模擬">
 <meta property="og:url" content="http://sillygod.github.io/2013/08/09/python/index.html">
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="最近心血來潮，想要自己實做一些物理方面的模擬，一般來講應該都是從2D方面開始，畢竟3D的世界有很多數學概念，相較起來2D的數學概念比較不吃重，話雖如此，只是果然天算不如人算阿 :(   一開始一路過關斬將，直到我開始寫碰撞的時候，一路上荊棘滿佈，頭一次寫程式寫到有種快要發飆的感覺 :) 我只能說我的數學，大學上學的我都忘了，剩下高中程度，若是一維碰撞那到是簡單的很，公式也能輕易推算出來，但是沒想到">
-<meta property="og:updated_time" content="2017-04-25T05:54:37.257Z">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-05-03T15:19:15.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python 物理模擬">
 <meta name="twitter:description" content="最近心血來潮，想要自己實做一些物理方面的模擬，一般來講應該都是從2D方面開始，畢竟3D的世界有很多數學概念，相較起來2D的數學概念比較不吃重，話雖如此，只是果然天算不如人算阿 :(   一開始一路過關斬將，直到我開始寫碰撞的時候，一路上荊棘滿佈，頭一次寫程式寫到有種快要發飆的感覺 :) 我只能說我的數學，大學上學的我都忘了，剩下高中程度，若是一維碰撞那到是簡單的很，公式也能輕易推算出來，但是沒想到">
@@ -356,7 +356,7 @@
 
       
         <p>最近心血來潮，想要自己實做一些物理方面的模擬，一般來講應該都是從2D方面開始，畢竟3D的世界有很多數學概念，相較起來2D的數學概念比較不吃重，話雖如此，只是果然天算不如人算阿 :(  </p>
-<p>一開始一路過關斬將，直到我開始寫碰撞的時候，一路上荊棘滿佈，頭一次寫程式寫到有種快要發飆的感覺 :) 我只能說我的數學，大學上學的我都忘了，剩下高中程度，若是一維碰撞那到是簡單的很，公式也能輕易推算出來，但是沒想到只是從1D轉到2D，整件事情就天差地遠阿，到目前為止，我也只是寫出個勉強貼近2D碰撞的模擬。<br><a href="http://www.youtube.com/v/gRDH7JrZa9g?version=3&amp;f=user_uploads&amp;c=google-webdrive-0&amp;app=youtube_gdata" target="_blank" rel="external">連結</a></p>
+<p>一開始一路過關斬將，直到我開始寫碰撞的時候，一路上荊棘滿佈，頭一次寫程式寫到有種快要發飆的感覺 :) 我只能說我的數學，大學上學的我都忘了，剩下高中程度，若是一維碰撞那到是簡單的很，公式也能輕易推算出來，但是沒想到只是從1D轉到2D，整件事情就天差地遠阿，到目前為止，我也只是寫出個勉強貼近2D碰撞的模擬。<br><a href="http://www.youtube.com/v/gRDH7JrZa9g?version=3&amp;f=user_uploads&amp;c=google-webdrive-0&amp;app=youtube_gdata" target="_blank" rel="noopener">連結</a></p>
 <p>上面這影片就是我目前寫出來的樣子，獻醜了 :) 這篇就來貼一下，我的2D運算基本工具，基本上我是自己實做了一個vector的class，讓它具有一些特性   </p>
 <ul>
 <li>加</li>
@@ -381,8 +381,8 @@
  <span class="comment"># print('vector {} is delete'.format(self.point))  </span>
 
  <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self, value)</span>:</span>  
- <span class="string">'''return a integer due to the coordinate in pygame is integer  
- '''</span>  
+ <span class="string">'''return a integer due to the coordinate in pygame is integer  </span>
+<span class="string"> '''</span>  
  <span class="keyword">return</span> int(self.__dict__[value])  
 
  <span class="function"><span class="keyword">def</span> <span class="title">__setitem__</span><span class="params">(self, index, value)</span>:</span>  
@@ -409,10 +409,10 @@
  <span class="keyword">return</span> Vector(self.x-rhs.x, self.y-rhs.y)  
 
  <span class="function"><span class="keyword">def</span> <span class="title">__imul__</span><span class="params">(self, rhs)</span>:</span>  
- <span class="string">'''  
- *= equals to assign and inplace calculation  
- ex. a *= b --&gt; a = operator.imul(a, b)  
- '''</span>  
+ <span class="string">'''  </span>
+<span class="string"> *= equals to assign and inplace calculation  </span>
+<span class="string"> ex. a *= b --&gt; a = operator.imul(a, b)  </span>
+<span class="string"> '''</span>  
  <span class="keyword">if</span> isinstance(rhs, Vector):  
  <span class="keyword">raise</span> ValueError  
  self.x *= rhs  
@@ -455,13 +455,13 @@
 
 
  <span class="function"><span class="keyword">def</span> <span class="title">reflect</span><span class="params">(self, normal)</span>:</span>  
- <span class="string">'''  
- I &lt; |----&gt;normal  
- \ | /  
- ___\|/____  
-
- 2*(-I.dot(normal)) -- scalar  
- '''</span>  
+ <span class="string">'''  </span>
+<span class="string"> I &lt; |----&gt;normal  </span>
+<span class="string"> \ | /  </span>
+<span class="string"> ___\|/____  </span>
+<span class="string"></span>
+<span class="string"> 2*(-I.dot(normal)) -- scalar  </span>
+<span class="string"> '''</span>  
  I = self  
  self = (<span class="number">2</span>*(-I.dot(normal))*normal) + I  
  <span class="keyword">return</span> self  
@@ -492,7 +492,7 @@
  <span class="keyword">if</span> isinstance(v2, Vector):  
  <span class="keyword">return</span> self.x*v2.x + self.y*v2.y  
  <span class="keyword">else</span>:  
- <span class="keyword">raise</span> ValueError
+ <span class="keyword">raise</span> ValueError  
 </code></pre>
 <p>關於python的operator我就不說明了，有興趣的就看看[這個吧][3]  </p>
 <p>裡面有些function的意思在這邊說明一下  </p>
@@ -541,8 +541,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2013/08/13/python-2/" rel="next" title="python 物理模擬2">
-                <i class="fa fa-chevron-left"></i> python 物理模擬2
+              <a href="/2013/08/05/how-to-write-dll/" rel="next" title="how to write a dll">
+                <i class="fa fa-chevron-left"></i> how to write a dll
               </a>
             
           </div>
@@ -551,8 +551,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2013/08/05/how-to-write-dll/" rel="prev" title="how to write a dll">
-                how to write a dll <i class="fa fa-chevron-right"></i>
+              <a href="/2013/08/13/python-2/" rel="prev" title="python 物理模擬2">
+                python 物理模擬2 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -623,7 +623,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -698,7 +698,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -88,13 +88,13 @@
 
 
 <meta name="description" content="目前學習javascript，其中有個好玩的地方同時我也覺得頗重要的地方，今天就特別來記錄一下，那就是如標題所述，function invocation 和 function context，在js當中呢，每個函式都會有兩個隱性的parameter，分別是 this 和 arguments。   arguments是一個很像Array的物件但是注意! 它不是Array，如同名字表是那樣，它代表的是">
-<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js function invocation and function context">
 <meta property="og:url" content="http://sillygod.github.io/2014/03/22/js-function-invocation-and-function/index.html">
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="目前學習javascript，其中有個好玩的地方同時我也覺得頗重要的地方，今天就特別來記錄一下，那就是如標題所述，function invocation 和 function context，在js當中呢，每個函式都會有兩個隱性的parameter，分別是 this 和 arguments。   arguments是一個很像Array的物件但是注意! 它不是Array，如同名字表是那樣，它代表的是">
-<meta property="og:updated_time" content="2017-04-25T05:54:37.261Z">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-05-03T15:19:15.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js function invocation and function context">
 <meta name="twitter:description" content="目前學習javascript，其中有個好玩的地方同時我也覺得頗重要的地方，今天就特別來記錄一下，那就是如標題所述，function invocation 和 function context，在js當中呢，每個函式都會有兩個隱性的parameter，分別是 this 和 arguments。   arguments是一個很像Array的物件但是注意! 它不是Array，如同名字表是那樣，它代表的是">
@@ -358,7 +358,7 @@
         <p>目前學習javascript，其中有個好玩的地方同時我也覺得頗重要的地方，今天就特別來記錄一下，那就是如標題所述，function invocation 和 function context，在js當中呢，每個函式都會有兩個隱性的parameter，分別是 this 和 arguments。  </p>
 <p>arguments是一個很像Array的物件但是注意! 它不是Array，如同名字表是那樣，它代表的是實際傳入的參數。關於this在我看來就是指function context，根據不同的function invocation就會決定不同的function context，那麼this到底是何物呢?  this它指向一個物件，並且這個物件是有關於這個函式是怎麼被invoke的，聽起來還是有點模糊對吧 :) 先繼續往下看便知曉。  </p>
 <p>關於function invocation基本上有四種  </p>
-<p>1.<code>invocation as a function</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">ja</span>(<span class="params"></span>)</span>&#123;  </div><div class="line"> <span class="built_in">console</span>.log(<span class="keyword">this</span>);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> vja = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line"> <span class="built_in">console</span>.log(<span class="keyword">this</span>);  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>1.<code>invocation as a function</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">ja</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">this</span>);  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">var</span> vja = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">this</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>你執行上面code，將會看到function context是window(global context)，  </p>
 <p>2.<code>invocation as a method</code><br>看到名字就知道，這個function是屬於一個物件，因此我們創建一個物件<br>給予一個property reference到一個function</p>
 <pre><code class="js"><span class="function"><span class="keyword">function</span> <span class="title">globalSay</span>(<span class="params"></span>)</span>{<span class="built_in">console</span>.log(<span class="keyword">this</span>);};  
@@ -366,7 +366,7 @@
 <span class="keyword">var</span> obj = {};  
 
 obj.say = globalSay;  
-obj.say();
+obj.say();  
 </code></pre>
 <p>執行上面code後，將會看到function context是obj這個物件，因此光從這邊就可以看出this是由這個function是怎麼被invoke所決定的  </p>
 <p>3.<code>invocation as a constructor</code><br>簡言之就是藉由new這個keyword所產生的結果</p>
@@ -380,7 +380,7 @@ obj.say();
 <span class="keyword">var</span> obj2 = <span class="keyword">new</span> test();  
 
 obj1.say();  
-obj2.say();
+obj2.say();  
 </code></pre>
 <p>new這個keyword，它會產生一個新物件，並將這個物件的function context就是自己  </p>
 <p>4.<code>invocation with aplly and call method</code><br>這個是我認為javascript很特別的地方這個方法可以，讓你隨意的指定function context<br>舉個例子來看看</p>
@@ -399,7 +399,7 @@ obj2.say();
     如上obj1和obj2將會被增加value這個屬性。  
 call和apply的差別是在  
 xxx.call(<span class="keyword">this</span>, x,x,x,x);  
-xxx.apply(<span class="keyword">this</span>, [x,x,x,x]);
+xxx.apply(<span class="keyword">this</span>, [x,x,x,x]);   
 </code></pre>
 <p>我覺得這功能的確滿方便的，javascript的this就是這麼….該說好用嗎?還是恐怖?<br>因為用不好的話，似乎會造成很多問題的感覺。  </p>
 <p>如果以前是學習C++來的人，會覺得js的this，會覺得非常與眾不同吧 :)<br>動態語言就是如此，有著靜態語言不同的風格，隨著電腦速度越來越快，我不知不覺中越來越喜歡用動態語言來寫程式了，像是python，反而C++越來越少碰了 :( 不知道要不要找時間回去熟悉C++ :(  </p>
@@ -440,8 +440,8 @@ xxx.apply(<span class="keyword">this</span>, [x,x,x,x]);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/04/12/framework-for-pygame/" rel="next" title="試著寫一個小小的framework for pygame">
-                <i class="fa fa-chevron-left"></i> 試著寫一個小小的framework for pygame
+              <a href="/2014/03/15/online/" rel="next" title="國軍online已過六個月">
+                <i class="fa fa-chevron-left"></i> 國軍online已過六個月
               </a>
             
           </div>
@@ -450,8 +450,8 @@ xxx.apply(<span class="keyword">this</span>, [x,x,x,x]);
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/03/15/online/" rel="prev" title="國軍online已過六個月">
-                國軍online已過六個月 <i class="fa fa-chevron-right"></i>
+              <a href="/2014/04/12/framework-for-pygame/" rel="prev" title="試著寫一個小小的framework for pygame">
+                試著寫一個小小的framework for pygame <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -522,7 +522,7 @@ xxx.apply(<span class="keyword">this</span>, [x,x,x,x]);
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -597,7 +597,7 @@ xxx.apply(<span class="keyword">this</span>, [x,x,x,x]);
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

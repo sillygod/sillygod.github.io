@@ -88,13 +88,13 @@
 
 
 <meta name="description" content="關於makefile的變數assign的方式，目前看到的大概有三種，詳細資料請看 這個   第一種 simple expand variable，是使用 := 這樣的operator舉個例子12345678910111213141516171819202122who := mark  act :=  $(who) say  who := alice  echo $(act)  ```  將會是 m">
-<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="makefile note3">
 <meta property="og:url" content="http://sillygod.github.io/2013/08/23/makefile-note3/index.html">
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="關於makefile的變數assign的方式，目前看到的大概有三種，詳細資料請看 這個   第一種 simple expand variable，是使用 := 這樣的operator舉個例子12345678910111213141516171819202122who := mark  act :=  $(who) say  who := alice  echo $(act)  ```  將會是 m">
-<meta property="og:updated_time" content="2017-04-25T05:54:37.261Z">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-05-03T15:19:15.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="makefile note3">
 <meta name="twitter:description" content="關於makefile的變數assign的方式，目前看到的大概有三種，詳細資料請看 這個   第一種 simple expand variable，是使用 := 這樣的operator舉個例子12345678910111213141516171819202122who := mark  act :=  $(who) say  who := alice  echo $(act)  ```  將會是 m">
@@ -355,8 +355,8 @@
       
 
       
-        <p>關於makefile的變數assign的方式，目前看到的大概有三種，詳細資料請看 <a href="http://www.ecoop.net/coop/translated/GNUMake3.77/make_6.html#SEC63" target="_blank" rel="external">這個</a>  </p>
-<p>第一種 simple expand variable，是使用 := 這樣的operator<br>舉個例子<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">who := mark  </div><div class="line">act :=  <span class="variable">$(who)</span> say  </div><div class="line">who := alice  </div><div class="line">echo <span class="variable">$(act)</span>  </div><div class="line">```  </div><div class="line">將會是 mark say，:=這種assgn的operator，如同字面上所言簡單的擴展，他一遇到該行就直接擴展並不會去查他最後是什麼樣子，如果你想要結果是 alice say的話那麼就是要使用第二種方式。  </div><div class="line">  </div><div class="line">第二種 recursive expand，是使用= 這樣的operator  </div><div class="line">```makefile  </div><div class="line">who = mark  </div><div class="line">act = <span class="variable">$(who)</span> say  </div><div class="line">who = alice  </div><div class="line">echo <span class="variable">$(act)</span>  </div><div class="line">```  </div><div class="line">這樣一來結果就會是alice say  </div><div class="line">  </div><div class="line">第三種是conditional variable assginment operator，是使用?=這樣的operator </div><div class="line">```makefile</div><div class="line">who = mark  </div><div class="line">act = <span class="variable">$(who)</span> say  </div><div class="line">who ?= alice  </div><div class="line">echo <span class="variable">$(act)</span></div></pre></td></tr></table></figure></p>
+        <p>關於makefile的變數assign的方式，目前看到的大概有三種，詳細資料請看 <a href="http://www.ecoop.net/coop/translated/GNUMake3.77/make_6.html#SEC63" target="_blank" rel="noopener">這個</a>  </p>
+<p>第一種 simple expand variable，是使用 := 這樣的operator<br>舉個例子<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">who := mark  </span><br><span class="line">act :=  <span class="variable">$(who)</span> say  </span><br><span class="line">who := alice  </span><br><span class="line">echo <span class="variable">$(act)</span>  </span><br><span class="line">```  </span><br><span class="line">將會是 mark say，:=這種assgn的operator，如同字面上所言簡單的擴展，他一遇到該行就直接擴展並不會去查他最後是什麼樣子，如果你想要結果是 alice say的話那麼就是要使用第二種方式。  </span><br><span class="line">  </span><br><span class="line">第二種 recursive expand，是使用= 這樣的operator  </span><br><span class="line">```makefile  </span><br><span class="line">who = mark  </span><br><span class="line">act = <span class="variable">$(who)</span> say  </span><br><span class="line">who = alice  </span><br><span class="line">echo <span class="variable">$(act)</span>  </span><br><span class="line">```  </span><br><span class="line">這樣一來結果就會是alice say  </span><br><span class="line">  </span><br><span class="line">第三種是conditional variable assginment operator，是使用?=這樣的operator </span><br><span class="line">```makefile</span><br><span class="line">who = mark  </span><br><span class="line">act = <span class="variable">$(who)</span> say  </span><br><span class="line">who ?= alice  </span><br><span class="line">echo <span class="variable">$(act)</span></span><br></pre></td></tr></table></figure></p>
 <p>嘿嘿結果是 mark say喔~ 這個operator的作用是他會檢查該變數是否有值，有值的話就不會做assign的動作  </p>
 <p>關於make，基本上似乎看官方文件就很OK了，遇到不會的符號查查官方文件大概就有解，我是看gnu make的官方文件，畢竟mingw-make我找不到相關的文件，我想大概是mingw-make就是gnu make來的吧，所以兩者差異應該不大才是。</p>
 
@@ -395,8 +395,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2013/08/26/start-to-use-git/" rel="next" title="start to use git">
-                <i class="fa fa-chevron-left"></i> start to use git
+              <a href="/2013/08/22/python-22/" rel="next" title="python 分析程式效率">
+                <i class="fa fa-chevron-left"></i> python 分析程式效率
               </a>
             
           </div>
@@ -405,8 +405,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2013/08/22/python-22/" rel="prev" title="python 分析程式效率">
-                python 分析程式效率 <i class="fa fa-chevron-right"></i>
+              <a href="/2013/08/26/start-to-use-git/" rel="prev" title="start to use git">
+                start to use git <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -477,7 +477,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -552,7 +552,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

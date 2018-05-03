@@ -88,13 +88,13 @@
 
 
 <meta name="description" content="Django development note 2繼上次django development note1後，已經過了一段時間，咦～其實好像是挺長的時間，哈哈，總之呢，這段時期，前端技術方面，實在是苟日新，日日新，又日新， 近來sharp edge技術都是由前端那render頁面（就是指用js去渲染html），有不少的事情，已經慢慢從後端被拿到前端去負責了。 其中像是  html render ur">
-<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Django development note 2">
 <meta property="og:url" content="http://sillygod.github.io/2017/01/12/django-development-note-2/index.html">
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="Django development note 2繼上次django development note1後，已經過了一段時間，咦～其實好像是挺長的時間，哈哈，總之呢，這段時期，前端技術方面，實在是苟日新，日日新，又日新， 近來sharp edge技術都是由前端那render頁面（就是指用js去渲染html），有不少的事情，已經慢慢從後端被拿到前端去負責了。 其中像是  html render ur">
-<meta property="og:updated_time" content="2017-04-25T05:54:37.261Z">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-05-03T15:19:15.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django development note 2">
 <meta name="twitter:description" content="Django development note 2繼上次django development note1後，已經過了一段時間，咦～其實好像是挺長的時間，哈哈，總之呢，這段時期，前端技術方面，實在是苟日新，日日新，又日新， 近來sharp edge技術都是由前端那render頁面（就是指用js去渲染html），有不少的事情，已經慢慢從後端被拿到前端去負責了。 其中像是  html render ur">
@@ -355,7 +355,7 @@
       
 
       
-        <h1 id="Django-development-note-2"><a href="#Django-development-note-2" class="headerlink" title="Django development note 2"></a>Django development note 2</h1><p>繼上次<a href="http://sillygod-blog.logdown.com/posts/249502-django-development-note-1" target="_blank" rel="external">django development note1</a>後，已經過了一段時間，咦～其實好像是挺長的時間，哈哈，總之呢，這段時期，前端技術方面，實在是苟日新，日日新，又日新， 近來sharp edge技術都是由前端那render頁面（就是指用js去渲染html），有不少的事情，已經慢慢從後端被拿到前端去負責了。</p>
+        <h1 id="Django-development-note-2"><a href="#Django-development-note-2" class="headerlink" title="Django development note 2"></a>Django development note 2</h1><p>繼上次<a href="http://sillygod-blog.logdown.com/posts/249502-django-development-note-1" target="_blank" rel="noopener">django development note1</a>後，已經過了一段時間，咦～其實好像是挺長的時間，哈哈，總之呢，這段時期，前端技術方面，實在是苟日新，日日新，又日新， 近來sharp edge技術都是由前端那render頁面（就是指用js去渲染html），有不少的事情，已經慢慢從後端被拿到前端去負責了。</p>
 <p>其中像是</p>
 <ul>
 <li>html render</li>
@@ -365,7 +365,7 @@
 </ul>
 <p>但是django 本身有個template system， 就是由後端來render出頁面，我在公司嘗試過，將angularjs和django結合寫過公司官網，另外也試過reactjs和django結合，寫出電商網站，但是這邊的url router和部份html render其實都還是用django的system，其實並沒有做一個完全的前後端分割，沒有這麼做的原因是考量到seo的問題，傳統由server端渲染頁面的話，seo就不用擔心，因為爬蟲都爬的到，但是改成由js渲染的話，問題就大了，因為爬蟲不會解析js並且去運行，已目前的爬蟲來講的話啦，雖然有聽說，google爬蟲未來會有支援，但是未來是未來，我們要著眼當下是吧～ </p>
 <p>因此url router是由django負責的話，我可以考慮哪些頁面是需要seo，先由後端給出這樣～ seo這個問題這麼大，像React他們是怎麼解決的呢？ 他們有所謂的render server，原理大致上，就是server先講js的邏輯run過，產生頁面，再回傳給client端，說是這樣說啦，但是你用了React+webpack後，尤其是css的buidle問題，就會跑出一堆啦，因為許許多多webpack套件當初只是為了frontend而寫，沒考慮到拿到backend是否能run，所以其實render server沒那麼簡單。</p>
-<p>個人研究後，看到universal概念，就是為了上述問題… 而產生的， 其實有個範例叫universal react redux 啥的，就有用render server，老實講實在挺恐怖的，只要一扯到universal，不知道為啥裡面整個用到超多套件，邏輯複雜.. 設定也麻煩， 明明React超級夯，但是都人沒提出一個漂亮解決seo問題的方法，後來我和同事有稍微搞個universal react redux with django的測試專案，要的話可以到<a href="https://github.com/sillygod/django-react-test" target="_blank" rel="external">這邊參考</a>，老實講現在要我回去我應該很多都忘了xd 太多小套件了，在實作這專案期間其實有個叫做<a href="https://github.com/zeit/next.js/" target="_blank" rel="external">next.js</a>的東西，號稱zero setting的render server，實際上個人使用也的確是這樣，但是她有個很大限制，就是你不能自己寫webpack config！！ css也是只能寫在js檔裡，這也難怪它是zero setting囉～  但是我想等以後這個套件就會越來越方便啦，值得期待。</p>
+<p>個人研究後，看到universal概念，就是為了上述問題… 而產生的， 其實有個範例叫universal react redux 啥的，就有用render server，老實講實在挺恐怖的，只要一扯到universal，不知道為啥裡面整個用到超多套件，邏輯複雜.. 設定也麻煩， 明明React超級夯，但是都人沒提出一個漂亮解決seo問題的方法，後來我和同事有稍微搞個universal react redux with django的測試專案，要的話可以到<a href="https://github.com/sillygod/django-react-test" target="_blank" rel="noopener">這邊參考</a>，老實講現在要我回去我應該很多都忘了xd 太多小套件了，在實作這專案期間其實有個叫做<a href="https://github.com/zeit/next.js/" target="_blank" rel="noopener">next.js</a>的東西，號稱zero setting的render server，實際上個人使用也的確是這樣，但是她有個很大限制，就是你不能自己寫webpack config！！ css也是只能寫在js檔裡，這也難怪它是zero setting囉～  但是我想等以後這個套件就會越來越方便啦，值得期待。</p>
 <p>經過在公司一年多以來的經驗，我後來自己整理了一些後端project starter架構，個人而言我覺得後端可以開始只要做為純api server，也就是說url router，template system，有的沒的都可以去掉了，專心設計api，剩下的都搬到前端去，這麼做的好處在哪？ 至少是有下面幾點</p>
 <ul>
 <li>前後端程式碼邏輯分割清楚</li>
@@ -380,30 +380,30 @@
 <li>前端開始具有架構性</li>
 </ul>
 <p>由於webpack或是gulp之類的工具存在，開始讓前端具有一定的結構性，其實這是好事～<br>但是這麼分割後，前端的架構究竟該怎麼弄會比較好？ 這邊我還不知道xd 畢竟我本分是後端嘛～ 雖然我略懂一些js和css， 最近我會研究一下前端架構，有一定心得後，我改日必定放上 :)</p>
-<p>說了這麼多，好像都還沒提到django development相關心得，哈哈，前面都只是一些經歷讓我整理了後來的<a href="https://github.com/sillygod/django-as-pure-api-server" target="_blank" rel="external">django as pure api server</a>架構，下面來進行大綱性的解說</p>
-<h4 id="專案架構"><a href="#專案架構" class="headerlink" title="專案架構"></a>專案架構</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">api/</div><div class="line">  ....</div><div class="line">  ..</div><div class="line">core/</div><div class="line">  settings/</div><div class="line">  wsgi/</div><div class="line">  __init__.py</div><div class="line">  urls.py</div><div class="line">  wsgi.py</div><div class="line">nginx/</div><div class="line">  nginx.conf</div><div class="line">requirements/</div><div class="line">  dev.txt</div><div class="line">  prod.txt</div><div class="line">Dockerfile</div><div class="line">docker-compose.yml</div><div class="line">manage.py</div><div class="line">circle.yml</div><div class="line">pytest.ini</div></pre></td></tr></table></figure>
-<p>這是一個簡略的專案架構簡介，想要更詳細的了解，可以去<a href="https://github.com/sillygod/django-as-pure-api-server" target="_blank" rel="external">django as pure api server</a>了解，從這邊可以知道我至少用了docker和docker-compose還有circle ci的東西，這部份跟持續整合比較有關係，其實目前來講關於docker這邊，用到的地方除了未來<strong>持續整合</strong>那邊可以用到外，就是我本地可以先進行模擬正式台環境，確保不會有意外出現，我自己在開發中其實還是用django的runserver啦，其實真的是最方便，當然有興趣的人可以使用docker-compose一下，但是對於debug時，我暫時還沒想要怎麼弄xd  因為平常debug django app時，我都是用<code>python -m pdb manage.py runserver</code>，那麼使用docker-compose時我還沒研究要怎麼attach process裡～～ </p>
-<p><strong>個人覺得<a href="https://www.docker.com/" target="_blank" rel="external">docker</a>是一個值得投入心力去學習的工具</strong></p>
-<p>比如像我個人是使用<a href="https://elementary.io/en/" target="_blank" rel="external">elementary os</a>作業系統，個人寫了一個<a href="https://gist.github.com/sillygod/6d37ef7e4a02d253e743#file-eos_loki-sh" target="_blank" rel="external">安裝腳本</a>，之前我要測試這腳本是否能夠正常運行，我都會用vmware player，灌elementary os，來進行，但是頗麻煩，而且感覺有浪費空間，有了docker後，由於elementary os loki，是基於ubuntu16.04，所以這邊我只要使用ubuntu16.04 image，來進行測試，run個container，就可以跑一下我的腳本看看過程是否有錯誤這樣，測完就可以砍掉啦～清爽～</p>
+<p>說了這麼多，好像都還沒提到django development相關心得，哈哈，前面都只是一些經歷讓我整理了後來的<a href="https://github.com/sillygod/django-as-pure-api-server" target="_blank" rel="noopener">django as pure api server</a>架構，下面來進行大綱性的解說</p>
+<h4 id="專案架構"><a href="#專案架構" class="headerlink" title="專案架構"></a>專案架構</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">api/</span><br><span class="line">  ....</span><br><span class="line">  ..</span><br><span class="line">core/</span><br><span class="line">  settings/</span><br><span class="line">  wsgi/</span><br><span class="line">  __init__.py</span><br><span class="line">  urls.py</span><br><span class="line">  wsgi.py</span><br><span class="line">nginx/</span><br><span class="line">  nginx.conf</span><br><span class="line">requirements/</span><br><span class="line">  dev.txt</span><br><span class="line">  prod.txt</span><br><span class="line">Dockerfile</span><br><span class="line">docker-compose.yml</span><br><span class="line">manage.py</span><br><span class="line">circle.yml</span><br><span class="line">pytest.ini</span><br></pre></td></tr></table></figure>
+<p>這是一個簡略的專案架構簡介，想要更詳細的了解，可以去<a href="https://github.com/sillygod/django-as-pure-api-server" target="_blank" rel="noopener">django as pure api server</a>了解，從這邊可以知道我至少用了docker和docker-compose還有circle ci的東西，這部份跟持續整合比較有關係，其實目前來講關於docker這邊，用到的地方除了未來<strong>持續整合</strong>那邊可以用到外，就是我本地可以先進行模擬正式台環境，確保不會有意外出現，我自己在開發中其實還是用django的runserver啦，其實真的是最方便，當然有興趣的人可以使用docker-compose一下，但是對於debug時，我暫時還沒想要怎麼弄xd  因為平常debug django app時，我都是用<code>python -m pdb manage.py runserver</code>，那麼使用docker-compose時我還沒研究要怎麼attach process裡～～ </p>
+<p><strong>個人覺得<a href="https://www.docker.com/" target="_blank" rel="noopener">docker</a>是一個值得投入心力去學習的工具</strong></p>
+<p>比如像我個人是使用<a href="https://elementary.io/en/" target="_blank" rel="noopener">elementary os</a>作業系統，個人寫了一個<a href="https://gist.github.com/sillygod/6d37ef7e4a02d253e743#file-eos_loki-sh" target="_blank" rel="noopener">安裝腳本</a>，之前我要測試這腳本是否能夠正常運行，我都會用vmware player，灌elementary os，來進行，但是頗麻煩，而且感覺有浪費空間，有了docker後，由於elementary os loki，是基於ubuntu16.04，所以這邊我只要使用ubuntu16.04 image，來進行測試，run個container，就可以跑一下我的腳本看看過程是否有錯誤這樣，測完就可以砍掉啦～清爽～</p>
 <p>再來對於nginx和uwsgi設置，這邊我也可以用docker來進行模擬，而不用真的灌在自己主機上，要不然自己主機越灌越多東西，會變慢的，只能說docker真的是一個很棒的工具，也難怪她後來夯成這樣。</p>
 <p>docker-compose就是一個輔助你使用docker的工具，原理就是寫一個設定檔(yml)，她會自動幫你建立環境，省去你打超多docker指令和開啟一堆terminal哈哈。</p>
 <p><strong>pytest</strong></p>
 <p>pytest的話，就是拿來執行測試用的套件，老實講要怎麼寫出好的測試，我目前無法給出一個心得，因為這實在是太難囉～ 這邊需要讓我花時間研究一下</p>
 <p>再來使用的套件方面，以下列出個人覺得值得一提的</p>
 <ul>
-<li><a href="https://github.com/jazzband/django-debug-toolbar" target="_blank" rel="external">django debug toolbar</a></li>
+<li><a href="https://github.com/jazzband/django-debug-toolbar" target="_blank" rel="noopener">django debug toolbar</a></li>
 </ul>
 <p>是一個挺不錯的工具，對於sql的效率分析很有幫助，除了sql以外，她其實有許多分析和記錄，但是我不常用。 然後<strong>請注意</strong>，在production請拿掉這個套件，這個會吃掉你不少效能，這跟python built-in module profile是一樣意思，這種分析的套件都是插入執行分析，必定會影響你程式運行效能</p>
 <ul>
-<li><a href="https://github.com/deschler/django-modeltranslation" target="_blank" rel="external">django modeltranslation</a></li>
+<li><a href="https://github.com/deschler/django-modeltranslation" target="_blank" rel="noopener">django modeltranslation</a></li>
 </ul>
-<p>對於model資料有i18n，覺得這套件不錯，因為有個很大的重點他不會破壞你原本的model，之前是使用<a href="https://github.com/django-parler/django-parler" target="_blank" rel="external">django-parler</a>，雖然當初用的時候覺得不錯，但是這個是使用繼承的方式，所以會破壞到model的一些特性，而且她有個很大的麻煩處，就是無法使用model inheritance，幸好當初我用的case只是文章性質的需求，所以不用用到複雜的功能</p>
+<p>對於model資料有i18n，覺得這套件不錯，因為有個很大的重點他不會破壞你原本的model，之前是使用<a href="https://github.com/django-parler/django-parler" target="_blank" rel="noopener">django-parler</a>，雖然當初用的時候覺得不錯，但是這個是使用繼承的方式，所以會破壞到model的一些特性，而且她有個很大的麻煩處，就是無法使用model inheritance，幸好當初我用的case只是文章性質的需求，所以不用用到複雜的功能</p>
 <ul>
-<li><a href="http://www.django-rest-framework.org/" target="_blank" rel="external">django rest framework</a></li>
+<li><a href="http://www.django-rest-framework.org/" target="_blank" rel="noopener">django rest framework</a></li>
 </ul>
 <p>這個應該不用多解釋了吧，用django的各位，想要實作rest api，多半應該都是用這套了吧，我之前文章有一些心得，可以去翻翻～</p>
 <ul>
-<li><a href="https://github.com/marcgibbons/django-rest-swagger" target="_blank" rel="external">django rest swagger</a></li>
+<li><a href="https://github.com/marcgibbons/django-rest-swagger" target="_blank" rel="noopener">django rest swagger</a></li>
 </ul>
 <p>就是一個可以當作api doc和測試的頁面，說實在的目前用起來就是一種缺少文檔的感覺，所以有些地方實在還不知道怎麼去調整，但是整體上而言算是不錯用，讓你的文檔，變成互動式的，而不是以前那樣呆板的文件</p>
 <h3 id="最後"><a href="#最後" class="headerlink" title="最後"></a>最後</h3><p>對於django要不要升級到1.1x版，其實我還在考量，但是未來勢必是要升級的啦，因為他是沒有向後兼容的升級，這感覺就是當初python2跟3的抉擇，目前而言我選擇在django&lt;1.9 ， 是一個穩定修復bug的版本，但是我目前用到的專案是有故意選的，大致都有支援到django 1.1x後，所以要升級其實應該是不難，只是尚在考量中（其實是懶 :p</p>
@@ -443,8 +443,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/18/1429759/" rel="next" title="閱讀 20 Python Libraries You Aren't Using (But Should) 心得">
-                <i class="fa fa-chevron-left"></i> 閱讀 20 Python Libraries You Aren't Using (But Should) 心得
+              <a href="/2016/12/16/1212573/" rel="next" title="Spacemacs 使用心得">
+                <i class="fa fa-chevron-left"></i> Spacemacs 使用心得
               </a>
             
           </div>
@@ -453,8 +453,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/16/1212573/" rel="prev" title="Spacemacs 使用心得">
-                Spacemacs 使用心得 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/18/1429759/" rel="prev" title="閱讀 20 Python Libraries You Aren't Using (But Should) 心得">
+                閱讀 20 Python Libraries You Aren't Using (But Should) 心得 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -534,7 +534,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -625,7 +625,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

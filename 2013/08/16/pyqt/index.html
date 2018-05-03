@@ -88,15 +88,15 @@
 
 
 <meta name="description" content="上次用python+PIL來進行將動畫GIF檔給分離出一張一張的圖片，結果不是很讓人滿意，因為PIL對於GIF檔的支援不是很好，因此有部分圖片顏色會有問題，關於當tkinter+PIL碰上gif的時候變的有多suck，看我另外一篇就知道了:(  所以我決定使用pyqt來測試看看。如下面這張animated gif經過我寫的程式後，分離出來的結果哈!真是完美，qt就是好用阿，只是目前我還沒有弄熟py">
-<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初嘗pyqt">
 <meta property="og:url" content="http://sillygod.github.io/2013/08/16/pyqt/index.html">
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="上次用python+PIL來進行將動畫GIF檔給分離出一張一張的圖片，結果不是很讓人滿意，因為PIL對於GIF檔的支援不是很好，因此有部分圖片顏色會有問題，關於當tkinter+PIL碰上gif的時候變的有多suck，看我另外一篇就知道了:(  所以我決定使用pyqt來測試看看。如下面這張animated gif經過我寫的程式後，分離出來的結果哈!真是完美，qt就是好用阿，只是目前我還沒有弄熟py">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="http://1.bp.blogspot.com/-kKXCrfS78do/Ug2cWsAn2eI/AAAAAAAAACk/es1xtLGLGgk/s1600/1.gif">
 <meta property="og:image" content="http://i.imgur.com/dXxYeDj.png">
-<meta property="og:updated_time" content="2017-04-25T05:54:37.257Z">
+<meta property="og:updated_time" content="2018-05-03T15:19:15.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初嘗pyqt">
 <meta name="twitter:description" content="上次用python+PIL來進行將動畫GIF檔給分離出一張一張的圖片，結果不是很讓人滿意，因為PIL對於GIF檔的支援不是很好，因此有部分圖片顏色會有問題，關於當tkinter+PIL碰上gif的時候變的有多suck，看我另外一篇就知道了:(  所以我決定使用pyqt來測試看看。如下面這張animated gif經過我寫的程式後，分離出來的結果哈!真是完美，qt就是好用阿，只是目前我還沒有弄熟py">
@@ -369,11 +369,11 @@
       
 
       
-        <p>上次用python+PIL來進行將動畫GIF檔給分離出一張一張的圖片，結果不是很讓人滿意，因為PIL對於GIF檔的支援不是很好，因此有部分圖片顏色會有問題，關於當tkinter+PIL碰上gif的時候變的有多suck，看我另外一篇就知道了:(  所以我決定使用pyqt來測試看看。如下面這張animated gif<br><img src="http://1.bp.blogspot.com/-kKXCrfS78do/Ug2cWsAn2eI/AAAAAAAAACk/es1xtLGLGgk/s1600/1.gif" alt="pic"><br>經過我寫的程式後，分離出來的結果<br><img src="http://i.imgur.com/dXxYeDj.png" alt="pic"><br>哈!真是完美，qt就是好用阿，只是目前我還沒有弄熟pyqt，只知道其實它不只是一個gui library，它包括的範疇可真是廣到不行阿，網路、多媒體阿，還有很多很多，目前還沒辦法寫出太多心得，對它還沒特別研究 :) 另外，它官方的<a href="http://pyqt.sourceforge.net/Docs/PyQt4/classes.html" target="_blank" rel="external">文件</a>寫得滿詳細的  </p>
+        <p>上次用python+PIL來進行將動畫GIF檔給分離出一張一張的圖片，結果不是很讓人滿意，因為PIL對於GIF檔的支援不是很好，因此有部分圖片顏色會有問題，關於當tkinter+PIL碰上gif的時候變的有多suck，看我另外一篇就知道了:(  所以我決定使用pyqt來測試看看。如下面這張animated gif<br><img src="http://1.bp.blogspot.com/-kKXCrfS78do/Ug2cWsAn2eI/AAAAAAAAACk/es1xtLGLGgk/s1600/1.gif" alt="pic"><br>經過我寫的程式後，分離出來的結果<br><img src="http://i.imgur.com/dXxYeDj.png" alt="pic"><br>哈!真是完美，qt就是好用阿，只是目前我還沒有弄熟pyqt，只知道其實它不只是一個gui library，它包括的範疇可真是廣到不行阿，網路、多媒體阿，還有很多很多，目前還沒辦法寫出太多心得，對它還沒特別研究 :) 另外，它官方的<a href="http://pyqt.sourceforge.net/Docs/PyQt4/classes.html" target="_blank" rel="noopener">文件</a>寫得滿詳細的  </p>
 <pre><code class="python">img = QImageReader(<span class="string">'D:/My Pictures/2.gif'</span>)  
 <span class="keyword">for</span> i <span class="keyword">in</span> range(img.imageCount()):  
  img.read().save(<span class="string">'{}.png'</span>.format(i))  
- img.jumpToNextImage()
+ img.jumpToNextImage()  
 </code></pre>
 <p>我僅僅是看官方文件就輕鬆寫出將animated gif分離出來的code了如上面這樣簡單幾行。<br>對於教學的話，我目前沒有看到哪個教學是不錯的，如果有發現的話就另外補上 :) </p>
 
@@ -412,8 +412,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2013/08/17/makefile-note/" rel="next" title="makefile note">
-                <i class="fa fa-chevron-left"></i> makefile note
+              <a href="/2013/08/13/python-2/" rel="next" title="python 物理模擬2">
+                <i class="fa fa-chevron-left"></i> python 物理模擬2
               </a>
             
           </div>
@@ -422,8 +422,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2013/08/13/python-2/" rel="prev" title="python 物理模擬2">
-                python 物理模擬2 <i class="fa fa-chevron-right"></i>
+              <a href="/2013/08/17/makefile-note/" rel="prev" title="makefile note">
+                makefile note <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -494,7 +494,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -569,7 +569,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

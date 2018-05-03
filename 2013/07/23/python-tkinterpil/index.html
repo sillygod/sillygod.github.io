@@ -88,13 +88,13 @@
 
 
 <meta name="description" content="有鑑於Windows內建的圖片預覽器沒辦法看animated gif，因此我突然想要自己實做一個，想當然爾是用python開發方便 :) 只是，果真是人算不如天算阿!! 由於tkinter本身並沒辦法去讀取png、jpg等格式的檔案，所以我另外去裝了PIL。   哼哼，雖然我成功讀取那些檔案，但是 “animated gif” 仍然是一個很大的問題，相信我! 千萬不要用 PIL 去讀取animat">
-<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python tkinter+PIL">
 <meta property="og:url" content="http://sillygod.github.io/2013/07/23/python-tkinterpil/index.html">
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="有鑑於Windows內建的圖片預覽器沒辦法看animated gif，因此我突然想要自己實做一個，想當然爾是用python開發方便 :) 只是，果真是人算不如天算阿!! 由於tkinter本身並沒辦法去讀取png、jpg等格式的檔案，所以我另外去裝了PIL。   哼哼，雖然我成功讀取那些檔案，但是 “animated gif” 仍然是一個很大的問題，相信我! 千萬不要用 PIL 去讀取animat">
-<meta property="og:updated_time" content="2017-04-25T05:54:37.257Z">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-05-03T15:19:15.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python tkinter+PIL">
 <meta name="twitter:description" content="有鑑於Windows內建的圖片預覽器沒辦法看animated gif，因此我突然想要自己實做一個，想當然爾是用python開發方便 :) 只是，果真是人算不如天算阿!! 由於tkinter本身並沒辦法去讀取png、jpg等格式的檔案，所以我另外去裝了PIL。   哼哼，雖然我成功讀取那些檔案，但是 “animated gif” 仍然是一個很大的問題，相信我! 千萬不要用 PIL 去讀取animat">
@@ -383,7 +383,7 @@ seq = []
  <span class="keyword">pass</span>  
 
 <span class="keyword">for</span> i <span class="keyword">in</span> range(len(self.frame)):  
- self.frame[i].save(<span class="string">'{}.png'</span>.format(i))
+ self.frame[i].save(<span class="string">'{}.png'</span>.format(i))  
 </code></pre>
 <p>說是這是pil的bug，說啥每當seek到下一個frame時，會失去palette，因此要幫他補上去，只是阿…我這樣做了，就只有部分gif是OK的，有些仍然會有問題!! 我想可能要用其它的library來實做了吧 :(  這次的經歷給我了一句話那就是 PIL + GIF = TORTURE  </p>
 <p>寫這篇的目地，是不希望有下個人給我一樣在這邊耗這麼久，到頭來卻毫無收穫</p>
@@ -423,8 +423,8 @@ seq = []
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2013/07/24/python-partial-function/" rel="next" title="python partial function">
-                <i class="fa fa-chevron-left"></i> python partial function
+              <a href="/2013/07/21/c-traits/" rel="next" title="c++ traits">
+                <i class="fa fa-chevron-left"></i> c++ traits
               </a>
             
           </div>
@@ -433,8 +433,8 @@ seq = []
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2013/07/21/c-traits/" rel="prev" title="c++ traits">
-                c++ traits <i class="fa fa-chevron-right"></i>
+              <a href="/2013/07/24/python-partial-function/" rel="prev" title="python partial function">
+                python partial function <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -505,7 +505,7 @@ seq = []
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -580,7 +580,7 @@ seq = []
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

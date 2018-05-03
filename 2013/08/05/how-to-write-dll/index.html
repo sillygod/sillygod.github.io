@@ -88,13 +88,13 @@
 
 
 <meta name="description" content="dynamic link library(dll) 這是在windows上的稱呼，至於linux的稱呼是 shared library，沒記錯的話應該是這樣沒錯。最近想嘗試用python去call自己寫的dll檔，所以就開始學習如何產生dll檔。    經過我的嘗試後，發現dll的使用方式有兩種    load-time dynamic linking (個人喜歡稱 implicity load">
-<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="how to write a dll">
 <meta property="og:url" content="http://sillygod.github.io/2013/08/05/how-to-write-dll/index.html">
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="dynamic link library(dll) 這是在windows上的稱呼，至於linux的稱呼是 shared library，沒記錯的話應該是這樣沒錯。最近想嘗試用python去call自己寫的dll檔，所以就開始學習如何產生dll檔。    經過我的嘗試後，發現dll的使用方式有兩種    load-time dynamic linking (個人喜歡稱 implicity load">
-<meta property="og:updated_time" content="2017-04-25T05:54:37.257Z">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-05-03T15:19:15.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="how to write a dll">
 <meta name="twitter:description" content="dynamic link library(dll) 這是在windows上的稱呼，至於linux的稱呼是 shared library，沒記錯的話應該是這樣沒錯。最近想嘗試用python去call自己寫的dll檔，所以就開始學習如何產生dll檔。    經過我的嘗試後，發現dll的使用方式有兩種    load-time dynamic linking (個人喜歡稱 implicity load">
@@ -373,8 +373,8 @@
 <li>run-time dynamic linking ( explicit load way</li>
 </ol>
 <p>為何會這樣稱呼呢? 我想在稍後或許你就會了解了。<br>首先寫一個dll檔，它也是有所謂的entry point的，就像是用C++和C寫一個console介面的程式，main就是entry point，win32則是WinMain。</p>
-<pre><code class="cpp"><span class="function">BOOL APIENTRY <span class="title">DllMain</span><span class="params">(HANDLE hModule, DWORD dwReason, LPVOID lpReserved)</span>  
-</span>{  
+<pre><code class="cpp"><span class="function">BOOL APIENTRY <span class="title">DllMain</span><span class="params">(HANDLE hModule, DWORD dwReason, LPVOID lpReserved)</span>  </span>
+<span class="function"></span>{  
  <span class="keyword">return</span> TRUE;  
 }
 </code></pre>
@@ -385,8 +385,8 @@
 <li>dllimport</li>
 </ol>
 <p>假設今天我寫了一個這樣的函式我想要讓別人用dll可以call它，就要這樣寫</p>
-<pre><code class="cpp"><span class="keyword">extern</span> <span class="string">"C"</span> __declspec(dllexport) <span class="function"><span class="keyword">int</span> <span class="title">multipleByTwo</span><span class="params">(<span class="keyword">int</span> num=<span class="number">2</span>)</span>  
-</span>{  
+<pre><code class="cpp"><span class="keyword">extern</span> <span class="string">"C"</span> __declspec(dllexport) <span class="function"><span class="keyword">int</span> <span class="title">multipleByTwo</span><span class="params">(<span class="keyword">int</span> num=<span class="number">2</span>)</span>  </span>
+<span class="function"></span>{  
  <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">"num will be multipled by 2"</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;  
  <span class="keyword">return</span> num*<span class="number">2</span>;  
 }
@@ -431,8 +431,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2013/08/09/python/" rel="next" title="python 物理模擬">
-                <i class="fa fa-chevron-left"></i> python 物理模擬
+              <a href="/2013/07/28/python-tkinter-28/" rel="next" title="python tkinter 匯率換算器">
+                <i class="fa fa-chevron-left"></i> python tkinter 匯率換算器
               </a>
             
           </div>
@@ -441,8 +441,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2013/07/28/python-tkinter-28/" rel="prev" title="python tkinter 匯率換算器">
-                python tkinter 匯率換算器 <i class="fa fa-chevron-right"></i>
+              <a href="/2013/08/09/python/" rel="prev" title="python 物理模擬">
+                python 物理模擬 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -513,7 +513,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -588,7 +588,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

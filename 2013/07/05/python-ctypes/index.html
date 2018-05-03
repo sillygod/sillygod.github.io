@@ -88,13 +88,13 @@
 
 
 <meta name="description" content="最近做了小小的測試，使用python的ctypes來實做windows api的data type    ex.1 12345678910111213141516171819	typedef struct _CHAR_INFO &amp;#123;  	    union&amp;#123;  	        WCHAR UnicodeChar;  	        CHAR AsciiChar;">
-<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python ctypes">
 <meta property="og:url" content="http://sillygod.github.io/2013/07/05/python-ctypes/index.html">
 <meta property="og:site_name" content="My Travel in Programming">
 <meta property="og:description" content="最近做了小小的測試，使用python的ctypes來實做windows api的data type    ex.1 12345678910111213141516171819	typedef struct _CHAR_INFO &amp;#123;  	    union&amp;#123;  	        WCHAR UnicodeChar;  	        CHAR AsciiChar;">
-<meta property="og:updated_time" content="2017-04-25T05:54:37.257Z">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-05-03T15:19:15.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python ctypes">
 <meta name="twitter:description" content="最近做了小小的測試，使用python的ctypes來實做windows api的data type    ex.1 12345678910111213141516171819	typedef struct _CHAR_INFO &amp;#123;  	    union&amp;#123;  	        WCHAR UnicodeChar;  	        CHAR AsciiChar;">
@@ -357,11 +357,11 @@
       
         <p>最近做了小小的測試，使用python的ctypes來實做windows api的data type  </p>
 <p> ex.1</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">	typedef struct _CHAR_INFO &#123;  </div><div class="line">	    union&#123;  </div><div class="line">	        WCHAR UnicodeChar;  </div><div class="line">	        CHAR AsciiChar;  </div><div class="line">	    &#125; Char;  </div><div class="line">	    WORD Attributes;  </div><div class="line">	&#125; CHAR_INFO, *PCHAR_INFO;  </div><div class="line">用ctypes實做如下先將名為Char的union實做出來  </div><div class="line">  </div><div class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Char</span><span class="params">(ctypes.Union)</span>:</span>  </div><div class="line">	    _fields_ = [(<span class="string">"UnicodeChar"</span>,WCHAR),  </div><div class="line">	                (<span class="string">"AsciiChar"</span>, CHAR)]  </div><div class="line">	再來將CHAR_INFO整個structure實做出來  </div><div class="line">  </div><div class="line">	<span class="class"><span class="keyword">class</span> <span class="title">CHAR_INFO</span><span class="params">(ctypes.Structure)</span>:</span>  </div><div class="line">	    _anonymous_ = (<span class="string">"Char"</span>,)  </div><div class="line">	    _fields_ = [(<span class="string">"Char"</span>, Char),  </div><div class="line">	                (<span class="string">"Attributes"</span>, WORD)]  </div><div class="line">	PCHAR_INFO = ctypes.POINTER(CHAR_INFO)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">	typedef struct _CHAR_INFO &#123;  </span><br><span class="line">	    union&#123;  </span><br><span class="line">	        WCHAR UnicodeChar;  </span><br><span class="line">	        CHAR AsciiChar;  </span><br><span class="line">	    &#125; Char;  </span><br><span class="line">	    WORD Attributes;  </span><br><span class="line">	&#125; CHAR_INFO, *PCHAR_INFO;  </span><br><span class="line">用ctypes實做如下先將名為Char的union實做出來  </span><br><span class="line">  </span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Char</span><span class="params">(ctypes.Union)</span>:</span>  </span><br><span class="line">	    _fields_ = [(<span class="string">"UnicodeChar"</span>,WCHAR),  </span><br><span class="line">	                (<span class="string">"AsciiChar"</span>, CHAR)]  </span><br><span class="line">	再來將CHAR_INFO整個structure實做出來  </span><br><span class="line">  </span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">CHAR_INFO</span><span class="params">(ctypes.Structure)</span>:</span>  </span><br><span class="line">	    _anonymous_ = (<span class="string">"Char"</span>,)  </span><br><span class="line">	    _fields_ = [(<span class="string">"Char"</span>, Char),  </span><br><span class="line">	                (<span class="string">"Attributes"</span>, WORD)]  </span><br><span class="line">	PCHAR_INFO = ctypes.POINTER(CHAR_INFO)</span><br></pre></td></tr></table></figure>
 <p>噹噹噹~mission complete<br>ex.2  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">typedef struct _CONSOLE_CURSOR_INFO &#123;  </div><div class="line"> DWORD dwSize;  </div><div class="line"> BOOL  bVisible;  </div><div class="line">&#125;CONSOLE_CURSOR_INFO, *PCONSOLE_CURSOR_INFO;  </div><div class="line">	<span class="class"><span class="keyword">class</span> <span class="title">CONSOLE_CURSOR_INFO</span><span class="params">(ctypes.Structure)</span>:</span>  </div><div class="line">    _fields_ = [(<span class="string">'dwSize'</span>, DWORD),  </div><div class="line">                (<span class="string">'bVisible'</span>, BOOL)]</div></pre></td></tr></table></figure>
-<p>其實ctypes這模組挺方便的，可以隨意的call用C寫出來的dll檔，如果只是想要用到一點點dll檔，我想自己寫就好了，不需要去用到其它模組，像是如果你要大量的用到windows api那就果斷用<a href="http://sourceforge.net/projects/pywin32/" target="_blank" rel="external">pywin32</a>吧:)，裡面可幫你寫好一堆的東西呢，畢竟這動作實在是很機械式，有別人幫你種樹，就去乘涼吧，而且它還有個特別的地方是ctype已幫你繞開python的GIL限制~這個就不多解釋了，畢竟我也沒啥碰到。</p>
-<p>當然用python去CALL用C寫的dll也有其他目的，通常是效率問題，把效率吃緊的地方給較低階的語言去實做，目前知道有個叫<a href="http://www.swig.org/" target="_blank" rel="external">SWIG</a>，可以將很多語言黏在一起，因為小弟也沒用過所以不敢多言 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _CONSOLE_CURSOR_INFO &#123;  </span><br><span class="line"> DWORD dwSize;  </span><br><span class="line"> BOOL  bVisible;  </span><br><span class="line">&#125;CONSOLE_CURSOR_INFO, *PCONSOLE_CURSOR_INFO;  </span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">CONSOLE_CURSOR_INFO</span><span class="params">(ctypes.Structure)</span>:</span>  </span><br><span class="line">    _fields_ = [(<span class="string">'dwSize'</span>, DWORD),  </span><br><span class="line">                (<span class="string">'bVisible'</span>, BOOL)]</span><br></pre></td></tr></table></figure>
+<p>其實ctypes這模組挺方便的，可以隨意的call用C寫出來的dll檔，如果只是想要用到一點點dll檔，我想自己寫就好了，不需要去用到其它模組，像是如果你要大量的用到windows api那就果斷用<a href="http://sourceforge.net/projects/pywin32/" target="_blank" rel="noopener">pywin32</a>吧:)，裡面可幫你寫好一堆的東西呢，畢竟這動作實在是很機械式，有別人幫你種樹，就去乘涼吧，而且它還有個特別的地方是ctype已幫你繞開python的GIL限制~這個就不多解釋了，畢竟我也沒啥碰到。</p>
+<p>當然用python去CALL用C寫的dll也有其他目的，通常是效率問題，把效率吃緊的地方給較低階的語言去實做，目前知道有個叫<a href="http://www.swig.org/" target="_blank" rel="noopener">SWIG</a>，可以將很多語言黏在一起，因為小弟也沒用過所以不敢多言 </p>
 
       
     </div>
@@ -398,15 +398,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2013/07/12/tkinter/" rel="next" title="tkinter 雜記">
-                <i class="fa fa-chevron-left"></i> tkinter 雜記
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2013/07/12/tkinter/" rel="prev" title="tkinter 雜記">
+                tkinter 雜記 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -476,7 +476,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -551,7 +551,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
