@@ -19,6 +19,7 @@ after_success:
   - git checkout develop
   - npm install
   - ./node_modules/.bin/hexo g --debug
+  - git checkout -- .
   - git checkout master
   - git pull origin master
   - rm -rf !(public)
