@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>群組 ID 自動回傳 Bot - 光暈極致版</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Orbitron:wght@500;700;900&display=swap');
+
+    :root {
+      --primary-cyan: #00ffff;
+      --deep-blue: #0a1e3c;
+      --accent-blue: #0088ff;
+      --glow-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #050505;
+      color: #e0f0ff;
+      font-family: 'Noto Sans TC', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* 全息背景層 */
+    #hologram-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      /* 深邃背景，讓光暈更明顯 */
+      background: radial-gradient(circle at center, #0a0a10 0%, #000000 100%);
+    }
+
+    /* 網格疊加層 (增加科技質感) */
+    .hologram-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 255, 255, 0.03) 50%),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.03), rgba(0, 0, 255, 0.03));
+      background-size: 100% 4px, 4px 100%;
+      opacity: 0.4;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 100px 20px;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    /* --- 炫炮標題特效 --- */
+    .glitch-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.5rem, 10vw, 5rem);
+      font-weight: 900;
+      margin-bottom: 10px;
+      position: relative;
+      color: var(--primary-cyan);
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      display: inline-block;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+    }
+
+    .glitch-title::before, .glitch-title::after {
+      content: 'TELEGRAM ID BOT';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: #050505; /* 配合背景色 */
+    }
+
+    .glitch-title::before {
+      left: 2px;
+      text-shadow: -2px 0 #ff00ff;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim 5s infinite linear alternate-reverse;
+    }
+
+    .glitch-title::after {
+      left: -2px;
+      text-shadow: -2px 0 #00ffff;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim2 1s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim {
+      0% { clip: rect(31px, 9999px, 94px, 0); }
+      20% { clip: rect(62px, 9999px, 42px, 0); }
+      40% { clip: rect(10px, 9999px, 98px, 0); }
+      60% { clip: rect(80px, 9999px, 12px, 0); }
+      80% { clip: rect(55px, 9999px, 88px, 0); }
+      100% { clip: rect(2px, 9999px, 64px, 0); }
+    }
+
+    @keyframes glitch-anim2 {
+      0% { clip: rect(65px, 9999px, 100px, 0); }
+      50% { clip: rect(10px, 9999px, 40px, 0); }
+      100% { clip: rect(80px, 9999px, 90px, 0); }
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      margin-bottom: 80px;
+      opacity: 0.8;
+      letter-spacing: 4px;
+      color: var(--primary-cyan);
+      font-family: 'Orbitron';
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    }
+
+    /* --- 炫炮框框特效 --- */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 80px;
+    }
+
+    .step {
+      position: relative;
+      background: rgba(0, 20, 40, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 255, 255, 0.15);
+      padding: 40px 30px;
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      overflow: hidden;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .step.visible { opacity: 1; transform: translateY(0); }
+
+    /* 框框四角支架 */
+    .step::before, .step::after {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      border: 2px solid var(--primary-cyan);
+      transition: 0.3s;
+    }
+    /* 左上角 */
+    .step::before { top: 0; left: 0; border-right: none; border-bottom: none; }
+    /* 右下角 */
+    .step::after { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+    /* 額外兩角 (透過偽元素模擬) */
+    .corner-decor {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+    }
+    .corner-decor::before, .corner-decor::after {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      border: 2px solid var(--primary-cyan);
+    }
+    /* 右上角 */
+    .corner-decor::before { top: 0; right: 0; border-left: none; border-bottom: none; }
+    /* 左下角 */
+    .corner-decor::after { bottom: 0; left: 0; border-right: none; border-top: none; }
+
+    /* 已移除 .step-scanner (掃描線) */
+
+    .step:hover {
+      background: rgba(0, 255, 255, 0.08);
+      border-color: rgba(0, 255, 255, 0.6);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
+      transform: translateY(-5px);
+    }
+
+    .step:hover .step-number {
+      transform: scale(1.1) rotate(360deg);
+      background: var(--primary-cyan);
+      color: #000;
+      box-shadow: 0 0 20px var(--primary-cyan);
+    }
+
+    .step-number {
+      width: 60px; height: 60px;
+      background: transparent;
+      border: 1px solid var(--primary-cyan);
+      color: var(--primary-cyan);
+      font-family: 'Orbitron';
+      font-size: 1.5rem;
+      line-height: 60px;
+      margin: 0 auto 25px;
+      display: block;
+      transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    }
+
+    .step h3 { font-size: 1.6rem; color: #fff; margin: 15px 0; letter-spacing: 2px; text-shadow: 0 0 5px rgba(0,255,255,0.5); }
+    .step p { font-size: 0.95rem; line-height: 1.7; color: #a0d0e0; font-weight: 300; }
+
+    /* --- 程式碼區塊強化 --- */
+    .code-container {
+      position: relative;
+      margin: 60px 0;
+      background: rgba(0, 5, 10, 0.8);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 4px;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+    }
+
+    .code-header {
+      background: rgba(0, 255, 255, 0.05);
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+    }
+
+    .code-title {
+      font-family: 'Orbitron';
+      font-size: 0.8rem;
+      color: var(--primary-cyan);
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+    }
+    .code-title::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--primary-cyan);
+      margin-right: 10px;
+      box-shadow: 0 0 10px var(--primary-cyan);
+    }
+
+    .copy-btn {
+      background: transparent;
+      color: var(--primary-cyan);
+      border: 1px solid var(--primary-cyan);
+      padding: 8px 20px;
+      cursor: pointer;
+      font-family: 'Orbitron';
+      font-size: 0.7rem;
+      transition: 0.3s;
+    }
+    .copy-btn:hover { background: var(--primary-cyan); color: #000; box-shadow: 0 0 20px var(--primary-cyan); }
+
+    pre {
+      margin: 0;
+      padding: 30px;
+      text-align: left;
+      font-family: 'Consolas', monospace;
+      font-size: 0.95rem;
+      color: #70ffd0;
+      overflow-x: auto;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 22px 60px;
+      font-size: 1.3rem;
+      font-family: 'Orbitron';
+      background: rgba(0, 255, 255, 0.05);
+      color: var(--primary-cyan);
+      border: 1px solid var(--primary-cyan);
+      text-decoration: none;
+      letter-spacing: 3px;
+      transition: 0.5s;
+      position: relative;
+      backdrop-filter: blur(5px);
+    }
+
+    .btn:hover {
+      background: var(--primary-cyan);
+      color: #000;
+      box-shadow: 0 0 50px var(--primary-cyan);
+    }
+
+    /* 捲軸 */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background: var(--primary-cyan); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+  <canvas id="hologram-canvas"></canvas>
+  <div class="hologram-overlay"></div>
+
+  <div class="container">
+    <div class="glitch-title" data-text="TELEGRAM ID BOT">Telegram ID Bot</div>
+    <p class="subtitle">// NEURAL NETWORK IDENTIFIER v2.0 //</p>
+
+    <div class="steps">
+      <!-- 步驟 1 -->
+      <div class="step">
+        <div class="corner-decor"></div>
+        <div class="step-number">01</div>
+        <h3>核心啟動</h3>
+        <p>初始化 Python 環境，建立與 Telegram API 的加密全息鏈結。</p>
+      </div>
+      <!-- 步驟 2 -->
+      <div class="step">
+        <div class="corner-decor"></div>
+        <div class="step-number">02</div>
+        <h3>節點關聯</h3>
+        <p>將 Bot 邀請至目標群組，自動偵測並綁定該通訊節點。</p>
+      </div>
+      <!-- 步驟 3 -->
+      <div class="step">
+        <div class="corner-decor"></div>
+        <div class="step-number">03</div>
+        <h3>封包攔截</h3>
+        <p>實時監控 my_chat_member 事件流，捕捉任何權限變動訊號。</p>
+      </div>
+      <!-- 步驟 4 -->
+      <div class="step">
+        <div class="corner-decor"></div>
+        <div class="step-number">04</div>
+        <h3>數據解譯</h3>
+        <p>核心模組自動解析群組唯一標識符與元數據內容。</p>
+      </div>
+      <!-- 步驟 5 -->
+      <div class="step">
+        <div class="corner-decor"></div>
+        <div class="step-number">05</div>
+        <h3>報告投射</h3>
+        <p>系統自動繞過群組雜訊，將分析結果私訊至管理員終端。</p>
+      </div>
+    </div>
+
+    <div class="code-container">
+      <div class="code-header">
+        <div class="code-title">CORE_SYSTEM_KERNEL.PY</div>
+        <button class="copy-btn" id="copy-btn">COPY SYSTEM DATA</button>
+      </div>
+      <pre id="code">import logging
+from telegram import Update
+from telegram.ext import Application, ContextTypes, ChatMemberHandler
+
+# 請替換成你的 Bot Token（從 @BotFather 取得）
+TOKEN = ""
+
+# 啟用 logging，方便除錯
+logging.basicConfig(
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
+)
+logger = logging.getLogger(__name__)
+
+async def my_chat_member_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """
+    處理 bot 自身在群組的狀態變化（被加入或移除）
+    """
+    chat_member_update = update.my_chat_member
+    if chat_member_update is None:
+        return
+
+    old_status = chat_member_update.old_chat_member.status
+    new_status = chat_member_update.new_chat_member.status
+
+    # 偵測 bot 被加入群組
+    if old_status in ("left", "kicked", "banned") and new_status in ("member", "administrator", "creator"):
+        chat = chat_member_update.chat
+
+        # 只處理群組或超級群組
+        if chat.type in ("group", "supergroup"):
+            group_title = chat.title or "未知群組名稱"
+            group_id = chat.id
+
+            # 取得把 bot 拉進群組的人
+            adder = chat_member_update.from_user
+            adder_name = adder.full_name or adder.username or "未知使用者"
+
+            message = (
+                f"謝謝你把我拉進新群組！\n\n"
+                f"群組名稱：{group_title}\n"
+                f"群組 ID：{group_id}"
+            )
+
+            # 私訊給拉 bot 的人
+            try:
+                await context.bot.send_message(chat_id=adder.id, text=message)
+                logger.info(f"已成功私訊群組資訊給 {adder_name} ({adder.id})")
+            except Exception as e:
+                logger.error(f"無法私訊給 {adder_name} ({adder.id}): {e}")
+                # 常見原因：對方還沒和 bot 開啟私人對話（先跟 bot 說 hi 就能解決）
+
+def main():
+    """啟動 Bot"""
+    application = Application.builder().token(TOKEN).build()
+
+    # 正確註冊：第二個參數直接傳 ChatMemberHandler.MY_CHAT_MEMBER
+    application.add_handler(
+        ChatMemberHandler(my_chat_member_handler, ChatMemberHandler.MY_CHAT_MEMBER)
+    )
+
+    print("Bot 正在啟動...")
+    print("把 Bot 拉進任何群組，即可測試功能（你會收到私訊包含群組名稱與 ID）")
+    application.run_polling(allowed_updates=Update.ALL_TYPES)
+
+if __name__ == "__main__":
+    main()</pre>
+    </div>
+
+    <a href="#" class="btn">DEPLOY SYSTEM CORE</a>
+  </div>
+
+  <script>
+    // --- Canvas 光暈呼吸特效 (Glow Orbs) ---
+    const canvas = document.getElementById('hologram-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let orbs = [];
+    const orbCount = 40; // 光暈數量
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Orb {
+      constructor() {
+        this.init(true);
+      }
+
+      init(firstRun = false) {
+        // 隨機位置
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+
+        // 隨機大小範圍
+        this.radius = Math.random() * 100 + 50;
+
+        // 隨機移動速度 (非常緩慢，營造擴散感)
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+
+        // 顏色選擇 (青色、深藍、亮藍)
+        const colors = [
+          {r: 0, g: 255, b: 255}, // Cyan
+          {r: 0, g: 150, b: 255}, // Sky Blue
+          {r: 0, g: 50, b: 150}   // Deep Blue
+        ];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+
+        // 透明度生命週期
+        this.alpha = 0;
+        this.maxAlpha = Math.random() * 0.2 + 0.05; // 最大透明度不宜過高，保持柔和
+        this.fadeSpeed = Math.random() * 0.001 + 0.0005;
+        this.status = 'in'; // 'in' (fading in) or 'out' (fading out)
+
+        // 如果是初始執行，隨機給予一些進度，避免所有球同時出現
+        if (firstRun) {
+          this.alpha = Math.random() * this.maxAlpha;
+          this.status = Math.random() > 0.5 ? 'in' : 'out';
+        }
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // 邊界檢查 (稍微超出邊界沒關係，更自然)
+        if (this.x < -200 || this.x > canvas.width + 200 ||
+            this.y < -200 || this.y > canvas.height + 200) {
+          this.status = 'out'; // 移出邊界就強制淡出重置
+        }
+
+        // 呼吸效果 (淡入淡出)
+        if (this.status === 'in') {
+          this.alpha += this.fadeSpeed;
+          if (this.alpha >= this.maxAlpha) {
+            this.status = 'out';
+          }
+        } else {
+          this.alpha -= this.fadeSpeed;
+          if (this.alpha <= 0) {
+            this.init(); // 重置並重生
+          }
+        }
+      }
+
+      draw() {
+        // 使用徑向漸層繪製光暈
+        const gradient = ctx.createRadialGradient(
+          this.x, this.y, 0,
+          this.x, this.y, this.radius
+        );
+
+        // 核心亮，邊緣透明
+        gradient.addColorStop(0, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.alpha})`);
+        gradient.addColorStop(0.5, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.alpha * 0.5})`);
+        gradient.addColorStop(1, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0)`);
+
+        ctx.fillStyle = gradient;
+        // 使用 lighter 混合模式讓重疊處更亮，製造光感
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalCompositeOperation = 'source-over'; // 恢復默認
+      }
+    }
+
+    // 初始化光球
+    for (let i = 0; i < orbCount; i++) {
+      orbs.push(new Orb());
+    }
+
+    function animate() {
+      // 每一幀清除畫布
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      orbs.forEach(orb => {
+        orb.update();
+        orb.draw();
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // --- 區塊顯現動畫 (Intersection Observer) ---
+    const observer = new IntersectionObserver(e => {
+      e.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.step').forEach(s => observer.observe(s));
+
+    // --- 複製代碼功能 ---
+    document.getElementById('copy-btn').addEventListener('click', () => {
+      const code = document.getElementById('code').innerText;
+      const textArea = document.createElement("textarea");
+      textArea.value = code;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+
+      const btn = document.getElementById('copy-btn');
+      btn.innerText = "LINK ESTABLISHED!";
+      btn.style.borderColor = "#fff";
+      btn.style.color = "#fff";
+      setTimeout(() => {
+        btn.innerText = "COPY SYSTEM DATA";
+        btn.style.borderColor = "var(--primary-cyan)";
+        btn.style.color = "var(--primary-cyan)";
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

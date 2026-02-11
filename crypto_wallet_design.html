@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HD Wallet 企業級託管報告與模擬器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+        body {
+            background-color: #050505;
+            color: #00f2ff;
+            font-family: 'Share Tech Mono', monospace;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .cyber-panel {
+            background: rgba(10, 20, 30, 0.9);
+            border: 1px solid #00f2ff;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-cyber {
+            border: 1px solid #00f2ff;
+            background: transparent;
+            color: #00f2ff;
+            padding: 8px 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            transition: all 0.3s;
+        }
+
+        .btn-cyber:hover {
+            background: rgba(0, 242, 255, 0.2);
+            box-shadow: 0 0 15px #00f2ff;
+        }
+
+        .btn-cyber.active {
+            background: #00f2ff !important;
+            color: #000 !important;
+            font-weight: bold;
+        }
+
+        /* 報告模式專用樣式 */
+        .theory-content {
+            font-family: sans-serif;
+        }
+        .theory-content h2 { color: #00f2ff; font-size: 1.8rem; margin: 40px 0 20px 0; border-bottom: 2px solid #1e293b; padding-bottom: 10px; font-family: 'Share Tech Mono', monospace; }
+        .theory-content h3 { color: #fbbf24; font-size: 1.4rem; margin: 30px 0 15px 0; }
+        .theory-content p { color: #cbd5e1; line-height: 1.8; margin-bottom: 1.2rem; }
+        .theory-content b { color: #ffffff; }
+
+        .svg-container {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 30px 0;
+            overflow-x: auto;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #00f2ff; border-radius: 3px; }
+
+        /* SVG 樣式類別 */
+        .node-secure { fill: #01579b; stroke: #012d52; stroke-width: 1px; }
+        .node-insecure { fill: #d84315; stroke: #8d2b0e; stroke-width: 1px; }
+        .node-user { fill: #2e7d32; stroke: #1b4a1e; stroke-width: 1px; }
+        .svg-text-white { fill: #ffffff; font-weight: bold; font-family: sans-serif; pointer-events: none; }
+        .svg-label-bold { fill: #0f172a; font-size: 12px; font-family: sans-serif; font-weight: 800; }
+        .svg-label-small { fill: #475569; font-size: 10px; font-family: sans-serif; font-weight: normal; }
+        .svg-arrow { stroke: #64748b; stroke-width: 2; fill: none; }
+        .svg-dash { stroke: #01579b; stroke-width: 2; fill: none; stroke-dasharray: 6,4; }
+    </style>
+</head>
+<body class="flex flex-col h-screen">
+
+    <header class="p-4 flex justify-between items-center bg-black border-b border-cyan-900 z-50">
+        <div>
+            <h1 class="text-xl font-bold tracking-widest text-cyan-400 uppercase">HD WALLET SECURITY SYSTEM</h1>
+            <p class="text-[10px] opacity-60 uppercase">Enterprise Custody & Multi-Chain USDT Report</p>
+        </div>
+        <div class="flex space-x-2">
+            <button id="tab-viz" class="btn-cyber active" onclick="switchTab('viz')">視覺模擬器</button>
+            <button id="tab-doc" class="btn-cyber" onclick="switchTab('doc')">技術報告書</button>
+        </div>
+    </header>
+
+    <div class="flex-grow relative overflow-hidden">
+
+        <!-- 視覺模擬器分頁 -->
+        <div id="content-viz" class="h-full flex p-4 gap-4 overflow-hidden">
+            <div class="w-72 flex flex-col gap-4">
+                <div class="cyber-panel p-4 rounded">
+                    <h3 class="text-sm mb-4 border-b border-cyan-900 pb-2 uppercase">模式選擇</h3>
+                    <div class="flex flex-col gap-2">
+                        <button id="mode-trad" class="btn-cyber active w-full" onclick="switchMode('traditional')">傳統隨機模式</button>
+                        <button id="mode-hd" class="btn-cyber w-full" onclick="switchMode('hd')">HD 分層模式</button>
+                    </div>
+                </div>
+                <div class="cyber-panel p-4 rounded flex-grow flex flex-col overflow-hidden">
+                    <h3 class="text-sm mb-2 border-b border-cyan-900 pb-2 uppercase">監控日誌</h3>
+                    <div id="logs" class="text-[10px] overflow-y-auto flex-grow opacity-80 leading-relaxed font-mono">
+                        <div>> 系統內核已啟動</div>
+                    </div>
+                    <button class="btn-cyber mt-4 w-full" onclick="addUser()">＋ 產生會員地址</button>
+                    <button class="btn-cyber mt-2 w-full border-yellow-500 text-yellow-500" onclick="sweepFunds()">💰 執行資金歸集</button>
+                    <button id="btn-hack" class="btn-cyber mt-2 w-full border-red-500 text-red-500 hover:bg-red-900/20" onclick="hack()">☠️ 模擬網路入侵</button>
+                    <button class="btn-cyber mt-2 w-full border-gray-500 text-gray-500 text-[10px]" onclick="resetSim()">重置模擬</button>
+                </div>
+            </div>
+            <div class="flex-grow cyber-panel rounded relative overflow-hidden bg-black/40">
+                <div id="hack-overlay" class="absolute inset-0 bg-red-900/10 pointer-events-none opacity-0 transition-opacity duration-300"></div>
+                <canvas id="mainCanvas"></canvas>
+            </div>
+        </div>
+
+        <!-- 技術報告分頁 -->
+        <div id="content-doc" class="hidden h-full overflow-y-auto bg-slate-950 p-8 md:p-16 text-slate-200 theory-content">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16">
+                    <h1 class="text-5xl font-extrabold text-white mb-4">企業級託管錢包設計報告</h1>
+                    <p class="text-cyan-400 font-mono tracking-widest uppercase">BIP-32/44/84 Architecture & USDT Multi-Chain Practice</p>
+                </div>
+
+                <div class="bg-slate-900 p-6 rounded-lg border-l-4 border-cyan-500 mb-10">
+                    <p class="mb-0 italic text-slate-400">本設計整合了 HD 錢包的數學特性與雲端密鑰管理 (Cloud KMS/HSM) 的安全實務，實現了「熱端只收不付、冷端授權簽名」的銀行級架構。</p>
+                </div>
+
+                <h2>一、 系統核心架構圖 (System Architecture)</h2>
+                <div class="svg-container">
+                    <svg width="880" height="650" viewBox="0 0 880 650" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />
+                            </marker>
+                        </defs>
+
+                        <!-- Cold Zone -->
+                        <rect x="20" y="60" width="260" height="520" rx="15" fill="#f0f9ff" stroke="#01579b" stroke-width="2.5"/>
+                        <text x="150" y="45" text-anchor="middle" font-weight="bold" fill="#01579b" font-size="16">🔐 冷端 / HSM 安全環境 (離線區)</text>
+
+                        <rect x="40" y="90" width="220" height="70" rx="8" class="node-secure"/>
+                        <text x="150" y="120" text-anchor="middle" class="svg-text-white" font-size="14">Master Seed</text>
+                        <text x="150" y="145" text-anchor="middle" class="svg-text-white" font-size="10">BIP39 助記詞 (核心種子)</text>
+
+                        <rect x="40" y="200" width="220" height="60" rx="8" class="node-secure"/>
+                        <text x="150" y="235" text-anchor="middle" class="svg-text-white" font-size="14">Master Private Key (xprv)</text>
+
+                        <rect x="40" y="460" width="220" height="80" rx="8" class="node-secure"/>
+                        <text x="150" y="495" text-anchor="middle" class="svg-text-white" font-size="14">Signer Service</text>
+                        <text x="150" y="520" text-anchor="middle" class="svg-text-white" font-size="10">派生子私鑰完成授權簽名</text>
+
+                        <line x1="150" y1="160" x2="150" y2="200" class="svg-arrow" marker-end="url(#arrowhead)"/>
+
+                        <!-- Hot Zone -->
+                        <rect x="310" y="60" width="280" height="520" rx="15" fill="#fffaf5" stroke="#d84315" stroke-width="2.5"/>
+                        <text x="450" y="45" text-anchor="middle" font-weight="bold" fill="#d84315" font-size="16">🔥 熱端服務器 (Web / DB)</text>
+
+                        <rect x="340" y="90" width="220" height="60" rx="8" class="node-insecure"/>
+                        <text x="450" y="125" text-anchor="middle" class="svg-text-white" font-size="14">Master Public Key (xpub)</text>
+
+                        <rect x="340" y="200" width="220" height="60" rx="8" class="node-insecure"/>
+                        <text x="450" y="235" text-anchor="middle" class="svg-text-white" font-size="14">Address Generator</text>
+
+                        <rect x="340" y="330" width="220" height="60" rx="8" class="node-insecure"/>
+                        <text x="450" y="365" text-anchor="middle" class="svg-text-white" font-size="14">Tx Builder (未簽名交易)</text>
+
+                        <rect x="340" y="470" width="220" height="60" rx="8" class="node-insecure"/>
+                        <text x="450" y="505" text-anchor="middle" class="svg-text-white" font-size="14">Broadcaster (廣播服務)</text>
+
+                        <line x1="450" y1="150" x2="450" y2="200" class="svg-arrow" marker-end="url(#arrowhead)"/>
+
+                        <!-- Public Zone -->
+                        <rect x="630" y="60" width="230" height="520" rx="15" fill="#f5faf5" stroke="#2e7d32" stroke-width="2.5"/>
+                        <text x="745" y="45" text-anchor="middle" font-weight="bold" fill="#2e7d32" font-size="16">🌍 外部 / 用戶</text>
+
+                        <circle cx="745" cy="120" r="40" class="node-user"/>
+                        <text x="745" y="125" text-anchor="middle" class="svg-text-white" font-size="13">會員 User</text>
+
+                        <rect x="665" y="320" width="160" height="100" rx="10" fill="#e8f5e9" stroke="#1b5e20" stroke-dasharray="5,5"/>
+                        <text x="745" y="375" text-anchor="middle" fill="#1b5e20" font-weight="bold">區塊鏈網絡</text>
+
+                        <!-- Workflow Connections -->
+                        <line x1="260" y1="120" x2="340" y2="120" class="svg-arrow" marker-end="url(#arrowhead)"/>
+                        <text x="300" y="110" text-anchor="middle" class="svg-label-bold">1. 導出 xpub</text>
+                        <text x="300" y="140" text-anchor="middle" class="svg-label-small">(初始化一次)</text>
+
+                        <path d="M 560 230 Q 640 230 710 160" class="svg-arrow" marker-end="url(#arrowhead)"/>
+                        <text x="640" y="220" text-anchor="middle" class="svg-label-bold">2. 派生存款地址</text>
+
+                        <line x1="745" y1="160" x2="745" y2="320" class="svg-arrow" marker-end="url(#arrowhead)"/>
+                        <text x="755" y="240" class="svg-label-bold" text-anchor="start">3. 充值 (Deposit)</text>
+
+                        <line x1="665" y1="370" x2="560" y2="370" class="svg-arrow" marker-end="url(#arrowhead)"/>
+                        <text x="612" y="360" text-anchor="middle" class="svg-label-bold">4. 監測入帳</text>
+
+                        <path d="M 340 370 L 260 470" class="svg-arrow" marker-end="url(#arrowhead)"/>
+                        <text x="270" y="415" class="svg-label-bold" transform="rotate(-51, 270, 415)" text-anchor="middle">5. 請求簽名</text>
+                        <text x="270" y="430" class="svg-label-small" transform="rotate(-51, 270, 430)" text-anchor="middle">(會員地址 -> 中心冷錢包)</text>
+
+                        <path d="M 150 260 L 150 460" class="svg-dash" marker-end="url(#arrowhead)"/>
+                        <text x="160" y="360" class="svg-label-bold" style="fill:#01579b">內部派生子私鑰</text>
+
+                        <line x1="260" y1="500" x2="340" y2="500" class="svg-arrow" marker-end="url(#arrowhead)"/>
+                        <text x="300" y="490" text-anchor="middle" class="svg-label-bold">6. 返回 Signed TX</text>
+
+                        <path d="M 560 500 Q 640 500 720 420" class="svg-arrow" marker-end="url(#arrowhead)"/>
+                        <text x="640" y="520" text-anchor="middle" class="svg-label-bold">7. 廣播交易</text>
+                    </svg>
+                </div>
+
+                <h2>二、 USDT 多鏈實務 (TRC20 / ERC20 / BEP20)</h2>
+                <div class="svg-container" style="background: #0f172a;">
+                    <svg width="800" height="350" viewBox="0 0 800 350" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="350" y="20" width="100" height="45" rx="5" fill="#ffffff" stroke="#00f2ff" stroke-width="2"/>
+                        <text x="400" y="48" text-anchor="middle" fill="#000" font-weight="bold">Master Seed</text>
+                        <path d="M 400 65 L 200 120" stroke="#00f2ff" stroke-width="2" fill="none"/>
+                        <path d="M 400 65 L 600 120" stroke="#00f2ff" stroke-width="2" fill="none"/>
+                        <rect x="100" y="120" width="200" height="60" rx="5" fill="#1e293b" stroke="#00f2ff"/>
+                        <text x="200" y="145" text-anchor="middle" fill="#00f2ff" font-weight="bold">m/44'/60'/0'/0</text>
+                        <rect x="500" y="120" width="200" height="60" rx="5" fill="#1e293b" stroke="#00f2ff"/>
+                        <text x="600" y="145" text-anchor="middle" fill="#00f2ff" font-weight="bold">m/44'/195'/0'/0</text>
+                        <rect x="20" y="230" width="150" height="50" rx="8" fill="#26a17b"/>
+                        <text x="95" y="260" text-anchor="middle" fill="#fff" font-weight="bold">USDT-ERC20</text>
+                        <rect x="230" y="230" width="150" height="50" rx="8" fill="#f3ba2f"/>
+                        <text x="305" y="260" text-anchor="middle" fill="#000" font-weight="bold">USDT-BEP20</text>
+                        <rect x="525" y="230" width="150" height="50" rx="8" fill="#eb001b"/>
+                        <text x="600" y="260" text-anchor="middle" fill="#fff" font-weight="bold">USDT-TRC20</text>
+                        <path d="M 200 180 L 95 230" stroke="#334155" stroke-dasharray="4" fill="none"/>
+                        <path d="M 200 180 L 305 230" stroke="#334155" stroke-dasharray="4" fill="none"/>
+                        <path d="M 600 180 L 600 230" stroke="#334155" stroke-dasharray="4" fill="none"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="p-2 px-4 flex justify-between text-[10px] tracking-widest bg-black text-cyan-900 border-t border-cyan-950 font-mono">
+        <div>STATUS: <span id="sys-status" class="text-green-800">SECURE_LINK_ON</span></div>
+        <div>PROTOCOLS: BIP-32 | BIP-44 | BIP-84 | FIPS 140-2 L3</div>
+    </footer>
+
+    <script>
+        let width, height, nodes = [], particles = [], mode = 'traditional', userCount = 0;
+        let canvas, ctx;
+        let isHacking = false;
+        let signProgress = 0; // 用於簽名動畫
+
+        function switchTab(tab) {
+            const viz = document.getElementById('content-viz');
+            const doc = document.getElementById('content-doc');
+            const btnViz = document.getElementById('tab-viz');
+            const btnDoc = document.getElementById('tab-doc');
+
+            viz.classList.toggle('hidden', tab !== 'viz');
+            doc.classList.toggle('hidden', tab !== 'doc');
+            btnViz.classList.toggle('active', tab === 'viz');
+            btnDoc.classList.toggle('active', tab === 'doc');
+
+            if (tab === 'viz') {
+                setTimeout(initCanvas, 50);
+            }
+        }
+
+        function initCanvas() {
+            canvas = document.getElementById('mainCanvas');
+            ctx = canvas.getContext('2d');
+            const parent = canvas.parentElement;
+            width = parent.offsetWidth;
+            height = parent.offsetHeight;
+            canvas.width = width;
+            canvas.height = height;
+            resetSim();
+        }
+
+        function switchMode(m) {
+            if (isHacking) return;
+            mode = m;
+            document.getElementById('mode-trad').classList.toggle('active', m === 'traditional');
+            document.getElementById('mode-hd').classList.toggle('active', m === 'hd');
+            resetSim();
+            addLog(`切換模式：${m.toUpperCase()}`);
+        }
+
+        function resetSim() {
+            isHacking = false;
+            userCount = 0;
+            nodes = [];
+            particles = [];
+            signProgress = 0;
+            document.getElementById('hack-overlay').style.opacity = '0';
+            document.getElementById('sys-status').innerText = 'SECURE_LINK_ON';
+            document.getElementById('sys-status').style.color = '#065f46';
+
+            if (mode === 'traditional') {
+                nodes.push({ id: 'main', x: width/2, y: height/2, type: 'server', label: 'HOT_DATABASE', hacked: false });
+            } else {
+                nodes.push({ id: 'hsm', x: width*0.3, y: height/2, type: 'hsm', label: 'COLD_HSM_VAULT', hacked: false });
+                nodes.push({ id: 'server', x: width*0.7, y: height/2, type: 'server', label: 'HOT_WEB_SERVER', hacked: false });
+            }
+        }
+
+        // 資金粒子類別
+        class FundParticle {
+            constructor(startX, startY, endX, endY, color, size = 3, speed = 0.02, type = 'flow') {
+                this.x = startX;
+                this.y = startY;
+                this.startX = startX;
+                this.startY = startY;
+                this.endX = endX;
+                this.endY = endY;
+                this.progress = 0;
+                this.color = color;
+                this.size = size;
+                this.speed = speed;
+                this.type = type; // flow, leak
+                this.alive = true;
+                this.offset = Math.random() * 20 - 10; // 隨機偏移讓流動更自然
+            }
+
+            update() {
+                this.progress += this.speed;
+                if (this.progress >= 1) {
+                    this.alive = false;
+                    return;
+                }
+                // 帶點曲線的路徑
+                const midX = (this.startX + this.endX) / 2;
+                const midY = (this.startY + this.endY) / 2 + this.offset;
+
+                // 二次貝茲曲線
+                const t = this.progress;
+                this.x = (1 - t) * (1 - t) * this.startX + 2 * (1 - t) * t * midX + t * t * this.endX;
+                this.y = (1 - t) * (1 - t) * this.startY + 2 * (1 - t) * t * midY + t * t * this.endY;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        function addUser() {
+            if (isHacking && mode === 'traditional') {
+                addLog('!!! 系統已淪陷，無法產生地址 !!!', true);
+                return;
+            }
+            userCount++;
+            const angle = Math.random() * Math.PI * 2;
+            const dist = 160;
+            const targetNode = mode === 'traditional' ? nodes[0] : nodes.find(n => n.id === 'server');
+            const startX = targetNode.x + Math.cos(angle) * dist;
+            const startY = targetNode.y + Math.sin(angle) * dist;
+
+            const newUser = { id: `u${userCount}`, x: startX, y: startY, type: 'user', label: `MEMBER_${userCount}`, hacked: false };
+            nodes.push(newUser);
+
+            // 加入資金入帳粒子
+            for(let i=0; i<5; i++) {
+                setTimeout(() => {
+                    particles.push(new FundParticle(startX, startY, targetNode.x, targetNode.y, '#fbbf24', 2, 0.015));
+                }, i * 150);
+            }
+
+            addLog(`會員 ${userCount}：入帳地址已衍生並監測中`);
+        }
+
+        function sweepFunds() {
+            if (isHacking && mode === 'traditional') return;
+            if (mode === 'traditional') {
+                addLog('傳統模式：正在內部轉移資金...', false);
+                const server = nodes[0];
+                for(let i=0; i<15; i++) {
+                    particles.push(new FundParticle(server.x, server.y, server.x, 0, '#fbbf24', 3, 0.02));
+                }
+            } else {
+                addLog('HD 模式：啟動資金歸集流程...');
+                const server = nodes.find(n => n.id === 'server');
+                const hsm = nodes.find(n => n.id === 'hsm');
+
+                // 1. 請求簽名粒子 (Server -> HSM)
+                for(let i=0; i<5; i++) {
+                    setTimeout(() => {
+                        particles.push(new FundParticle(server.x, server.y, hsm.x, hsm.y, '#00f2ff', 2, 0.04));
+                    }, i * 100);
+                }
+
+                // 2. 觸發簽名動畫
+                setTimeout(() => {
+                    signProgress = 100;
+                    addLog('HSM：正在進行硬體隔離簽名...', false);
+                }, 400);
+
+                // 3. 返回簽名與廣播粒子 (HSM -> Server -> Out)
+                setTimeout(() => {
+                    for(let i=0; i<5; i++) {
+                        particles.push(new FundParticle(hsm.x, hsm.y, server.x, server.y, '#10b981', 2, 0.04));
+                    }
+                    setTimeout(() => {
+                        addLog('廣播成功：資金已安全歸集至中心冷錢包。');
+                        for(let i=0; i<10; i++) {
+                            particles.push(new FundParticle(server.x, server.y, width + 50, server.y - 100, '#10b981', 3, 0.02));
+                        }
+                    }, 500);
+                }, 1500);
+            }
+        }
+
+        function hack() {
+            if (isHacking) return;
+            isHacking = true;
+            addLog('!!! 警報：檢測到暴力入侵攻擊 !!!', true);
+            document.getElementById('hack-overlay').style.opacity = '1';
+            document.getElementById('sys-status').innerText = 'BREACH_DETECTED';
+            document.getElementById('sys-status').style.color = '#ef4444';
+
+            setTimeout(() => {
+                if (mode === 'traditional') {
+                    nodes.forEach(n => {
+                        n.hacked = true;
+                        // 產生洩漏粒子
+                        for(let i=0; i<20; i++) {
+                            const angle = Math.random() * Math.PI * 2;
+                            const vx = Math.cos(angle) * 300 + n.x;
+                            const vy = Math.sin(angle) * 300 + n.y;
+                            particles.push(new FundParticle(n.x, n.y, vx, vy, '#ef4444', 1.5, 0.01, 'leak'));
+                        }
+                    });
+                    addLog('💀 災難：私鑰外洩，駭客正在清空資產！', true);
+                } else {
+                    nodes.forEach(n => {
+                        if (n.type === 'server') {
+                            n.hacked = true;
+                            for(let i=0; i<20; i++) {
+                                const angle = Math.random() * Math.PI * 2;
+                                particles.push(new FundParticle(n.x, n.y, Math.cos(angle)*200+n.x, Math.sin(angle)*200+n.y, '#ef4444', 1, 0.02, 'leak'));
+                            }
+                        }
+                    });
+                    addLog('🛡️ 防禦成功：Master Seed 位於冷端，駭客僅拿到空地址。');
+                }
+                document.getElementById('hack-overlay').style.opacity = '0.3';
+            }, 1000);
+        }
+
+        function addLog(msg, isDanger) {
+            const logs = document.getElementById('logs');
+            const d = document.createElement('div');
+            if (isDanger) d.className = 'text-red-500 font-bold';
+            d.innerText = `> ${msg}`;
+            logs.prepend(d);
+        }
+
+        function draw() {
+            if (!ctx) return;
+            ctx.fillStyle = '#050505';
+            ctx.fillRect(0, 0, width, height);
+
+            // 背景格線
+            ctx.strokeStyle = '#002233';
+            ctx.lineWidth = 1;
+            for(let i=0; i<width; i+=50) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,height); ctx.stroke(); }
+            for(let i=0; i<height; i+=50) { ctx.beginPath(); ctx.moveTo(0,i); ctx.lineTo(width,i); ctx.stroke(); }
+
+            // 更新並繪製粒子
+            particles = particles.filter(p => p.alive);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            // 繪製連線
+            nodes.forEach(n => {
+                if (n.type === 'user') {
+                    const target = mode === 'traditional' ? nodes[0] : nodes.find(node => node.id === 'server');
+                    ctx.beginPath();
+                    ctx.moveTo(n.x, n.y);
+                    ctx.lineTo(target.x, target.y);
+                    if (n.hacked) {
+                        ctx.strokeStyle = 'rgba(255, 0, 0, 0.15)';
+                        ctx.setLineDash([2, 5]);
+                    } else {
+                        ctx.strokeStyle = 'rgba(0, 242, 255, 0.2)';
+                        ctx.setLineDash([]);
+                    }
+                    ctx.stroke();
+                }
+            });
+            ctx.setLineDash([]);
+
+            // 繪製節點
+            nodes.forEach(n => {
+                const radius = n.type === 'user' ? 12 : 45;
+
+                // 簽名動畫 (HSM 特效)
+                if (n.type === 'hsm' && signProgress > 0) {
+                    signProgress -= 2;
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, radius + 15, 0, Math.PI * 2);
+                    ctx.strokeStyle = `rgba(0, 242, 255, ${signProgress/100})`;
+                    ctx.setLineDash([10, 10]);
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+                }
+
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, radius, 0, Math.PI*2);
+
+                let color = n.type === 'user' ? '#00f2ff' : (n.type === 'hsm' ? '#10b981' : '#fbbf24');
+
+                if (n.hacked) {
+                    ctx.strokeStyle = '#ef4444';
+                    ctx.fillStyle = 'rgba(50, 20, 20, 0.6)';
+                    ctx.lineWidth = 3;
+                } else {
+                    ctx.strokeStyle = color;
+                    ctx.fillStyle = color + '15';
+                    ctx.lineWidth = 2;
+                }
+
+                ctx.stroke();
+                ctx.fill();
+
+                // 節點內容
+                ctx.fillStyle = n.hacked ? '#ef4444' : '#fff';
+                ctx.font = '10px Share Tech Mono';
+                ctx.textAlign = 'center';
+
+                if (n.hacked) {
+                    ctx.font = 'bold 16px Share Tech Mono';
+                    ctx.fillText('✕', n.x, n.y + 6);
+                    ctx.font = '9px Share Tech Mono';
+                    ctx.fillText('BREACHED', n.x, n.y + 22);
+                } else {
+                    ctx.fillText(n.label, n.x, n.y + radius + 15);
+                }
+
+                // SHIELDED 標籤
+                if (n.type === 'hsm' && isHacking && mode === 'hd') {
+                    ctx.fillStyle = '#10b981';
+                    ctx.font = 'bold 10px Share Tech Mono';
+                    ctx.fillText('IMMUNE / HSM PROTECTED', n.x, n.y - radius - 15);
+                    // 繪製護盾圓環
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, radius + 8, 0, Math.PI * 2);
+                    ctx.strokeStyle = '#10b981';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            });
+
+            requestAnimationFrame(draw);
+        }
+
+        window.onload = () => {
+            initCanvas();
+            draw();
+            window.addEventListener('resize', initCanvas);
+        }
+    </script>
+</body>
+</html>
